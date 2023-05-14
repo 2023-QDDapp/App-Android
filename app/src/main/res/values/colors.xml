@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Colores app -->
+    <color name="color_principal">#085F72</color>
+    <color name="color_secundario">#5F5D5D</color>
+    <color name="boton">#69CCE1</color>
+    <color name="azul">#0BB1D6</color>
+    <color name="gris_claro">#BCBCBC</color>
+    <color name="fondo_evento">#F0FAFC</color>
+</resources>

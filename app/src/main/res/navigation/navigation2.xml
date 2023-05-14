@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation2"
+    app:startDestination="@id/inicio">
+    <fragment
+        android:id="@+id/buscar"
+        android:name="com.example.qddapp.UI.FragmentBuscar"
+        android:label="fragment_buscar"
+        tools:layout="@layout/fragment_buscar" />
+    <fragment
+        android:id="@+id/crear"
+        android:name="com.example.qddapp.UI.FragmentCrear"
+        android:label="fragment_crear"
+        tools:layout="@layout/fragment_crear" />
+    <fragment
+        android:id="@+id/inicio"
+        android:name="com.example.qddapp.UI.FragmentHome"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/perfil"
+        android:name="com.example.qddapp.UI.FragmentPerfil"
+        android:label="fragment_perfil"
+        tools:layout="@layout/fragment_perfil" />
+</navigation>

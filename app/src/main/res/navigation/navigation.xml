@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/fragmentInicioSesion">
+
+    <fragment
+        android:id="@+id/fragmentRegistroNombre"
+        android:name="com.example.qddapp.UI.FragmentRegistroNombre"
+        android:label="fragment_registro_nombre"
+        tools:layout="@layout/fragment_registro_nombre" >
+        <action
+            android:id="@+id/action_fragmentRegistroNombre_to_fragmentRegistroNacimiento"
+            app:destination="@id/fragmentRegistroNacimiento" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentInicioSesion"
+        android:name="com.example.qddapp.UI.FragmentInicioSesion"
+        android:label="fragment_inicio_sesion"
+        tools:layout="@layout/fragment_inicio_sesion" >
+        <action
+            android:id="@+id/action_fragmentInicioSesion_to_fragmentPantallaCarga"
+            app:destination="@id/fragmentPantallaCarga" />
+        <action
+            android:id="@+id/action_fragmentInicioSesion_to_fragmentRegistroNombre"
+            app:destination="@id/fragmentRegistroNombre" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentRegistroNacimiento"
+        android:name="com.example.qddapp.UI.FragmentRegistroNacimiento"
+        android:label="fragment_registro_nacimiento"
+        tools:layout="@layout/fragment_registro_nacimiento" >
+        <action
+            android:id="@+id/action_fragmentRegistroNacimiento_to_fragmentRegistroTelefono"
+            app:destination="@id/fragmentRegistroTelefono" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentRegistroTelefono"
+        android:name="com.example.qddapp.UI.FragmentRegistroTelefono"
+        android:label="fragment_registro_telefono"
+        tools:layout="@layout/fragment_registro_telefono" >
+        <action
+            android:id="@+id/action_fragmentRegistroTelefono_to_fragmentRegistroFoto"
+            app:destination="@id/fragmentRegistroFoto" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentRegistroFoto"
+        android:name="com.example.qddapp.UI.FragmentRegistroFoto"
+        android:label="fragment_registro_foto"
+        tools:layout="@layout/fragment_registro_foto" >
+        <action
+            android:id="@+id/action_fragmentRegistroFoto_to_fragmentRegistroDescripcion"
+            app:destination="@id/fragmentRegistroDescripcion" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentRegistroDescripcion"
+        android:name="com.example.qddapp.UI.FragmentRegistroDescripcion"
+        android:label="fragment_registro_descripcion"
+        tools:layout="@layout/fragment_registro_descripcion" >
+        <action
+            android:id="@+id/action_fragmentRegistroDescripcion_to_fragmentPreferencias"
+            app:destination="@id/fragmentPreferencias" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentPreferencias"
+        android:name="com.example.qddapp.UI.FragmentPreferencias"
+        android:label="fragment_preferencias"
+        tools:layout="@layout/fragment_preferencias" >
+        <action
+            android:id="@+id/action_fragmentPreferencias_to_fragmentPantallaCarga"
+            app:destination="@id/fragmentPantallaCarga" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentPantallaCarga"
+        android:name="com.example.qddapp.UI.FragmentPantallaCarga"
+        android:label="fragment_pantalla_carga"
+        tools:layout="@layout/fragment_pantalla_carga" />
+</navigation>
