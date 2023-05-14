@@ -15,7 +15,6 @@ class FragmentGoogle : DialogFragment() {
     private lateinit var binding: FragmentGoogleBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
         binding = FragmentGoogleBinding.inflate(inflater, container, false)
         return binding.root
     }

@@ -18,10 +18,19 @@
         android:id="@+id/inicio"
         android:name="com.example.qddapp.UI.FragmentHome"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_inicio_to_fragmentDetalleEvento"
+            app:destination="@id/fragmentDetalleEvento" />
+    </fragment>
     <fragment
         android:id="@+id/perfil"
         android:name="com.example.qddapp.UI.FragmentPerfil"
         android:label="fragment_perfil"
         tools:layout="@layout/fragment_perfil" />
+    <fragment
+        android:id="@+id/fragmentDetalleEvento"
+        android:name="com.example.qddapp.UI.FragmentDetalleEvento"
+        android:label="fragment_detalle_evento"
+        tools:layout="@layout/fragment_detalle_evento" />
 </navigation>

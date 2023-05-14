@@ -41,6 +41,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/fondo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,15 +50,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textView13"
         app:layout_constraintVertical_bias="1.0">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/fotoPerfil"
             android:layout_width="113dp"
             android:layout_height="113dp"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
+            android:layout_marginTop="10dp"
             android:src="@drawable/circulo"
+            android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="@+id/guideline25"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -83,7 +83,7 @@
             android:fontFamily="@font/raleway"
             android:text="Manolo Cárdenas"
             android:textAlignment="viewStart"
-            android:textColor="#5F5D5D"
+            android:textColor="@color/color_secundario"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/edadPerfil"
@@ -121,7 +121,7 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/raleway"
             android:text="Intereses"
-            android:textColor="#5F5D5D"
+            android:textColor="@color/color_secundario"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline25"
@@ -154,7 +154,7 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/raleway"
             android:text="¿Sobre mi?"
-            android:textColor="#5F5D5D"
+            android:textColor="@color/color_secundario"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline25"
@@ -167,7 +167,7 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/montserrat"
             android:text="Soy una perona que disfruta de los deportes, como fútbol, siempre que puedo voy de conciertos, además, hace unos años descubrí la bachata"
-            android:textColor="#5F5D5D"
+            android:textColor="@color/color_secundario"
             android:textSize="15sp"
             app:layout_constraintEnd_toStartOf="@+id/guideline26"
             app:layout_constraintStart_toStartOf="@+id/guideline25"
@@ -190,7 +190,7 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/raleway"
             android:text="Valoraciones"
-            android:textColor="#5F5D5D"
+            android:textColor="@color/color_secundario"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline25"
@@ -208,6 +208,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView31" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewPerfil"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"

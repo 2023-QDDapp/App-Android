@@ -1,5 +1,6 @@
 package com.example.qddapp.UI
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
+import com.example.qddapp.Home
 import com.example.qddapp.R
 import com.example.qddapp.databinding.FragmentInicioSesionBinding
 
@@ -35,6 +37,11 @@ class FragmentInicioSesion : Fragment() {
         binding.registroGoogle.setOnClickListener{
             val googlePopUp = FragmentGoogle()
             googlePopUp.show((activity as AppCompatActivity).supportFragmentManager, "showPopUp")
+        }
+
+        binding.logo.setOnClickListener {
+            val intent = Intent(context, Home::class.java)
+            startActivity(intent)
         }
 
         binding.iniciarSesion.setOnClickListener {

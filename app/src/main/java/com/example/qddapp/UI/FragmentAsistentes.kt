@@ -7,22 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.qddapp.Adapters.EventosAdapter
-import com.example.qddapp.Modelos.Evento
+import com.example.qddapp.Adapters.AsistentesAdapter
+import com.example.qddapp.Modelos.Asistente
 import com.example.qddapp.Retrofit.Repositorio
-import com.example.qddapp.databinding.FragmentHomeBinding
+import com.example.qddapp.databinding.FragmentAsistentesBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class FragmentHome : Fragment() {
+class FragmentAsistentes : Fragment() {
 
-    private lateinit var binding: FragmentHomeBinding
+    private lateinit var binding: FragmentAsistentesBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding = FragmentAsistentesBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -32,11 +31,11 @@ class FragmentHome : Fragment() {
         val miRepositorio = Repositorio()
 
         CoroutineScope(Dispatchers.IO).launch {
-            val response = miRepositorio.dameEventosParaMi()
+            val response = miRepositorio.dameElEvento()
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful && response.code() == 200) {
                     val respuesta = response.body()
-                    respuesta?.let { configRecycler(respuesta) }
+                    respuesta?.let { configRecycler(respuesta.asistentes) }
                 } else {
                     Toast.makeText(
                         requireContext(),
@@ -48,9 +47,9 @@ class FragmentHome : Fragment() {
         }
     }
 
-    private fun configRecycler(listaEventos: List<Evento>) {
-        val recyclerView = binding.recyclerview
-        val adapter = EventosAdapter(listaEventos)
+    private fun configRecycler(listaAsistente: List<Asistente>) {
+        val recyclerView = binding.recyclerViewAsistentes
+        val adapter = AsistentesAdapter(listaAsistente)
         val layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter

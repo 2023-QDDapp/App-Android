@@ -8,8 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
+import com.example.qddapp.Adapters.ValoracionesAdapter
 import com.example.qddapp.Modelos.Usuario
+import com.example.qddapp.Modelos.Valoracion
 import com.example.qddapp.R
 import com.example.qddapp.Retrofit.Repositorio
 import com.example.qddapp.databinding.FragmentPerfilBinding
@@ -39,7 +42,10 @@ class FragmentPerfil : Fragment() {
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful && response.code() == 200) {
                     val respuesta = response.body()
-                    respuesta?.let { rellenarDatos(respuesta) }
+                    respuesta?.let {
+                        rellenarDatos(respuesta)
+                        configRecycler(respuesta.valoraciones)
+                    }
                 } else {
                     Toast.makeText(
                         requireContext(),
@@ -64,5 +70,13 @@ class FragmentPerfil : Fragment() {
             chip.setTextColor(ContextCompat.getColor(context!!, R.color.color_principal))
             binding.chipGroup.addView(chip)
         }
+    }
+
+    private fun configRecycler(listaValoraciones: List<Valoracion>) {
+        val recyclerView = binding.recyclerViewPerfil
+        val adapter = ValoracionesAdapter(listaValoraciones)
+        val layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
+        recyclerView.layoutManager = layoutManager
+        recyclerView.adapter = adapter
     }
 }

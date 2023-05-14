@@ -12,9 +12,17 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.example.qddapp.Modelos.Categoria
+import com.example.qddapp.Modelos.Usuario
 import com.example.qddapp.R
+import com.example.qddapp.Retrofit.Repositorio
 import com.example.qddapp.databinding.FragmentPreferenciasBinding
 import com.google.android.material.chip.Chip
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class FragmentPreferencias : Fragment() {
 
@@ -29,25 +37,37 @@ class FragmentPreferencias : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val chip = Chip(context)
-        chip.text = "hola"
-        chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.boton))
-        chip.setTextColor(ContextCompat.getColor(context!!, R.color.color_principal))
-        binding.chipGroup.addView(chip)
+        val miRepositorio = Repositorio()
 
-        chip.setOnClickListener {
-            Toast.makeText(context, chip.isChecked.toString(), Toast.LENGTH_LONG).show()
-            if (chip.isChecked) {
-                chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.boton))
-                chip.setTextColor(ContextCompat.getColor(context!!, R.color.color_principal))
-                Toast.makeText(context, chip.isChecked.toString() + "a", Toast.LENGTH_LONG).show()
-            } else {
-                chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.color_principal))
-                chip.setTextColor(ContextCompat.getColor(context!!, R.color.white))
-                Toast.makeText(context, chip.isChecked.toString() + "b", Toast.LENGTH_LONG).show()
+        CoroutineScope(Dispatchers.IO).launch {
+            val response = miRepositorio.dameTodasCategorias()
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful && response.code() == 200) {
+                    val respuesta = response.body()
+                    respuesta?.let { rellenarChip(respuesta) }
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Error: ${response.message()}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
-            chip.isChecked = !chip.isChecked
         }
+
+//        chip.setOnClickListener {
+//            Toast.makeText(context, chip.isChecked.toString(), Toast.LENGTH_LONG).show()
+//            if (chip.isChecked) {
+//                chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.boton))
+//                chip.setTextColor(ContextCompat.getColor(context!!, R.color.color_principal))
+//                Toast.makeText(context, chip.isChecked.toString() + "a", Toast.LENGTH_LONG).show()
+//            } else {
+//                chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.color_principal))
+//                chip.setTextColor(ContextCompat.getColor(context!!, R.color.white))
+//                Toast.makeText(context, chip.isChecked.toString() + "b", Toast.LENGTH_LONG).show()
+//            }
+//            chip.isChecked = !chip.isChecked
+//        }
 
         binding.nombre.setOnClickListener {
             findNavController().navigate(R.id.fragmentRegistroNombre)
@@ -72,6 +92,16 @@ class FragmentPreferencias : Fragment() {
         binding.siguientePreferencias.setOnClickListener {
             val permisosPopUp = FragmentPermisos()
             permisosPopUp.show((activity as AppCompatActivity).supportFragmentManager, "showPopUp")
+        }
+    }
+
+    fun rellenarChip(categorias: List<Categoria>) {
+        for (categoria in categorias) {
+            val chip = Chip(context)
+            chip.text = categoria.categoria
+            chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.boton))
+            chip.setTextColor(ContextCompat.getColor(context!!, R.color.color_principal))
+            binding.chipGroup.addView(chip)
         }
     }
 }
