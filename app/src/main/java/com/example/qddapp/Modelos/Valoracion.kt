@@ -10,8 +10,8 @@ data class Valoracion(
     val id_usuario: Int,
     @SerializedName("nombre_usuario")
     val nombre_usuario: String,
-    @SerializedName("mensaje")
-    val mensaje: String,
     @SerializedName("foto")
-    val foto: String
+    val foto: String,
+    @SerializedName("mensaje")
+    val mensaje: String
 ) : Parcelable

@@ -63,9 +63,9 @@ class FragmentPerfil : Fragment() {
         Glide.with(this).load(user.foto).into(binding.fotoPerfil)
         binding.descripcionPerfil.text = user.biografia
 
-        for (categoria in user.categorias) {
+        for (interese in user.intereses) {
             val chip = Chip(context)
-            chip.text = categoria.categoria
+            chip.text = interese.categoria
             chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.boton))
             chip.setTextColor(ContextCompat.getColor(context!!, R.color.color_principal))
             binding.chipGroup.addView(chip)

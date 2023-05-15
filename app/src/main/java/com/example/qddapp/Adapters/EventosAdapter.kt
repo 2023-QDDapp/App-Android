@@ -30,7 +30,7 @@ class EventosAdapter(val eventos: List<Evento>) : RecyclerView.Adapter<EventosAd
         Log.d("evento", eventos.toString()) //No se porque pero categoria me viene a null, pero la api viene bien
 
         holder.binding.tagEvento.text = "#" + eventos.categoria
-        holder.binding.tituloEvento.text = eventos.descripcion
+        holder.binding.tituloEvento.text = eventos.titulo
         holder.binding.fechaComletaEvento.text = formatFecha(eventos.fechaHoraInicio)
         holder.binding.edadUsuario.text = eventos.edad.toString()
         holder.binding.nombreUsuario.text = eventos.organizador

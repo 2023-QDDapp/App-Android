@@ -7,6 +7,8 @@ class Repositorio {
 
     suspend fun dameEventosParaMi() = retrofit.dameEventosParaMi()
 
+    suspend fun dameEventosSeguidos() = retrofit.dameEventosSeguidos()
+
     suspend fun dameElUsuario() = retrofit.dameElUsuario()
 
     suspend fun dameTodasCategorias() = retrofit.dameTodasCategorias()

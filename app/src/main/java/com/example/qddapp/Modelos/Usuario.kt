@@ -10,14 +10,14 @@ data class Usuario(
     val id: Int,
     @SerializedName("nombre")
     val nombre: String,
-    @SerializedName("edad")
-    val edad: Int,
     @SerializedName("foto")
     val foto: String,
+    @SerializedName("edad")
+    val edad: Int,
     @SerializedName("biografia")
     val biografia: String,
-    @SerializedName("categorias")
-    val categorias: List<Categoria>,
+    @SerializedName("intereses")
+    val intereses: List<Categoria>,
     @SerializedName("valoraciones")
     val valoraciones: List<Valoracion>
 ) : Parcelable

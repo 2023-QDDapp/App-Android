@@ -47,9 +47,9 @@ class FragmentAsistentes : Fragment() {
         }
     }
 
-    private fun configRecycler(listaAsistente: List<Asistente>) {
+    private fun configRecycler(listaAsistente: List<Asistente>?) {
         val recyclerView = binding.recyclerViewAsistentes
-        val adapter = AsistentesAdapter(listaAsistente)
+        val adapter = listaAsistente?.let { AsistentesAdapter(it) }
         val layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter

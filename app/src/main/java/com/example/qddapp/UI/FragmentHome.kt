@@ -1,6 +1,7 @@
 package com.example.qddapp.UI
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +9,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.qddapp.Adapters.EventosAdapter
+import com.example.qddapp.Home
 import com.example.qddapp.Modelos.Evento
+import com.example.qddapp.R
 import com.example.qddapp.Retrofit.Repositorio
 import com.example.qddapp.databinding.FragmentHomeBinding
+import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,6 +23,7 @@ import kotlinx.coroutines.withContext
 class FragmentHome : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
+    val miRepositorio = Repositorio()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -29,23 +34,21 @@ class FragmentHome : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val miRepositorio = Repositorio()
+        getEventos()
 
-        CoroutineScope(Dispatchers.IO).launch {
-            val response = miRepositorio.dameEventosParaMi()
-            withContext(Dispatchers.Main) {
-                if (response.isSuccessful && response.code() == 200) {
-                    val respuesta = response.body()
-                    respuesta?.let { configRecycler(respuesta) }
-                } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "Error: ${response.message()}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
+        binding.tablayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                getEventos(tab!!.position)
             }
-        }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+
+            }
+        })
     }
 
     private fun configRecycler(listaEventos: List<Evento>) {
@@ -54,5 +57,42 @@ class FragmentHome : Fragment() {
         val layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
+    }
+
+    fun getEventos(id: Int? = null) {
+        when (id) {
+            1 ->
+            CoroutineScope(Dispatchers.IO).launch {
+                val response = miRepositorio.dameEventosSeguidos()
+                withContext(Dispatchers.Main) {
+                    if (response.isSuccessful && response.code() == 200) {
+                        val respuesta = response.body()
+                        respuesta?.let { configRecycler(respuesta) }
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            "Error: ${response.message()}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
+            else ->
+            CoroutineScope(Dispatchers.IO).launch {
+                val response = miRepositorio.dameEventosParaMi()
+                withContext(Dispatchers.Main) {
+                    if (response.isSuccessful && response.code() == 200) {
+                        val respuesta = response.body()
+                        respuesta?.let { configRecycler(respuesta) }
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            "Error: ${response.message()}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
+        }
     }
 }

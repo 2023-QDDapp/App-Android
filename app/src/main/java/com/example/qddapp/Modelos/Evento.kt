@@ -20,18 +20,20 @@ data class Evento(
     val descripcion: String,
     @SerializedName("imagen_evento")
     val imagenEvento: String?,
+    @SerializedName("titulo")
+    val titulo: String,
     @SerializedName("fecha_hora_inicio")
     val fechaHoraInicio: String,
     @SerializedName("fecha_hora_fin")
     val fechaHoraFin: String,
     @SerializedName("location")
-    val location: String,
+    val location: String?,
     @SerializedName("id_categoria")
     val idCategoria: Int,
     @SerializedName("categoria")
     val categoria: String,
     @SerializedName("num_participantes")
-    val num_participantes: Int,
+    val num_participantes: Int?,
     @SerializedName("asistentes")
-    val asistentes: List<Asistente>
+    val asistentes: List<Asistente>?
 ) : Parcelable

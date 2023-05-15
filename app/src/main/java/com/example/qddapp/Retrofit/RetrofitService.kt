@@ -13,6 +13,9 @@ interface RetrofitService {
     @GET("/proyecto/api/users/1/parati")
     suspend fun dameEventosParaMi(): Response<List<Evento>>
 
+    @GET("/proyecto/api/users/2/pantallaseguidos")
+    suspend fun dameEventosSeguidos(): Response<List<Evento>>
+
     @GET("/proyecto/api/users/1")
     suspend fun dameElUsuario(): Response<Usuario>
 
