@@ -13,9 +13,12 @@ import com.example.qddapp.Modelos.Evento
 import com.example.qddapp.R
 import com.example.qddapp.databinding.EventoBinding
 
-class EventosAdapter(val eventos: List<Evento>) : RecyclerView.Adapter<EventosAdapter.MiCelda>(), Filterable {
+class EventosAdapter(val eventList: ArrayList<Evento>) : RecyclerView.Adapter<EventosAdapter.MiCelda>(), Filterable {
 
-    private var eventosCopia = eventos
+    private var eventosCopia = ArrayList<Evento>()
+    init {
+        eventosCopia.addAll(eventList)
+    }
     inner class MiCelda(val binding: EventoBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MiCelda {
@@ -25,9 +28,7 @@ class EventosAdapter(val eventos: List<Evento>) : RecyclerView.Adapter<EventosAd
     }
 
     override fun onBindViewHolder(holder: MiCelda, position: Int) {
-        val eventos: Evento = eventos.get(position)
-
-        Log.d("evento", eventos.toString()) //No se porque pero categoria me viene a null, pero la api viene bien
+        val eventos: Evento = eventosCopia.get(position)
 
         holder.binding.tagEvento.text = "#" + eventos.categoria
         holder.binding.tituloEvento.text = eventos.titulo
@@ -44,16 +45,19 @@ class EventosAdapter(val eventos: List<Evento>) : RecyclerView.Adapter<EventosAd
         }
 
         holder.itemView.setOnClickListener {
-            holder.itemView.findNavController().navigate(R.id.action_inicio_to_fragmentDetalleEvento)
+            holder.itemView.findNavController().navigate(R.id.fragmentDetalleEvento)
         }
     }
 
     override fun getItemCount(): Int {
-        return eventos.size
+        return eventosCopia.size
     }
 
     fun refreshList(listaEventos: ArrayList<Evento>) {
-        eventosCopia = listaEventos
+        eventosCopia .clear()
+        eventosCopia.addAll(listaEventos)
+        eventList.clear()
+        eventList.addAll(listaEventos)
         notifyDataSetChanged()
     }
 
@@ -117,10 +121,10 @@ class EventosAdapter(val eventos: List<Evento>) : RecyclerView.Adapter<EventosAd
                 val palabraABuscar = p0.toString()
 
                 if (palabraABuscar.isEmpty()) {
-                    eventosCopia = eventos
+                    eventosCopia.addAll(eventList)
                 } else {
-                    eventosCopia = eventos.filter {
-                        (it.organizador.lowercase().contains(palabraABuscar.lowercase()))
+                    eventosCopia = eventList.filter {
+                        (it.titulo.lowercase().contains(palabraABuscar.lowercase()))
                     } as ArrayList<Evento>
                 }
                 val filterResults = FilterResults()

@@ -53,7 +53,7 @@ class FragmentHome : Fragment() {
 
     private fun configRecycler(listaEventos: List<Evento>) {
         val recyclerView = binding.recyclerview
-        val adapter = EventosAdapter(listaEventos)
+        val adapter = EventosAdapter(listaEventos as ArrayList<Evento>)
         val layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter

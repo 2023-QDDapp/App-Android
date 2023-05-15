@@ -34,22 +34,24 @@ class FragmentBuscar : Fragment() {
         getEventos()
 
         binding.swipe.setOnRefreshListener {
+            binding.searchView.setQuery("", false)
+            binding.searchView.clearFocus()
             binding.swipe.isRefreshing = true
             pullToRefreshWorking = true
             getEventos()
         }
 
-//        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//            override fun onQueryTextSubmit(query: String?): Boolean {
-//                adapter.filter.filter(query)
-//                return true
-//            }
-//
-//            override fun onQueryTextChange(newText: String?): Boolean {
-//                adapter.filter.filter(newText)
-//                return true
-//            }
-//        })
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+           override fun onQueryTextSubmit(query: String?): Boolean {
+                adapter.filter.filter(query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.filter.filter(newText)
+                return true
+            }
+        })
 
         binding.searchView.setOnCloseListener {
             adapter.filter.filter("")
@@ -71,7 +73,7 @@ class FragmentBuscar : Fragment() {
                             pullToRefreshWorking = false
                             refreshRecycler(it)
                         } else {
-                            configRecycler(it)
+                            configRecycler(it as ArrayList<Evento>)
                         }
                     }
                 } else {
@@ -86,15 +88,16 @@ class FragmentBuscar : Fragment() {
         }
     }
 
-    private fun configRecycler(listaEventos: List<Evento>) {
+    private fun configRecycler(listaEventos: ArrayList<Evento>) {
         val recyclerView = binding.recyclerView
-        val adapter = EventosAdapter(listaEventos)
+        adapter = EventosAdapter(listaEventos)
         val layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
     }
 
     private fun refreshRecycler(listaEventos: List<Evento>) {
+
         adapter.refreshList(listaEventos as ArrayList<Evento>)
     }
 }
