@@ -31,7 +31,13 @@ class FragmentRegistroTelefono : Fragment() {
         }
 
         binding.siguienteTelefono.setOnClickListener {
-            findNavController().navigate(R.id.action_fragmentRegistroTelefono_to_fragmentRegistroFoto)
+            if (binding.inputTelefono.toString().isEmpty()) {
+                binding.inputTelefono.error = "Por favor, escribe aqui tu telefono"
+            } else if (binding.inputTelefono.length() < 9) {
+                binding.inputTelefono.error = "El telefono no es valido"
+            } else {
+                findNavController().navigate(R.id.action_fragmentRegistroTelefono_to_fragmentRegistroFoto)
+            }
         }
     }
 }

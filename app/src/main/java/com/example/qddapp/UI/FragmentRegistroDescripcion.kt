@@ -39,7 +39,11 @@ class FragmentRegistroDescripcion : Fragment() {
         }
 
         binding.siguienteDescripcion.setOnClickListener {
-            findNavController().navigate(R.id.action_fragmentRegistroDescripcion_to_fragmentPreferencias)
+            if (binding.inputDescripcion.text.toString().isEmpty()){
+                binding.inputDescripcion.error = "Por favor, escribe aqui una brebe descripción"
+            } else {
+                findNavController().navigate(R.id.action_fragmentRegistroDescripcion_to_fragmentPreferencias)
+            }
         }
     }
 }

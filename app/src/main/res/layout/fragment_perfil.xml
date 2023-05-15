@@ -153,7 +153,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/raleway"
-            android:text="¿Sobre mi?"
+            android:text="Sobre mí"
             android:textColor="@color/color_secundario"
             android:textSize="16sp"
             android:textStyle="bold"

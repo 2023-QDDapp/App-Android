@@ -8,12 +8,12 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/fotoValoracion"
-        android:layout_width="52dp"
-        android:layout_height="52dp"
-        app:layout_constraintStart_toStartOf="@+id/guideline30"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:scaleType="centerCrop"
         android:src="@drawable/circulo"
-        android:scaleType="centerCrop" />
+        app:layout_constraintStart_toStartOf="@+id/guideline30"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/nombreValoracion"
@@ -23,7 +23,7 @@
         android:fontFamily="@font/raleway"
         android:text="Ana Castillo"
         android:textColor="#5F5D5D"
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/fotoValoracion"
         app:layout_constraintTop_toTopOf="@+id/fotoValoracion" />
@@ -31,12 +31,12 @@
     <TextView
         android:id="@+id/mensageValoracion"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
         android:fontFamily="@font/montserrat"
         android:text="Buen organizador y mejor persona"
         android:textColor="#5F5D5D"
-        android:textSize="11sp"
-        app:layout_constraintBottom_toBottomOf="@+id/fotoValoracion"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/nombreValoracion"
         app:layout_constraintTop_toBottomOf="@+id/nombreValoracion" />
 
