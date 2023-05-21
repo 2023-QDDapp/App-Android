@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.qddapp.R
+import com.example.qddapp.UI.popUp.FragmentCamaraGaleria
 import com.example.qddapp.databinding.FragmentRegistroFotoBinding
 
 class FragmentRegistroFoto : Fragment() {
@@ -36,6 +37,10 @@ class FragmentRegistroFoto : Fragment() {
 
         binding.siguienteFoto.setOnClickListener {
             findNavController().navigate(R.id.action_fragmentRegistroFoto_to_fragmentRegistroDescripcion)
+        }
+
+        binding.agregarFotoPerfil.setOnClickListener {
+            FragmentCamaraGaleria().show(childFragmentManager, "TAG")
         }
     }
 }

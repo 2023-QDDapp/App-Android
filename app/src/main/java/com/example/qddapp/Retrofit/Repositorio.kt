@@ -5,13 +5,13 @@ class Repositorio {
 
     suspend fun dameTodosEventos() = retrofit.dameTodosEventos()
 
-    suspend fun dameEventosParaMi() = retrofit.dameEventosParaMi()
+    suspend fun dameEventosParaMi(id: Int) = retrofit.dameEventosParaMi(id)
 
-    suspend fun dameEventosSeguidos() = retrofit.dameEventosSeguidos()
+    suspend fun dameEventosSeguidos(id: Int) = retrofit.dameEventosSeguidos(id)
 
-    suspend fun dameElUsuario() = retrofit.dameElUsuario()
+    suspend fun dameElUsuario(id: Int) = retrofit.dameElUsuario(id)
 
     suspend fun dameTodasCategorias() = retrofit.dameTodasCategorias()
 
-    suspend fun dameElEvento() = retrofit.dameElEvento()
+    suspend fun dameElEvento(id: Int) = retrofit.dameElEvento(id)
 }

@@ -40,10 +40,8 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:background="@android:color/transparent"
-            app:tabGravity="fill"
-            app:tabIndicatorAnimationMode="elastic"
             app:tabIndicatorColor="@color/white"
-            app:tabIndicatorGravity="bottom"
+            app:tabIndicatorGravity="stretch"
             app:tabMode="scrollable"
             app:tabTextColor="@color/color_principal">
 

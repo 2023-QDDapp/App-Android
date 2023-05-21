@@ -12,6 +12,8 @@
         android:layout_height="55dp"
         android:scaleType="centerCrop"
         android:src="@drawable/circulo"
+        app:civ_border_color="@color/boton"
+        app:civ_border_width="0.5dp"
         app:layout_constraintStart_toStartOf="@+id/guideline30"
         app:layout_constraintTop_toTopOf="parent" />
 

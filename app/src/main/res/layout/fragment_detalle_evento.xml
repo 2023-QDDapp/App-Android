@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout10"
@@ -7,282 +7,284 @@
     android:layout_height="match_parent"
     tools:context=".UI.FragmentDetalleEvento">
 
-    <ImageView
-        android:id="@+id/atrasDetalleEvento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/atras"
-        app:layout_constraintStart_toStartOf="@+id/guideline21"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="20dp">
 
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/raleway"
-        android:text="Evento"
-        android:textColor="@color/color_principal"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/atrasDetalleEvento"
-        app:layout_constraintEnd_toStartOf="@+id/guideline34"
-        app:layout_constraintStart_toStartOf="@+id/guideline21"
-        app:layout_constraintTop_toTopOf="@+id/atrasDetalleEvento" />
+        <ImageView
+            android:id="@+id/atrasDetalleEvento"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/atras"
+            app:layout_constraintStart_toStartOf="@+id/guideline21"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="15dp" />
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway"
+            android:text="Evento"
+            android:textColor="@color/color_principal"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/atrasDetalleEvento"
+            app:layout_constraintEnd_toStartOf="@+id/guideline34"
+            app:layout_constraintStart_toStartOf="@+id/guideline21"
+            app:layout_constraintTop_toTopOf="@+id/atrasDetalleEvento" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline34"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="15dp" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="15dp" />
 
-    <ImageView
-        android:id="@+id/fotoDetalleEvento"
-        android:layout_width="0dp"
-        android:layout_height="206dp"
-        android:layout_marginTop="15dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_launcher_background"
-        app:layout_constraintEnd_toStartOf="@+id/guideline34"
-        app:layout_constraintStart_toStartOf="@+id/guideline21"
-        app:layout_constraintTop_toBottomOf="@+id/textView21" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline34"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="15dp" />
 
-    <TextView
-        android:id="@+id/nombreDetalleEvento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/raleway"
-        android:text="Pachanga de fútbol"
-        android:textColor="@color/color_secundario"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/guideline34"
-        app:layout_constraintStart_toStartOf="@+id/guideline21"
-        app:layout_constraintTop_toBottomOf="@+id/fotoDetalleEvento" />
+        <ImageView
+            android:id="@+id/fotoDetalleEvento"
+            android:layout_width="0dp"
+            android:layout_height="206dp"
+            android:layout_marginTop="15dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintEnd_toStartOf="@+id/guideline34"
+            app:layout_constraintStart_toStartOf="@+id/guideline21"
+            app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
-    <TextView
-        android:id="@+id/textView30"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/montserrat"
-        android:text="Inicio 22-03-2023, 12:00"
-        android:textColor="@color/color_secundario"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toStartOf="@+id/textView27"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guideline21"
-        app:layout_constraintTop_toBottomOf="@+id/nombreDetalleEvento" />
+        <TextView
+            android:id="@+id/nombreDetalleEvento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/raleway"
+            android:text="Pachanga de fútbol"
+            android:textColor="@color/color_secundario"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/guideline34"
+            app:layout_constraintStart_toStartOf="@+id/guideline21"
+            app:layout_constraintTop_toBottomOf="@+id/fotoDetalleEvento" />
 
-    <TextView
-        android:id="@+id/textView27"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat"
-        android:text="Final 22-03-2023, 15:00"
-        android:textColor="@color/color_secundario"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView30"
-        app:layout_constraintEnd_toStartOf="@+id/guideline34"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView30"
-        app:layout_constraintTop_toTopOf="@+id/textView30" />
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Inicio 22-03-2023, 12:00"
+            android:textColor="@color/color_secundario"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/textView27"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/guideline21"
+            app:layout_constraintTop_toBottomOf="@+id/nombreDetalleEvento" />
 
-    <View
-        android:id="@+id/view4"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/boton"
-        app:layout_constraintEnd_toStartOf="@+id/guideline34"
-        app:layout_constraintStart_toStartOf="@+id/guideline21"
-        app:layout_constraintTop_toBottomOf="@+id/textView30" />
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:text="Final 22-03-2023, 15:00"
+            android:textColor="@color/color_secundario"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView30"
+            app:layout_constraintEnd_toStartOf="@+id/guideline34"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textView30"
+            app:layout_constraintTop_toTopOf="@+id/textView30" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/fotoPerfilOrganizadorDetalleEvento"
-        android:layout_width="63dp"
-        android:layout_height="63dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/circulo"
-        app:layout_constraintStart_toStartOf="@+id/guideline21"
-        app:layout_constraintTop_toBottomOf="@+id/view4" />
+        <View
+            android:id="@+id/view4"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/boton"
+            app:layout_constraintEnd_toStartOf="@+id/guideline34"
+            app:layout_constraintStart_toStartOf="@+id/guideline21"
+            app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
-    <TextView
-        android:id="@+id/textView32"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:fontFamily="@font/raleway"
-        android:text="Organizador"
-        android:textColor="@color/color_secundario"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/fotoPerfilOrganizadorDetalleEvento"
-        app:layout_constraintTop_toTopOf="@+id/fotoPerfilOrganizadorDetalleEvento" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/fotoPerfilOrganizadorDetalleEvento"
+            android:layout_width="63dp"
+            android:layout_height="63dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/circulo"
+            app:civ_border_color="@color/boton"
+            app:civ_border_width="0.5dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline21"
+            app:layout_constraintTop_toBottomOf="@+id/view4" />
 
-    <TextView
-        android:id="@+id/nombreOrganizadorDetalleEvento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/raleway"
-        android:text="Julián García"
-        android:textColor="@color/color_secundario"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/edadDetalleEvento"
-        app:layout_constraintStart_toStartOf="@+id/textView32"
-        app:layout_constraintTop_toBottomOf="@+id/textView32" />
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:fontFamily="@font/raleway"
+            android:text="Organizador"
+            android:textColor="@color/color_secundario"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/fotoPerfilOrganizadorDetalleEvento"
+            app:layout_constraintTop_toTopOf="@+id/fotoPerfilOrganizadorDetalleEvento" />
 
-    <TextView
-        android:id="@+id/edadDetalleEvento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:fontFamily="@font/montserrat"
-        android:text="37 Años"
-        android:textColor="#282828"
-        android:textSize="8sp"
-        app:layout_constraintBottom_toBottomOf="@+id/fotoPerfilOrganizadorDetalleEvento"
-        app:layout_constraintStart_toStartOf="@+id/nombreOrganizadorDetalleEvento"
-        app:layout_constraintTop_toBottomOf="@+id/nombreOrganizadorDetalleEvento" />
+        <TextView
+            android:id="@+id/nombreOrganizadorDetalleEvento"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="-30dp"
+            android:fontFamily="@font/raleway"
+            android:text="Julián García"
+            android:textColor="@color/color_secundario"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/edadDetalleEvento"
+            app:layout_constraintEnd_toEndOf="@+id/textView32"
+            app:layout_constraintStart_toStartOf="@+id/textView32"
+            app:layout_constraintTop_toBottomOf="@+id/textView32" />
 
-    <TextView
-        android:id="@+id/textView35"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/raleway"
-        android:text="Asistentes:"
-        android:textColor="@color/color_secundario"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/textView27"
-        app:layout_constraintTop_toTopOf="@+id/textView32" />
+        <TextView
+            android:id="@+id/edadDetalleEvento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/montserrat"
+            android:text="37 Años"
+            android:textColor="#282828"
+            android:textSize="8sp"
+            app:layout_constraintBottom_toBottomOf="@+id/fotoPerfilOrganizadorDetalleEvento"
+            app:layout_constraintStart_toStartOf="@+id/nombreOrganizadorDetalleEvento"
+            app:layout_constraintTop_toBottomOf="@+id/nombreOrganizadorDetalleEvento" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/fotoPerfilDetalleEvento2"
-        android:layout_width="40dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/circulo"
-        app:layout_constraintBottom_toBottomOf="@+id/fotoPerfilOrganizadorDetalleEvento"
-        app:layout_constraintStart_toStartOf="@+id/textView35"
-        app:layout_constraintTop_toBottomOf="@+id/textView35" />
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway"
+            android:text="Asistentes:"
+            android:textColor="@color/color_secundario"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/textView27"
+            app:layout_constraintTop_toTopOf="@+id/textView32" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/fotoPerfilDetalleEvento3"
-        android:layout_width="40dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/circulo"
-        app:layout_constraintBottom_toBottomOf="@+id/fotoPerfilOrganizadorDetalleEvento"
-        app:layout_constraintStart_toEndOf="@+id/fotoPerfilDetalleEvento2"
-        app:layout_constraintTop_toBottomOf="@+id/textView35" />
+        <RelativeLayout
+            android:id="@+id/asistentes"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/fotoPerfilOrganizadorDetalleEvento"
+            app:layout_constraintEnd_toStartOf="@+id/guideline34"
+            app:layout_constraintStart_toStartOf="@+id/textView35"
+            app:layout_constraintTop_toBottomOf="@+id/textView35">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/fotoPerfilDetalleEvento4"
-        android:layout_width="40dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/circulo"
-        app:layout_constraintBottom_toBottomOf="@+id/fotoPerfilOrganizadorDetalleEvento"
-        app:layout_constraintStart_toEndOf="@+id/fotoPerfilDetalleEvento3"
-        app:layout_constraintTop_toBottomOf="@+id/textView35" />
+        </RelativeLayout>
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/fotoPerfilDetalleEvento5"
-        android:layout_width="40dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/circulo"
-        app:layout_constraintBottom_toBottomOf="@+id/fotoPerfilOrganizadorDetalleEvento"
-        app:layout_constraintStart_toEndOf="@+id/fotoPerfilDetalleEvento4"
-        app:layout_constraintTop_toBottomOf="@+id/textView35" />
+        <TextView
+            android:id="@+id/numeroAsistentesDetalleEvento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:fontFamily="@font/montserrat"
+            android:text="2"
+            android:textColor="@color/color_secundario"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView35"
+            app:layout_constraintStart_toEndOf="@+id/textView35"
+            app:layout_constraintTop_toTopOf="@+id/textView35" />
 
-    <TextView
-        android:id="@+id/numeroAsistentesDetalleEvento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:fontFamily="@font/montserrat"
-        android:text="2"
-        android:textColor="@color/color_secundario"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView35"
-        app:layout_constraintStart_toEndOf="@+id/textView35"
-        app:layout_constraintTop_toTopOf="@+id/textView35" />
+        <View
+            android:id="@+id/view11"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/boton"
+            app:layout_constraintEnd_toStartOf="@+id/guideline34"
+            app:layout_constraintStart_toStartOf="@+id/guideline21"
+            app:layout_constraintTop_toBottomOf="@+id/fotoPerfilOrganizadorDetalleEvento" />
 
-    <View
-        android:id="@+id/view11"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/boton"
-        app:layout_constraintEnd_toStartOf="@+id/guideline34"
-        app:layout_constraintStart_toStartOf="@+id/guideline21"
-        app:layout_constraintTop_toBottomOf="@+id/fotoPerfilDetalleEvento2" />
+        <TextView
+            android:id="@+id/descripcionDetalleEvento"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Se necesita jugadores para pasar echar un partido de fútbol de buen rollo y hacer un poco de deporte.\n\nImportante tener claro que indumentaria vamos a llevar. Si tienes alguna duda podemos hablar desde el tablón"
+            android:textColor="@color/color_secundario"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline34"
+            app:layout_constraintStart_toStartOf="@+id/guideline21"
+            app:layout_constraintTop_toBottomOf="@+id/view11" />
 
-    <TextView
-        android:id="@+id/descripcionDetalleEvento"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/montserrat"
-        android:text="Se necesita jugadores para pasar echar un partido de fútbol de buen rollo y hacer un poco de deporte.\n\nImportante tener claro que indumentaria vamos a llevar. Si tienes alguna duda podemos hablar desde el tablón"
-        android:textColor="@color/color_secundario"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline34"
-        app:layout_constraintStart_toStartOf="@+id/guideline21"
-        app:layout_constraintTop_toBottomOf="@+id/view11" />
+        <View
+            android:id="@+id/view12"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/boton"
+            app:layout_constraintEnd_toStartOf="@+id/guideline34"
+            app:layout_constraintStart_toStartOf="@+id/guideline21"
+            app:layout_constraintTop_toBottomOf="@+id/descripcionDetalleEvento" />
 
-    <View
-        android:id="@+id/view12"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/boton"
-        app:layout_constraintEnd_toStartOf="@+id/guideline34"
-        app:layout_constraintStart_toStartOf="@+id/guideline21"
-        app:layout_constraintTop_toBottomOf="@+id/descripcionDetalleEvento" />
+        <TextView
+            android:id="@+id/textView38"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/raleway"
+            android:text="Ubicación"
+            android:textColor="@color/color_secundario"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/guideline21"
+            app:layout_constraintTop_toBottomOf="@+id/view12" />
 
-    <TextView
-        android:id="@+id/textView38"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/raleway"
-        android:text="Ubicación"
-        android:textColor="@color/color_secundario"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/guideline21"
-        app:layout_constraintTop_toBottomOf="@+id/view12" />
+        <TextView
+            android:id="@+id/localizacionDetalleEvento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Jaén, Linares"
+            android:textColor="@color/color_secundario"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline21"
+            app:layout_constraintTop_toBottomOf="@+id/textView38" />
 
-    <TextView
-        android:id="@+id/localizacionDetalleEvento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/montserrat"
-        android:text="Jaén, Linares"
-        android:textColor="@color/color_secundario"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline21"
-        app:layout_constraintTop_toBottomOf="@+id/textView38" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline34"
+            app:layout_constraintStart_toStartOf="@+id/guideline21"
+            app:layout_constraintTop_toBottomOf="@+id/localizacionDetalleEvento" />
+
+        <Button
+            android:id="@+id/solicitarUnirse"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:backgroundTint="@color/boton"
+            android:fontFamily="@font/montserrat"
+            android:text="Solicitar unirse"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline34"
+            app:layout_constraintStart_toStartOf="@+id/guideline21"
+            app:layout_constraintTop_toBottomOf="@+id/map" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,5 +1,7 @@
-package com.example.qddapp.UI
+package com.example.qddapp.UI.popUp
 
+import android.content.res.Resources
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,37 +24,10 @@ class FragmentRegistroCorreo : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setWidthPercent(90)
+
         binding.continuar.setOnClickListener {
-            var errores = 0
-            if (binding.email.text.toString().isEmpty()) {
-                binding.email.error = "Por favor, escribe aquí tu email"
-                errores++
-            }
-            if (binding.contrasena.text.toString().isEmpty()) {
-                binding.contrasena.error = "Por favor, escribe aquí tu contraseña"
-                errores++
-            }
-            if (binding.contrasenaRepetida.text.toString().isEmpty()) {
-                binding.contrasenaRepetida.error = "Por favor, escribe aquí de nuevo la contraseña"
-                errores++
-            }
-            if (binding.contrasena.text.toString() != binding.contrasenaRepetida.text.toString()) {
-                binding.contrasenaRepetida.error = "Las dos contraseñas deben ser iguales"
-                errores++
-            }
-            if (errores > 0) {
-                return@setOnClickListener
-            }
-
-            /* He pensado hacerlo tambien así
-
-                if (errores == 0){
-                    findNavController().navigate(R.id.action_fragmentInicioSesion_to_fragmentPantallaCarga)
-                }
-            */
-
-            findNavController().navigate(R.id.action_fragmentInicioSesion_to_fragmentRegistroNombre)
-            dismiss()
+            validation(binding.email.text.toString(), binding.contrasena.text.toString(), binding.contrasenaRepetida.text.toString())
         }
 
         binding.terminosCorreo.setOnClickListener {
@@ -84,5 +59,18 @@ class FragmentRegistroCorreo : DialogFragment() {
             return
         }
         findNavController().navigate(R.id.action_fragmentInicioSesion_to_fragmentRegistroNombre)
+        dismiss()
+    }
+
+    fun DialogFragment.setWidthPercent(percentage: Int) {
+        val percent = percentage.toFloat() / 100
+        val dm = Resources.getSystem().displayMetrics
+        val rect = dm.run { Rect(0, 0, widthPixels, heightPixels) }
+        val percentWidth = rect.width() * percent
+        dialog?.window?.setLayout(percentWidth.toInt(), ViewGroup.LayoutParams.WRAP_CONTENT)
+    }
+
+    fun DialogFragment.setFullScreen() {
+        dialog?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
     }
 }

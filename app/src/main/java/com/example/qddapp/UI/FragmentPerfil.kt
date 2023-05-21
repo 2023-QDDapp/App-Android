@@ -1,5 +1,6 @@
 package com.example.qddapp.UI
 
+import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -38,7 +39,7 @@ class FragmentPerfil : Fragment() {
         val miRepositorio = Repositorio()
 
         CoroutineScope(Dispatchers.IO).launch {
-            val response = miRepositorio.dameElUsuario()
+            val response = miRepositorio.dameElUsuario(1)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful && response.code() == 200) {
                     val respuesta = response.body()
@@ -66,7 +67,10 @@ class FragmentPerfil : Fragment() {
         for (interese in user.intereses) {
             val chip = Chip(context)
             chip.text = interese.categoria
-            chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.boton))
+            chip.isCheckable = false
+            chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.transparente))
+            chip.setChipStrokeColorResource(R.color.boton)
+            chip.chipStrokeWidth = 2F
             chip.setTextColor(ContextCompat.getColor(context!!, R.color.color_principal))
             binding.chipGroup.addView(chip)
         }

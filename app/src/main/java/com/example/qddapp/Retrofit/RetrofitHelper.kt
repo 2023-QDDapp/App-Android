@@ -1,11 +1,13 @@
 package com.example.qddapp.Retrofit
 
+import android.util.Log
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitHelper {
+
     var retrofitService: RetrofitService? = null
 
     fun getRetrofit(): RetrofitService {
@@ -26,8 +28,10 @@ object RetrofitHelper {
         val interceptor = HttpLoggingInterceptor()
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
 
-        return OkHttpClient.Builder()
+        val client = OkHttpClient.Builder()
             .addInterceptor(interceptor)
             .build()
+
+        return client
     }
 }

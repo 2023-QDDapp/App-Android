@@ -1,6 +1,5 @@
 package com.example.qddapp.Adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +15,7 @@ import com.example.qddapp.databinding.EventoBinding
 class EventosAdapter(val eventList: ArrayList<Evento>) : RecyclerView.Adapter<EventosAdapter.MiCelda>(), Filterable {
 
     private var eventosCopia = ArrayList<Evento>()
+
     init {
         eventosCopia.addAll(eventList)
     }
@@ -28,7 +28,7 @@ class EventosAdapter(val eventList: ArrayList<Evento>) : RecyclerView.Adapter<Ev
     }
 
     override fun onBindViewHolder(holder: MiCelda, position: Int) {
-        val eventos: Evento = eventosCopia.get(position)
+        val eventos: Evento = eventosCopia[position]
 
         holder.binding.tagEvento.text = "#" + eventos.categoria
         holder.binding.tituloEvento.text = eventos.titulo

@@ -8,7 +8,11 @@
         android:id="@+id/buscar"
         android:name="com.example.qddapp.UI.FragmentBuscar"
         android:label="fragment_buscar"
-        tools:layout="@layout/fragment_buscar" />
+        tools:layout="@layout/fragment_buscar" >
+        <action
+            android:id="@+id/action_buscar_to_fragmentFiltroBusqueda"
+            app:destination="@id/fragmentFiltroBusqueda" />
+    </fragment>
     <fragment
         android:id="@+id/crear"
         android:name="com.example.qddapp.UI.FragmentCrear"
@@ -33,4 +37,9 @@
         android:name="com.example.qddapp.UI.FragmentDetalleEvento"
         android:label="fragment_detalle_evento"
         tools:layout="@layout/fragment_detalle_evento" />
+    <fragment
+        android:id="@+id/fragmentFiltroBusqueda"
+        android:name="com.example.qddapp.UI.FragmentFiltroBusqueda"
+        android:label="fragment_filtro_busqueda"
+        tools:layout="@layout/fragment_filtro_busqueda" />
 </navigation>

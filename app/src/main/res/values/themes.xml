@@ -18,7 +18,7 @@
         <!-- reference our hint & error styles -->
         <item name="boxStrokeColor">@color/selector_input</item>
         <item name="boxBackgroundColor">#FFFFFF</item>
-        <item name="boxStrokeWidth">2dp</item>
+        <item name="boxStrokeWidth">0.5dp</item>
         <item name="boxCornerRadiusBottomEnd">16dp</item>
         <item name="boxCornerRadiusBottomStart">16dp</item>
         <item name="boxCornerRadiusTopEnd">16dp</item>
@@ -26,7 +26,6 @@
     </style>
 
     <style name="Theme.CoordinatorLayoutSample.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
 
     <style name="botonChip" parent="Widget.Material3.Button.TextButton">
         <item name="borderRound">5dp</item>

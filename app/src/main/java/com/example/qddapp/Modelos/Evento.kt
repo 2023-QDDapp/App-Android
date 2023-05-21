@@ -28,6 +28,10 @@ data class Evento(
     val fechaHoraFin: String,
     @SerializedName("location")
     val location: String?,
+    @SerializedName("latitud")
+    val latitud: Double,
+    @SerializedName("longitud")
+    val longitud: Double,
     @SerializedName("id_categoria")
     val idCategoria: Int,
     @SerializedName("categoria")

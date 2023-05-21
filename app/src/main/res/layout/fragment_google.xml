@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout5"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".UI.FragmentGoogle">
+    android:layout_height="wrap_content"
+    android:paddingBottom="20dp"
+    tools:context=".UI.popUp.FragmentGoogle">
 
     <TextView
         android:id="@+id/textView10"
@@ -49,7 +50,7 @@
         android:id="@+id/usuario1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="60dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/view5"
         app:layout_constraintEnd_toStartOf="@+id/guideline15"
@@ -64,8 +65,9 @@
             android:src="@drawable/circulo" />
 
         <LinearLayout
-            android:layout_width="325dp"
+            android:layout_width="295dp"
             android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
             android:orientation="vertical">
 
             <TextView
@@ -102,6 +104,8 @@
         android:id="@+id/view5"
         android:layout_width="0dp"
         android:layout_height="3dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         android:background="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/usuario2"
         app:layout_constraintEnd_toStartOf="@+id/guideline15"
@@ -127,8 +131,9 @@
             android:src="@drawable/circulo" />
 
         <LinearLayout
-            android:layout_width="325dp"
+            android:layout_width="295dp"
             android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
             android:orientation="vertical">
 
             <TextView
@@ -165,6 +170,8 @@
         android:id="@+id/view6"
         android:layout_width="0dp"
         android:layout_height="3dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         android:background="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/usuario3"
         app:layout_constraintEnd_toStartOf="@+id/guideline15"
@@ -190,8 +197,9 @@
             android:src="@drawable/circulo" />
 
         <LinearLayout
-            android:layout_width="325dp"
+            android:layout_width="295dp"
             android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
             android:orientation="vertical">
 
             <TextView
@@ -228,9 +236,8 @@
         android:id="@+id/view7"
         android:layout_width="0dp"
         android:layout_height="3dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginTop="15dp"
         android:background="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/anadirUsuario"
         app:layout_constraintEnd_toStartOf="@+id/guideline15"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline14"
@@ -240,11 +247,11 @@
         android:id="@+id/anadirUsuario"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
+        android:layout_marginTop="80dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/terminosGoogle"
         app:layout_constraintEnd_toStartOf="@+id/guideline15"
-        app:layout_constraintStart_toStartOf="@+id/guideline14">
+        app:layout_constraintStart_toStartOf="@+id/guideline14"
+        app:layout_constraintTop_toBottomOf="@+id/view7">
 
         <ImageView
             android:id="@+id/imageView8"
@@ -257,7 +264,7 @@
             android:id="@+id/textView22"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="30dp"
             android:layout_weight="1"
             android:fontFamily="@font/montserrat"
             android:gravity="center_vertical"
@@ -270,13 +277,13 @@
         android:id="@+id/terminosGoogle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="80dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/correo"
         android:textColor="@color/color_secundario"
         android:textSize="11sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline15"
-        app:layout_constraintStart_toStartOf="@+id/guideline14" />
+        app:layout_constraintStart_toStartOf="@+id/guideline14"
+        app:layout_constraintTop_toBottomOf="@+id/anadirUsuario" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

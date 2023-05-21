@@ -8,25 +8,29 @@
     tools:context=".UI.FragmentBuscar">
 
     <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchView"
+        android:id="@+id/busqueda"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView10"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/style_buscador"
+        app:layout_constraintEnd_toStartOf="@+id/filtro"
         app:layout_constraintStart_toStartOf="@+id/guideline24"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:queryHint="Busca por título"
+        app:searchHintIcon="@drawable/buscar">
 
     </androidx.appcompat.widget.SearchView>
 
     <ImageView
-        android:id="@+id/imageView10"
+        android:id="@+id/filtro"
         android:layout_width="26dp"
         android:layout_height="20dp"
         android:layout_weight="1"
         android:src="@drawable/filtro"
-        app:layout_constraintBottom_toBottomOf="@+id/searchView"
+        app:layout_constraintBottom_toBottomOf="@+id/busqueda"
         app:layout_constraintEnd_toStartOf="@+id/guideline27"
-        app:layout_constraintTop_toTopOf="@+id/searchView" />
+        app:layout_constraintTop_toTopOf="@+id/busqueda" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline24"
@@ -45,11 +49,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/fondo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView">
+        app:layout_constraintTop_toBottomOf="@+id/busqueda">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipe"

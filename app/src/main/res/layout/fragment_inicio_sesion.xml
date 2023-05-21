@@ -20,7 +20,7 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/logo_original" />
+            app:srcCompat="@drawable/logo_sin_bordes" />
 
         <TextView
             android:id="@+id/textView"
@@ -55,7 +55,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            app:boxStrokeWidth="2dp"
             app:hintEnabled="false"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintStart_toStartOf="@+id/email"
@@ -91,7 +90,6 @@
             android:layout_marginTop="8dp"
             app:boxStrokeErrorColor="#000000"
             app:hintEnabled="false"
-            app:boxStrokeWidth="2dp"
             app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
             app:layout_constraintStart_toStartOf="@+id/contrasena"
             app:layout_constraintTop_toBottomOf="@+id/contrasena">
@@ -116,7 +114,8 @@
             android:text="Iniciar sesión"
             android:textColor="@color/white"
             android:textSize="20dp"
-            app:cornerRadius="8dp"
+            android:textStyle="bold"
+            app:cornerRadius="10sp"
             app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
             app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
@@ -131,7 +130,8 @@
             android:text="Registrarse con Google"
             android:textColor="@color/white"
             android:textSize="20dp"
-            app:cornerRadius="8dp"
+            android:textStyle="bold"
+            app:cornerRadius="10sp"
             app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
@@ -147,7 +147,8 @@
             android:text="Registrarse con Email"
             android:textColor="@color/white"
             android:textSize="20dp"
-            app:cornerRadius="8dp"
+            android:textStyle="bold"
+            app:cornerRadius="10sp"
             app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/textInputLayout2"

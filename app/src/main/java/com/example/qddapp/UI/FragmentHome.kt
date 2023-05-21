@@ -63,7 +63,7 @@ class FragmentHome : Fragment() {
         when (id) {
             1 ->
             CoroutineScope(Dispatchers.IO).launch {
-                val response = miRepositorio.dameEventosSeguidos()
+                val response = miRepositorio.dameEventosSeguidos(2)
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful && response.code() == 200) {
                         val respuesta = response.body()
@@ -79,7 +79,7 @@ class FragmentHome : Fragment() {
             }
             else ->
             CoroutineScope(Dispatchers.IO).launch {
-                val response = miRepositorio.dameEventosParaMi()
+                val response = miRepositorio.dameEventosParaMi(1)
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful && response.code() == 200) {
                         val respuesta = response.body()

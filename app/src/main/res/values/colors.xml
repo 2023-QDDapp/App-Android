@@ -10,4 +10,6 @@
     <color name="azul">#0BB1D6</color>
     <color name="gris_claro">#BCBCBC</color>
     <color name="fondo_evento">#F0FAFC</color>
+    <color name="fondo_evento_shape">#FCF0F0</color>
+    <color name="transparente">#00FFFFFF</color>
 </resources>

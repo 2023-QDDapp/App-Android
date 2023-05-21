@@ -1,8 +1,6 @@
 package com.example.qddapp.UI
 
-import android.annotation.SuppressLint
 import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,11 +10,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
 import com.example.qddapp.Modelos.Categoria
-import com.example.qddapp.Modelos.Usuario
 import com.example.qddapp.R
 import com.example.qddapp.Retrofit.Repositorio
+import com.example.qddapp.UI.popUp.FragmentPermisos
 import com.example.qddapp.databinding.FragmentPreferenciasBinding
 import com.google.android.material.chip.Chip
 import kotlinx.coroutines.CoroutineScope

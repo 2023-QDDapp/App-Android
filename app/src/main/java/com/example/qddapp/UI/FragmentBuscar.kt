@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.qddapp.Adapters.EventosAdapter
 import com.example.qddapp.Modelos.Evento
+import com.example.qddapp.R
 import com.example.qddapp.Retrofit.Repositorio
 import com.example.qddapp.databinding.FragmentBuscarBinding
 import kotlinx.coroutines.CoroutineScope
@@ -34,14 +36,14 @@ class FragmentBuscar : Fragment() {
         getEventos()
 
         binding.swipe.setOnRefreshListener {
-            binding.searchView.setQuery("", false)
-            binding.searchView.clearFocus()
+            binding.busqueda.setQuery("", false)
+            binding.busqueda.clearFocus()
             binding.swipe.isRefreshing = true
             pullToRefreshWorking = true
             getEventos()
         }
 
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.busqueda.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
            override fun onQueryTextSubmit(query: String?): Boolean {
                 adapter.filter.filter(query)
                 return true
@@ -53,9 +55,13 @@ class FragmentBuscar : Fragment() {
             }
         })
 
-        binding.searchView.setOnCloseListener {
+        binding.busqueda.setOnCloseListener {
             adapter.filter.filter("")
             true
+        }
+
+        binding.filtro.setOnClickListener {
+            findNavController().navigate(R.id.action_buscar_to_fragmentFiltroBusqueda)
         }
     }
 
@@ -97,7 +103,6 @@ class FragmentBuscar : Fragment() {
     }
 
     private fun refreshRecycler(listaEventos: List<Evento>) {
-
         adapter.refreshList(listaEventos as ArrayList<Evento>)
     }
 }
