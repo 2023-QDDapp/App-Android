@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.qddapp.Adapters.EventosAdapter
 import com.example.qddapp.Home
 import com.example.qddapp.Modelos.Evento
+import com.example.qddapp.MyApp
 import com.example.qddapp.R
 import com.example.qddapp.Retrofit.Repositorio
 import com.example.qddapp.databinding.FragmentHomeBinding
@@ -23,7 +24,7 @@ import kotlinx.coroutines.withContext
 class FragmentHome : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
-    val miRepositorio = Repositorio()
+    lateinit var miRepositorio: Repositorio
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -34,6 +35,7 @@ class FragmentHome : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        miRepositorio = (requireActivity().application as MyApp).repositorio
         getEventos()
 
         binding.tablayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {

@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.example.qddapp.Modelos.Categoria
+import com.example.qddapp.MyApp
 import com.example.qddapp.R
 import com.example.qddapp.Retrofit.Repositorio
 import com.example.qddapp.UI.popUp.FragmentPermisos
@@ -34,7 +35,7 @@ class FragmentPreferencias : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val miRepositorio = Repositorio()
+        val miRepositorio = (requireActivity().application as MyApp).repositorio
 
         CoroutineScope(Dispatchers.IO).launch {
             val response = miRepositorio.dameTodasCategorias()

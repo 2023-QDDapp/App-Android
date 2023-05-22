@@ -1,6 +1,5 @@
 package com.example.qddapp.UI
 
-import android.content.res.ColorStateList
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,22 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.qddapp.Adapters.CategoriaAdapter
-import com.example.qddapp.Adapters.EventosAdapter
 import com.example.qddapp.Modelos.Categoria
-import com.example.qddapp.Modelos.Evento
+import com.example.qddapp.MyApp
 import com.example.qddapp.R
-import com.example.qddapp.Retrofit.Repositorio
 import com.example.qddapp.UI.popUp.DatePickerFragment
 import com.example.qddapp.UI.popUp.TimePickerFragment
 import com.example.qddapp.databinding.FragmentFiltroBusquedaBinding
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.material.chip.Chip
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -34,6 +29,8 @@ class FragmentFiltroBusqueda : Fragment(), OnMapReadyCallback {
     private lateinit var binding: FragmentFiltroBusquedaBinding
     private lateinit var adapter: CategoriaAdapter
     private var pullToRefreshWorking = false
+    private var olddate = "dd/MM/yyyy"
+    private var oldtime = "00:00"
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -48,7 +45,7 @@ class FragmentFiltroBusqueda : Fragment(), OnMapReadyCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val miRepositorio = Repositorio()
+        val miRepositorio = (requireActivity().application as MyApp).repositorio
 
         CoroutineScope(Dispatchers.IO).launch {
             val response = miRepositorio.dameTodasCategorias()
@@ -103,11 +100,13 @@ class FragmentFiltroBusqueda : Fragment(), OnMapReadyCallback {
     }
 
     private fun onDateSelected(date: String, editText: EditText){
-        editText.setText("$date 00:00")
+        olddate = date
+        editText.setText("$date $oldtime")
     }
 
     private fun onTimeSelected(time:String, editText: EditText){
-        editText.setText("dd/mm/yyyy $time")
+        oldtime = time
+        editText.setText("$olddate $time")
     }
 
     private fun configRecycler(listaCategoria: ArrayList<Categoria>) {

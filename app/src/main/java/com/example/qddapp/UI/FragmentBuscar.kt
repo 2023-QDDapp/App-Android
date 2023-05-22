@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.qddapp.Adapters.EventosAdapter
 import com.example.qddapp.Modelos.Evento
+import com.example.qddapp.MyApp
 import com.example.qddapp.R
 import com.example.qddapp.Retrofit.Repositorio
 import com.example.qddapp.databinding.FragmentBuscarBinding
@@ -21,7 +22,7 @@ import kotlinx.coroutines.withContext
 
 class FragmentBuscar : Fragment() {
 
-    private lateinit var adapter: EventosAdapter
+    private var adapter: EventosAdapter? = null
     private lateinit var binding: FragmentBuscarBinding
     private var pullToRefreshWorking = false
 
@@ -45,18 +46,19 @@ class FragmentBuscar : Fragment() {
 
         binding.busqueda.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
            override fun onQueryTextSubmit(query: String?): Boolean {
-                adapter.filter.filter(query)
+                adapter?.filter?.filter(query)
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                adapter.filter.filter(newText)
+                if (adapter != null)
+                adapter?.filter?.filter(newText)
                 return true
             }
         })
 
         binding.busqueda.setOnCloseListener {
-            adapter.filter.filter("")
+            adapter?.filter?.filter("")
             true
         }
 
@@ -66,7 +68,8 @@ class FragmentBuscar : Fragment() {
     }
 
     private fun getEventos() {
-        val miRepositorio = Repositorio()
+
+        val miRepositorio = (requireActivity().application as MyApp).repositorio
 
         CoroutineScope(Dispatchers.IO).launch {
             val response = miRepositorio.dameTodosEventos()
@@ -103,6 +106,6 @@ class FragmentBuscar : Fragment() {
     }
 
     private fun refreshRecycler(listaEventos: List<Evento>) {
-        adapter.refreshList(listaEventos as ArrayList<Evento>)
+        adapter?.refreshList(listaEventos as ArrayList<Evento>)
     }
 }

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
 import com.example.qddapp.Adapters.AsistentesAdapter
 import com.example.qddapp.Modelos.Asistente
+import com.example.qddapp.MyApp
 import com.example.qddapp.Retrofit.Repositorio
 import com.example.qddapp.databinding.FragmentAsistentesBinding
 import kotlinx.coroutines.CoroutineScope
@@ -33,7 +34,7 @@ class FragmentAsistentes : DialogFragment() {
 
         setWidthPercent(90)
 
-        val miRepositorio = Repositorio()
+        val miRepositorio = (requireActivity().application as MyApp).repositorio
 
         CoroutineScope(Dispatchers.IO).launch {
             val response = miRepositorio.dameElEvento(1)

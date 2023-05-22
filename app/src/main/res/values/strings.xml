@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">QDDApp</string>
     <string name="subTitle">Busca algún <b>plan</b> y anímate a <b>salir de casa</b></string>
-    <string name="terminos_y_condiciones">Al iniciar sesión con tu cuenta de Google, aceptas nuestros términos. Obtén más informacion sobre nuestros términos <u>aquí</u></string>
+    <string name="terminos_y_condiciones" formatted="true">Al iniciar sesión con tu cuenta de Google, aceptas nuestros términos. Obtén más informacion sobre nuestros términos <u>aquí</u></string>
     <string name="permisos">Recuerda que tus datos de ubicación seran privados y serán compartidos con terceros, si quieres saber más revisa nuestros téminos de uso <u>aquí</u></string>
     <string name="correo">Recuerda que google compartirá tu nombre, tu dirección de correo, revisa nuestros téminos de uso <u>aquí</u></string>
     <string name="resgistro_correo">Recuerda que tu email compartirá solo tu nombre, revisa nuestros téminos de uso <u>aquí</u></string>

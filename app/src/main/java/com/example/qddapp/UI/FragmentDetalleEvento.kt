@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.qddapp.Modelos.Asistente
 import com.example.qddapp.Modelos.Evento
+import com.example.qddapp.MyApp
 import com.example.qddapp.R
 import com.example.qddapp.Retrofit.Repositorio
 import com.example.qddapp.UI.popUp.FragmentAsistentes
@@ -53,7 +54,7 @@ class FragmentDetalleEvento : Fragment(), OnMapReadyCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val miRepositorio = Repositorio()
+        val miRepositorio = (requireActivity().application as MyApp).repositorio
 
         CoroutineScope(Dispatchers.IO).launch {
             val response = miRepositorio.dameElEvento(1)

@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.example.qddapp.Adapters.ValoracionesAdapter
 import com.example.qddapp.Modelos.Usuario
 import com.example.qddapp.Modelos.Valoracion
+import com.example.qddapp.MyApp
 import com.example.qddapp.R
 import com.example.qddapp.Retrofit.Repositorio
 import com.example.qddapp.databinding.FragmentPerfilBinding
@@ -36,7 +37,7 @@ class FragmentPerfil : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val miRepositorio = Repositorio()
+        val miRepositorio = (requireActivity().application as MyApp).repositorio
 
         CoroutineScope(Dispatchers.IO).launch {
             val response = miRepositorio.dameElUsuario(1)

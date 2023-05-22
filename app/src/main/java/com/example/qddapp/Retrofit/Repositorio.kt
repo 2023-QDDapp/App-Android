@@ -1,7 +1,9 @@
 package com.example.qddapp.Retrofit
 
-class Repositorio {
-    private val retrofit = RetrofitHelper.getRetrofit()
+import android.content.Context
+
+class Repositorio(context: Context) {
+    private val retrofit = RetrofitHelper(context).getRetrofit()
 
     suspend fun dameTodosEventos() = retrofit.dameTodosEventos()
 

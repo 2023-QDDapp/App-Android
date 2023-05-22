@@ -1,12 +1,15 @@
 package com.example.qddapp.Retrofit
 
+import android.content.Context
 import android.util.Log
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object RetrofitHelper {
+class RetrofitHelper(val context: Context) {
 
     var retrofitService: RetrofitService? = null
 
@@ -33,5 +36,18 @@ object RetrofitHelper {
             .build()
 
         return client
+    }
+
+   inner class HeaderInterceptor : Interceptor {
+        override fun intercept(chain: Interceptor.Chain): Response = chain.run {
+            val pref = context.getSharedPreferences("KEY", Context.MODE_PRIVATE)
+            val token = pref.getString("token", "")
+            proceed(
+                request()
+                    .newBuilder()
+                    .addHeader("authorization", "bearer $token")
+                    .build()
+            )
+        }
     }
 }
