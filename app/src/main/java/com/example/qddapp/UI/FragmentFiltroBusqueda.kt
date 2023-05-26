@@ -36,7 +36,7 @@ class FragmentFiltroBusqueda : Fragment(), OnMapReadyCallback {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentFiltroBusquedaBinding.inflate(inflater, container, false)
 
-        val fragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment //Esto se pone para saber cuando ha cargado o no
+        val fragment = childFragmentManager.findFragmentById(R.id.mapa) as SupportMapFragment //Esto se pone para saber cuando ha cargado o no
         fragment.getMapAsync(this)
 
         return binding.root

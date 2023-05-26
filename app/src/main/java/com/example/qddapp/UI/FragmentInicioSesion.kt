@@ -31,8 +31,7 @@ class FragmentInicioSesion : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.registroEmail.setOnClickListener {
-            val correoePopUp = FragmentRegistroCorreo()
-            correoePopUp.show(parentFragmentManager, "showPopUp")
+            FragmentRegistroCorreo().show(parentFragmentManager, "showPopUp")
         }
 
         binding.terminosInicio.setOnClickListener {

@@ -16,7 +16,6 @@ import com.example.qddapp.Modelos.Asistente
 import com.example.qddapp.Modelos.Evento
 import com.example.qddapp.MyApp
 import com.example.qddapp.R
-import com.example.qddapp.Retrofit.Repositorio
 import com.example.qddapp.UI.popUp.FragmentAsistentes
 import com.example.qddapp.UI.popUp.FragmentSolicitudEnviada
 import com.example.qddapp.databinding.FragmentDetalleEventoBinding
@@ -45,7 +44,7 @@ class FragmentDetalleEvento : Fragment(), OnMapReadyCallback {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentDetalleEventoBinding.inflate(inflater, container, false)
 
-        val fragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment //Esto se pone para saber cuando ha cargado o no
+        val fragment = childFragmentManager.findFragmentById(R.id.mapa) as SupportMapFragment //Esto se pone para saber cuando ha cargado o no
         fragment.getMapAsync(this)
 
         return binding.root

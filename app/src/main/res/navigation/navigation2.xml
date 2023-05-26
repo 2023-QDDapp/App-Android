@@ -17,7 +17,11 @@
         android:id="@+id/crear"
         android:name="com.example.qddapp.UI.FragmentCrear"
         android:label="fragment_crear"
-        tools:layout="@layout/fragment_crear" />
+        tools:layout="@layout/fragment_crear" >
+        <action
+            android:id="@+id/action_crear_to_fragmentMapa"
+            app:destination="@id/fragmentMapa" />
+    </fragment>
     <fragment
         android:id="@+id/inicio"
         android:name="com.example.qddapp.UI.FragmentHome"
@@ -42,4 +46,9 @@
         android:name="com.example.qddapp.UI.FragmentFiltroBusqueda"
         android:label="fragment_filtro_busqueda"
         tools:layout="@layout/fragment_filtro_busqueda" />
+    <fragment
+        android:id="@+id/fragmentMapa"
+        android:name="com.example.qddapp.UI.FragmentMapa"
+        android:label="fragment_mapa"
+        tools:layout="@layout/fragment_mapa" />
 </navigation>

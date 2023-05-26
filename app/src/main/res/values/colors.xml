@@ -12,4 +12,5 @@
     <color name="fondo_evento">#F0FAFC</color>
     <color name="fondo_evento_shape">#FCF0F0</color>
     <color name="transparente">#00FFFFFF</color>
+    <color name="semiTransparente">#7069CCE1</color>
 </resources>

@@ -246,7 +246,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView43" />
 
         <fragment
-            android:id="@+id/map"
+            android:id="@+id/mapa"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="0dp"
             android:layout_height="350dp"

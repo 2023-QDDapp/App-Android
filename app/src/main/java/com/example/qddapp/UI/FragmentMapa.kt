@@ -30,7 +30,7 @@ class FragmentMapa : Fragment(), OnMapReadyCallback {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentMapaBinding.inflate(inflater, container, false)
 
-        val fragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment //Esto se pone para saber cuando ha cargado o no
+        val fragment = childFragmentManager.findFragmentById(R.id.mapa) as SupportMapFragment //Esto se pone para saber cuando ha cargado o no
         fragment.getMapAsync(this)
 
         return binding.root
@@ -96,7 +96,7 @@ class FragmentMapa : Fragment(), OnMapReadyCallback {
         }
 
         map.setOnMapLoadedCallback {
-            map.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(38.0944131,-3.6309966), 15f))
+            map.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(38.0944131,-3.6309966), 18f))
         }
 
         map.setOnMarkerDragListener(object : GoogleMap.OnMarkerDragListener {
@@ -123,12 +123,12 @@ class FragmentMapa : Fragment(), OnMapReadyCallback {
 
         val circleOptions = CircleOptions()
             .center(LatLng(latitud, longitud))
-            .radius(1000.0)
-            .strokeColor(Color.BLUE)
-            .strokeWidth(10f)
+            .radius(50.0)
+            .strokeColor(R.color.color_principal)
+            .strokeWidth(5f)
             .clickable(true)
-            .fillColor(ContextCompat.getColor(requireContext(), R.color.fondo_evento))
+            .fillColor(ContextCompat.getColor(requireContext(), R.color.semiTransparente))
         circulo = map.addCircle(circleOptions)
-        map.animateCamera(CameraUpdateFactory.newLatLngZoom(circleOptions.center!!, 15f))
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(circleOptions.center!!, 18f))
     }
 }

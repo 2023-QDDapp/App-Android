@@ -137,16 +137,29 @@
             app:layout_constraintTop_toBottomOf="@+id/carcasaInicioFiltro" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/seleccionaCategoria"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/boton"
             android:text="Seleciona categoría"
+            android:textAllCaps="false"
             app:cornerRadius="5dp"
             app:layout_constraintEnd_toEndOf="@+id/carcasaInicioFiltro"
             app:layout_constraintStart_toStartOf="@+id/guideline38"
             app:layout_constraintTop_toBottomOf="@+id/view15" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip4"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/transparente"
+            app:chipStrokeColor="@color/color_principal"
+            app:chipStrokeWidth="1dp"
+            app:layout_constraintBottom_toBottomOf="@+id/seleccionaCategoria"
+            app:layout_constraintEnd_toStartOf="@+id/guideline39"
+            app:layout_constraintStart_toEndOf="@+id/seleccionaCategoria"
+            app:layout_constraintTop_toTopOf="@+id/seleccionaCategoria" />
 
         <View
             android:id="@+id/view16"
@@ -156,7 +169,35 @@
             android:background="@color/boton"
             app:layout_constraintEnd_toStartOf="@+id/guideline39"
             app:layout_constraintStart_toStartOf="@+id/guideline38"
-            app:layout_constraintTop_toBottomOf="@+id/button3" />
+            app:layout_constraintTop_toBottomOf="@+id/seleccionaCategoria" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout7"
+            style="@style/TextInputLayoutAppearance"
+            android:layout_width="0dp"
+            android:layout_height="88dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline39"
+            app:layout_constraintStart_toStartOf="@+id/guideline38"
+            app:layout_constraintTop_toBottomOf="@+id/view16">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/montserrat"
+                android:hint="descripción del evento"
+                android:textSize="12sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:id="@+id/view19"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/boton"
+            app:layout_constraintEnd_toStartOf="@+id/guideline39"
+            app:layout_constraintStart_toStartOf="@+id/guideline38"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout7" />
 
         <TextView
             android:id="@+id/textView41"
@@ -179,7 +220,7 @@
             android:textOn="SI"
             android:textSize="15sp"
             app:layout_constraintEnd_toStartOf="@+id/guideline39"
-            app:layout_constraintTop_toBottomOf="@+id/view16" />
+            app:layout_constraintTop_toBottomOf="@+id/view19" />
 
         <View
             android:id="@+id/view18"
@@ -192,7 +233,7 @@
             app:layout_constraintTop_toBottomOf="@+id/abiertoFiltro" />
 
         <fragment
-            android:id="@+id/map"
+            android:id="@+id/mapa"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="0dp"
             android:layout_height="350dp"
@@ -211,6 +252,7 @@
             android:backgroundTint="@color/boton"
             android:fontFamily="@font/montserrat"
             android:text="Buscar"
+            android:textAllCaps="false"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline39"
