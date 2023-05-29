@@ -20,15 +20,17 @@
 
     <TextView
         android:id="@+id/nombreUsuarioAsistente"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
+        android:layout_marginEnd="50dp"
         android:fontFamily="@font/raleway"
         android:text="Cristina Fernandez"
         android:textColor="@color/color_secundario"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/fotoUsuarioAsistente"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/fotoUsuarioAsistente"
         app:layout_constraintTop_toTopOf="@+id/fotoUsuarioAsistente" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,8 @@ import android.content.Context
 class Repositorio(context: Context) {
     private val retrofit = RetrofitHelper(context).getRetrofit()
 
+    suspend fun login() = retrofit.login()
+
     suspend fun dameTodosEventos() = retrofit.dameTodosEventos()
 
     suspend fun dameEventosParaMi(id: Int) = retrofit.dameEventosParaMi(id)

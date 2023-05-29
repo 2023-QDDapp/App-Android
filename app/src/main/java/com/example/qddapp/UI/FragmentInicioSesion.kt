@@ -9,11 +9,16 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.example.qddapp.Home
+import com.example.qddapp.MyApp
 import com.example.qddapp.R
 import com.example.qddapp.UI.popUp.FragmentGoogle
 import com.example.qddapp.UI.popUp.FragmentRegistroCorreo
 import com.example.qddapp.UI.popUp.FragmentTerminosYCondiciones
 import com.example.qddapp.databinding.FragmentInicioSesionBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class FragmentInicioSesion : Fragment() {
 
@@ -66,6 +71,18 @@ class FragmentInicioSesion : Fragment() {
         if (password.isEmpty()) {
             binding.contrasenaRegistro.error = "Por favor, escribe aquí tu contraseña"
             return
+        }
+
+        val miRepositorio = (requireActivity().application as MyApp).repositorio
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val response = miRepositorio.login()
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful && response.code() == 200) {
+                    val respuesta = response.body()
+
+                }
+            }
         }
         findNavController().navigate(R.id.action_fragmentInicioSesion_to_fragmentPantallaCarga)
     }
