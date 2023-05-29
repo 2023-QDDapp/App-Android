@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.qddapp.R
 import com.example.qddapp.UI.popUp.FragmentCategorias
+import com.example.qddapp.UI.popUp.FragmentFotoEvento
 import com.example.qddapp.databinding.FragmentCrearBinding
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -30,6 +31,10 @@ class FragmentCrear : Fragment(), OnMapReadyCallback {
 
         binding.seleccionaCategoria.setOnClickListener {
             FragmentCategorias().show(childFragmentManager, "showPopUp")
+        }
+
+        binding.crearEvento.setOnClickListener {
+            FragmentFotoEvento().show(childFragmentManager, "showPopUpFoto")
         }
     }
 

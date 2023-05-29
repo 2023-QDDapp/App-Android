@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -45,7 +46,8 @@ class EventosAdapter(val eventList: ArrayList<Evento>) : RecyclerView.Adapter<Ev
         }
 
         holder.itemView.setOnClickListener {
-            holder.itemView.findNavController().navigate(R.id.fragmentDetalleEvento)
+            val bundle = bundleOf("id" to eventos.idEvento)
+            holder.itemView.findNavController().navigate(R.id.fragmentDetalleEvento, bundle)
         }
     }
 

@@ -36,22 +36,25 @@ class FragmentAsistentes : DialogFragment() {
 
         val miRepositorio = (requireActivity().application as MyApp).repositorio
 
-        CoroutineScope(Dispatchers.IO).launch {
-            val response = miRepositorio.dameElEvento(1)
-            withContext(Dispatchers.Main) {
-                if (response.isSuccessful && response.code() == 200) {
-                    val respuesta = response.body()
-                    respuesta?.let {
-                        configRecycler(respuesta.asistentes)
-                        Glide.with(this@FragmentAsistentes).load(respuesta.fotoOrganizador).into(binding.fotoOrganizador)
-                        binding.nombreOrganizador.text = respuesta.organizador
+        arguments?.let {
+            val id = it.getInt("id")
+            CoroutineScope(Dispatchers.IO).launch {
+                val response = miRepositorio.dameElEvento(id)
+                withContext(Dispatchers.Main) {
+                    if (response.isSuccessful && response.code() == 200) {
+                        val respuesta = response.body()
+                        respuesta?.let {
+                            configRecycler(respuesta.asistentes)
+                            Glide.with(this@FragmentAsistentes).load(respuesta.fotoOrganizador).into(binding.fotoOrganizador)
+                            binding.nombreOrganizador.text = respuesta.organizador
+                        }
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            "Error: ${response.message()}",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
-                } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "Error: ${response.message()}",
-                        Toast.LENGTH_SHORT
-                    ).show()
                 }
             }
         }

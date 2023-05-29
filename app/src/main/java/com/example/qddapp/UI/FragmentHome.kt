@@ -1,7 +1,6 @@
 package com.example.qddapp.UI
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,10 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.qddapp.Adapters.EventosAdapter
-import com.example.qddapp.Home
 import com.example.qddapp.Modelos.Evento
 import com.example.qddapp.MyApp
-import com.example.qddapp.R
 import com.example.qddapp.Retrofit.Repositorio
 import com.example.qddapp.databinding.FragmentHomeBinding
 import com.google.android.material.tabs.TabLayout
@@ -62,10 +59,13 @@ class FragmentHome : Fragment() {
     }
 
     fun getEventos(id: Int? = null) {
+
+        val myApp = (requireActivity().application as MyApp)
+
         when (id) {
             1 ->
             CoroutineScope(Dispatchers.IO).launch {
-                val response = miRepositorio.dameEventosSeguidos(2)
+                val response = miRepositorio.dameEventosSeguidos(myApp.datos.sacarUserId())
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful && response.code() == 200) {
                         val respuesta = response.body()
@@ -81,7 +81,7 @@ class FragmentHome : Fragment() {
             }
             else ->
             CoroutineScope(Dispatchers.IO).launch {
-                val response = miRepositorio.dameEventosParaMi(1)
+                val response = miRepositorio.dameEventosParaMi(myApp.datos.sacarUserId())
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful && response.code() == 200) {
                         val respuesta = response.body()

@@ -75,7 +75,7 @@ class FragmentMapa : Fragment(), OnMapReadyCallback {
                         .title("Usted esta aqui")
                         .snippet("Arrastre para colocarse en otro lugar")
                         .flat(true)
-                        .draggable(true) //Nos permite mover los marcadores si lo dejamos pulsado
+                        .draggable(true)
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
                     marker = map.addMarker(marcador)!!
                     marker?.tag = "localizacion"

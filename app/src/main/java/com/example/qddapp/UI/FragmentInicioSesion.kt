@@ -18,7 +18,6 @@ import com.example.qddapp.databinding.FragmentInicioSesionBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class FragmentInicioSesion : Fragment() {
 
@@ -73,15 +72,16 @@ class FragmentInicioSesion : Fragment() {
             return
         }
 
-        val miRepositorio = (requireActivity().application as MyApp).repositorio
+        val myApp = (requireActivity().application as MyApp)
+        val repositorio = myApp.repositorio
 
         CoroutineScope(Dispatchers.IO).launch {
-            val response = miRepositorio.login()
-            withContext(Dispatchers.Main) {
-                if (response.isSuccessful && response.code() == 200) {
-                    val respuesta = response.body()
-
-                }
+            val response = repositorio.login(email, password)
+            val token = response.body()
+            token?.let {
+                //TODO SHARED PREFERENCE CON USUARIO Y CONTRASEÑA PARA QUE SI ESTAN GUARDADOS, HACE EL VALIDATE AUTOMATICAMENTE
+                myApp.datos.guardarToken(it.token)
+                myApp.datos.guardarUserId(it.user.id)
             }
         }
         findNavController().navigate(R.id.action_fragmentInicioSesion_to_fragmentPantallaCarga)

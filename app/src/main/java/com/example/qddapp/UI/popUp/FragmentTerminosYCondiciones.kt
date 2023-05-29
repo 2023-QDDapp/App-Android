@@ -34,7 +34,6 @@ class FragmentTerminosYCondiciones : BottomSheetDialogFragment() {
 
             bottomSheet?.let {
                 val behavior = BottomSheetBehavior.from(it)
-                // esta función en concreto cambia el estado, prueba distinto
                 behavior.state = BottomSheetBehavior.STATE_COLLAPSED
             }
         }

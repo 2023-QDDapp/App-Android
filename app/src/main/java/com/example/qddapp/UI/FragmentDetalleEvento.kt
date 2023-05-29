@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.core.view.MarginLayoutParamsCompat.setMarginStart
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -40,6 +41,7 @@ class FragmentDetalleEvento : Fragment(), OnMapReadyCallback {
     var latitud: Double = 0.0
     var longitud: Double = 0.0
     var titulo: String = ""
+    var id: Int = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentDetalleEventoBinding.inflate(inflater, container, false)
@@ -55,23 +57,26 @@ class FragmentDetalleEvento : Fragment(), OnMapReadyCallback {
 
         val miRepositorio = (requireActivity().application as MyApp).repositorio
 
-        CoroutineScope(Dispatchers.IO).launch {
-            val response = miRepositorio.dameElEvento(1)
-            withContext(Dispatchers.Main) {
-                if (response.isSuccessful && response.code() == 200) {
-                    val respuesta = response.body()
-                    respuesta?.let {
-                        rellenarDatos(respuesta)
-                        latitud = respuesta.latitud
-                        longitud = respuesta.longitud
-                        titulo = respuesta.titulo
+        arguments?.let {
+            id = it.getInt("id")
+            CoroutineScope(Dispatchers.IO).launch {
+                val response = miRepositorio.dameElEvento(id)
+                withContext(Dispatchers.Main) {
+                    if (response.isSuccessful && response.code() == 200) {
+                        val respuesta = response.body()
+                        respuesta?.let {
+                            rellenarDatos(respuesta)
+                            latitud = respuesta.latitud
+                            longitud = respuesta.longitud
+                            titulo = respuesta.titulo
+                        }
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            "Error: ${response.message()}",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
-                } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "Error: ${response.message()}",
-                        Toast.LENGTH_SHORT
-                    ).show()
                 }
             }
         }

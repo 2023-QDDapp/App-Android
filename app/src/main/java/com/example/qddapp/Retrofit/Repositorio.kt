@@ -5,7 +5,7 @@ import android.content.Context
 class Repositorio(context: Context) {
     private val retrofit = RetrofitHelper(context).getRetrofit()
 
-    suspend fun login() = retrofit.login()
+    suspend fun login(email: String, pass: String) = retrofit.login(email, pass)
 
     suspend fun dameTodosEventos() = retrofit.dameTodosEventos()
 

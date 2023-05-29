@@ -33,6 +33,7 @@ class RetrofitHelper(val context: Context) {
 
         val client = OkHttpClient.Builder()
             .addInterceptor(interceptor)
+            .addInterceptor(HeaderInterceptor())
             .build()
 
         return client
@@ -40,14 +41,14 @@ class RetrofitHelper(val context: Context) {
 
    inner class HeaderInterceptor : Interceptor {
         override fun intercept(chain: Interceptor.Chain): Response = chain.run {
-            val pref = context.getSharedPreferences("KEY", Context.MODE_PRIVATE)
+            val pref = context.getSharedPreferences("pref_filter", Context.MODE_PRIVATE)
             val token = pref.getString("token", "")
             proceed(
                 request()
                     .newBuilder()
-                    .addHeader("authorization", "bearer $token")
+                    .addHeader("Authorization", "Bearer $token")
                     .build()
             )
         }
-    }
+   }
 }

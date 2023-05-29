@@ -24,5 +24,6 @@ class FragmentPantallaCarga : Fragment() {
 
         val intent = Intent(context, Home::class.java)
         startActivity(intent)
+        requireActivity().finishAffinity()
     }
 }

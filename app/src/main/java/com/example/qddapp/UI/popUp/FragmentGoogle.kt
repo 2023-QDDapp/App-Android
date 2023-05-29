@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.findNavController
 import com.example.qddapp.R
+import com.example.qddapp.UI.popUp.FragmentTerminosYCondiciones
 import com.example.qddapp.databinding.FragmentGoogleBinding
 
 class FragmentGoogle : DialogFragment() {
