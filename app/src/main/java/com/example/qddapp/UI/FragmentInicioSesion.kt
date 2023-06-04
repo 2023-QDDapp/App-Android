@@ -48,8 +48,7 @@ class FragmentInicioSesion : Fragment() {
         }
 
         binding.logo.setOnClickListener {
-            val intent = Intent(context, Home::class.java)
-            startActivity(intent)
+            validation("alvaro.garvin@escuelaestech.es", "password")
         }
 
         binding.iniciarSesion.setOnClickListener {
@@ -81,7 +80,7 @@ class FragmentInicioSesion : Fragment() {
             token?.let {
                 //TODO SHARED PREFERENCE CON USUARIO Y CONTRASEÑA PARA QUE SI ESTAN GUARDADOS, HACE EL VALIDATE AUTOMATICAMENTE
                 myApp.datos.guardarToken(it.token)
-                myApp.datos.guardarUserId(it.user.id)
+                myApp.datos.guardarUserId(it.user_id)
             }
         }
         findNavController().navigate(R.id.action_fragmentInicioSesion_to_fragmentPantallaCarga)

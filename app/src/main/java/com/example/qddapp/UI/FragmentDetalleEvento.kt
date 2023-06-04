@@ -3,6 +3,7 @@ package com.example.qddapp.UI
 import android.annotation.SuppressLint
 import android.app.ActionBar.LayoutParams
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,7 +42,7 @@ class FragmentDetalleEvento : Fragment(), OnMapReadyCallback {
     var latitud: Double = 0.0
     var longitud: Double = 0.0
     var titulo: String = ""
-    var id: Int = 0
+    lateinit var bundle: Bundle
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentDetalleEventoBinding.inflate(inflater, container, false)
@@ -58,7 +59,7 @@ class FragmentDetalleEvento : Fragment(), OnMapReadyCallback {
         val miRepositorio = (requireActivity().application as MyApp).repositorio
 
         arguments?.let {
-            id = it.getInt("id")
+            val id = it.getInt("id")
             CoroutineScope(Dispatchers.IO).launch {
                 val response = miRepositorio.dameElEvento(id)
                 withContext(Dispatchers.Main) {
@@ -82,7 +83,9 @@ class FragmentDetalleEvento : Fragment(), OnMapReadyCallback {
         }
 
         binding.asistentes.setOnClickListener {
-            FragmentAsistentes().show(childFragmentManager, "TAG")
+            val dialogFragment = FragmentAsistentes()
+            dialogFragment.arguments = bundle
+            dialogFragment.show(childFragmentManager, "TAG")
         }
 
         binding.atrasDetalleEvento.setOnClickListener {
@@ -113,13 +116,14 @@ class FragmentDetalleEvento : Fragment(), OnMapReadyCallback {
 
     fun rellenarDatos(evento : Evento) {
         Glide.with(this).load(evento.imagenEvento).into(binding.fotoDetalleEvento)
-        binding.nombreDetalleEvento.text = evento.descripcion
+        binding.nombreDetalleEvento.text = evento.titulo
         Glide.with(this).load(evento.fotoOrganizador).into(binding.fotoPerfilOrganizadorDetalleEvento)
         binding.nombreOrganizadorDetalleEvento.text = evento.organizador
         binding.edadDetalleEvento.text = evento.edad.toString() + " años"
         binding.descripcionDetalleEvento.text = evento.descripcion
         binding.localizacionDetalleEvento.text = evento.location
         agregarAsistente(evento.asistentes)
+        bundle = bundleOf("eventoId" to evento.idEvento)
     }
 
     var primero = true

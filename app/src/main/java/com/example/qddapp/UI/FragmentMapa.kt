@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.qddapp.MyViewModel
 import com.example.qddapp.R
 import com.example.qddapp.databinding.FragmentMapaBinding
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -26,6 +28,7 @@ class FragmentMapa : Fragment(), OnMapReadyCallback {
     private lateinit var binding: FragmentMapaBinding
     private lateinit var circulo : Circle
     private lateinit var marker: Marker
+    private lateinit var viewModel: MyViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentMapaBinding.inflate(inflater, container, false)
@@ -38,6 +41,8 @@ class FragmentMapa : Fragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
 
         binding.atrasMapa.setOnClickListener {
             findNavController().navigateUp()
@@ -93,6 +98,8 @@ class FragmentMapa : Fragment(), OnMapReadyCallback {
                 marker?.tag = "localizacion"
                 AñadirCirculo(marker, map)
             }
+
+            viewModel.updatePosition(marker.position)
         }
 
         map.setOnMapLoadedCallback {

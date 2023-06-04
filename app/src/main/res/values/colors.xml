@@ -13,4 +13,5 @@
     <color name="fondo_evento_shape">#FCF0F0</color>
     <color name="transparente">#00FFFFFF</color>
     <color name="semiTransparente">#7069CCE1</color>
+    <color name="error"> #FF8C8C </color>
 </resources>

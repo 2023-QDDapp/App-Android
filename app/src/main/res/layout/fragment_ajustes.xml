@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout20"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.FragmentAjustes">
+
+    <ImageView
+        android:id="@+id/atrasSiguiendo"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/atras"
+        app:layout_constraintStart_toStartOf="@+id/guideline46"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView48"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/raleway"
+        android:text="Ajustes"
+        android:textColor="@color/color_principal"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/guideline47"
+        app:layout_constraintStart_toStartOf="@+id/guideline46"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/cerrarSesion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="3dp"
+        android:fontFamily="@font/montserrat"
+        android:text="Cerrar sesión"
+        android:textColor="@color/color_secundario"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView48"
+        app:layout_constraintEnd_toStartOf="@+id/iconoCerrarSesion"
+        app:layout_constraintTop_toTopOf="@+id/textView48"
+        app:layout_constraintVertical_bias="0.428" />
+
+    <ImageView
+        android:id="@+id/iconoCerrarSesion"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/cerrar_sesion"
+        app:layout_constraintBottom_toBottomOf="@+id/cerrarSesion"
+        app:layout_constraintEnd_toStartOf="@+id/guideline47"
+        app:layout_constraintTop_toTopOf="@+id/cerrarSesion" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/fondo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView48"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:id="@+id/iconoLapiz"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/lapiz"
+            app:layout_constraintStart_toStartOf="@+id/iconoNotificaciones"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView50"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Editar usuario"
+            android:textColor="@color/color_secundario"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/iconoLapiz"
+            app:layout_constraintEnd_toStartOf="@+id/editarPerfil"
+            app:layout_constraintStart_toEndOf="@+id/iconoLapiz"
+            app:layout_constraintTop_toTopOf="@+id/iconoLapiz" />
+
+        <ImageView
+            android:id="@+id/editarPerfil"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:rotationY="180"
+            android:src="@drawable/atras"
+            app:layout_constraintBottom_toBottomOf="@+id/textView50"
+            app:layout_constraintEnd_toStartOf="@+id/guideline48"
+            app:layout_constraintTop_toTopOf="@+id/textView50" />
+
+        <ImageView
+            android:id="@+id/iconoNotificaciones"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/notificacion"
+            app:layout_constraintStart_toStartOf="@+id/guideline49"
+            app:layout_constraintTop_toBottomOf="@+id/iconoLapiz" />
+
+        <TextView
+            android:id="@+id/textView51"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:text="Activar Notificaciones"
+            android:textColor="@color/color_secundario"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/iconoNotificaciones"
+            app:layout_constraintEnd_toEndOf="@+id/textView50"
+            app:layout_constraintStart_toStartOf="@+id/textView50"
+            app:layout_constraintTop_toTopOf="@+id/iconoNotificaciones" />
+
+        <ImageView
+            android:id="@+id/notificacionesAjustes"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:rotationY="180"
+            android:src="@drawable/atras"
+            app:layout_constraintBottom_toBottomOf="@+id/textView51"
+            app:layout_constraintEnd_toStartOf="@+id/guideline48"
+            app:layout_constraintTop_toTopOf="@+id/textView51" />
+
+        <ImageView
+            android:id="@+id/iconoSeguidores"
+            android:layout_width="28dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/seguidos"
+            app:layout_constraintStart_toStartOf="@+id/guideline49"
+            app:layout_constraintTop_toBottomOf="@+id/iconoNotificaciones" />
+
+        <TextView
+            android:id="@+id/textView52"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Usuarios que sigues"
+            android:textColor="@color/color_secundario"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/iconoSeguidores"
+            app:layout_constraintEnd_toEndOf="@+id/textView51"
+            app:layout_constraintStart_toStartOf="@+id/textView51"
+            app:layout_constraintTop_toTopOf="@+id/iconoSeguidores" />
+
+        <ImageView
+            android:id="@+id/misSeguidos"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:rotationY="180"
+            android:src="@drawable/atras"
+            app:layout_constraintBottom_toBottomOf="@+id/textView52"
+            app:layout_constraintEnd_toStartOf="@+id/guideline48"
+            app:layout_constraintTop_toTopOf="@+id/textView52" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline49"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="15dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline48"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="15dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline46"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="15dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline47"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="15dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,7 +9,7 @@ data class Evento(
     @SerializedName("id_evento")
     val idEvento: Int,
     @SerializedName("organizador")
-    val organizador: String,
+    val organizador: String?,
     @SerializedName("id_organizador")
     val idOrganizador: Int,
     @SerializedName("foto_organizador")

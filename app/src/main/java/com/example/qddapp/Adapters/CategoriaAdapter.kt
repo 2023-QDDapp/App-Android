@@ -6,7 +6,7 @@ import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.example.qddapp.Modelos.Categoria
-import com.example.qddapp.Modelos.Evento
+import com.example.qddapp.MyApp
 import com.example.qddapp.databinding.CategoriaBinding
 
 class CategoriaAdapter(val categoryList: ArrayList<Categoria>) : RecyclerView.Adapter<CategoriaAdapter.MiCelda>(), Filterable {
@@ -27,20 +27,21 @@ class CategoriaAdapter(val categoryList: ArrayList<Categoria>) : RecyclerView.Ad
 
     override fun onBindViewHolder(holder: CategoriaAdapter.MiCelda, position: Int) {
         val categoria: Categoria = categoriasCopia[position]
-
         holder.binding.categoria.text = categoria.categoria
+
+        /* NO VA Y ME CAGO EN TODO */
+//        Lo unico que he encontrado es esto: https://stackoverflow.com/questions/73936737/android-requireactivity-on-adapter
+
+//        val myApp = (requireActivity().application as MyApp)
+
+        /* No se porque pero no me funciona el setOnClickListener*/
+        holder.itemView.setOnClickListener {
+//            myApp.datos.guardarCategoria(position)
+        }
     }
 
     override fun getItemCount(): Int {
         return categoriasCopia.size
-    }
-
-    fun refreshList(listaCategorias: ArrayList<Categoria>) {
-        categoriasCopia .clear()
-        categoriasCopia.addAll(listaCategorias)
-        categoryList.clear()
-        categoryList.addAll(listaCategorias)
-        notifyDataSetChanged()
     }
 
     override fun getFilter(): Filter {

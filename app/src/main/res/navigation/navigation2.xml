@@ -35,7 +35,11 @@
         android:id="@+id/perfil"
         android:name="com.example.qddapp.UI.FragmentPerfil"
         android:label="fragment_perfil"
-        tools:layout="@layout/fragment_perfil" />
+        tools:layout="@layout/fragment_perfil" >
+        <action
+            android:id="@+id/action_perfil_to_fragmentAjustes"
+            app:destination="@id/fragmentAjustes" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentDetalleEvento"
         android:name="com.example.qddapp.UI.FragmentDetalleEvento"
@@ -51,4 +55,18 @@
         android:name="com.example.qddapp.UI.FragmentMapa"
         android:label="fragment_mapa"
         tools:layout="@layout/fragment_mapa" />
+    <fragment
+        android:id="@+id/fragmentAjustes"
+        android:name="com.example.qddapp.UI.FragmentAjustes"
+        android:label="fragment_ajustes"
+        tools:layout="@layout/fragment_ajustes">
+        <action
+            android:id="@+id/action_fragmentAjustes_to_fragmentSiguiendo"
+            app:destination="@id/fragmentSiguiendo" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSiguiendo"
+        android:name="com.example.qddapp.UI.FragmentSiguiendo"
+        android:label="fragment_siguiendo"
+        tools:layout="@layout/fragment_siguiendo" />
 </navigation>

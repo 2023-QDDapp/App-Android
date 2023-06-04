@@ -11,7 +11,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.qddapp.Adapters.CategoriaAdapter
+import com.example.qddapp.Adapters.EventosAdapter
 import com.example.qddapp.Modelos.Categoria
+import com.example.qddapp.Modelos.Evento
 import com.example.qddapp.MyApp
 import com.example.qddapp.R
 import com.example.qddapp.databinding.FragmentCategoriasBinding
@@ -24,7 +28,7 @@ import kotlinx.coroutines.withContext
 class FragmentCategorias : DialogFragment() {
 
     private lateinit var binding:FragmentCategoriasBinding
-    lateinit var chip: Chip
+    private var adapter: CategoriaAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentCategoriasBinding.inflate(inflater, container, false)
@@ -42,7 +46,9 @@ class FragmentCategorias : DialogFragment() {
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful && response.code() == 200) {
                     val respuesta = response.body()
-                    respuesta?.let { rellenarChip(respuesta) }
+                    respuesta?.let {
+                        configRecycler(respuesta as ArrayList<Categoria>)
+                    }
                 } else {
                     Toast.makeText(
                         requireContext(),
@@ -66,13 +72,11 @@ class FragmentCategorias : DialogFragment() {
         dialog?.window?.setLayout(percentWidth.toInt(), ViewGroup.LayoutParams.WRAP_CONTENT)
     }
 
-    fun rellenarChip(categorias: List<Categoria>) {
-        for (categoria in categorias) {
-            chip = Chip(context)
-            chip.text = categoria.categoria
-            chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.boton))
-            chip.setTextColor(ContextCompat.getColor(context!!, R.color.color_principal))
-            binding.chipGroupCategorias.addView(chip)
-        }
+    private fun configRecycler(listaCategorias: ArrayList<Categoria>) {
+        val recyclerView = binding.recyclerViewCategorias
+        adapter = CategoriaAdapter(listaCategorias)
+        val layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
+        recyclerView.layoutManager = layoutManager
+        recyclerView.adapter = adapter
     }
 }

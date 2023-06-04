@@ -17,19 +17,6 @@
         app:layout_constraintStart_toStartOf="@+id/guideline40"
         app:layout_constraintTop_toBottomOf="@+id/textView45" />
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chipGroupCategorias"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline41"
-        app:layout_constraintStart_toStartOf="@+id/guideline40"
-        app:layout_constraintTop_toBottomOf="@+id/view20">
-
-    </com.google.android.material.chip.ChipGroup>
-
     <TextView
         android:id="@+id/textView45"
         android:layout_width="wrap_content"
@@ -43,6 +30,15 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline41"
         app:layout_constraintStart_toStartOf="@+id/guideline40"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewCategorias"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline41"
+        app:layout_constraintStart_toStartOf="@+id/guideline40"
+        app:layout_constraintTop_toBottomOf="@+id/view20" />
 
     <ImageView
         android:id="@+id/cerrarCategorias"

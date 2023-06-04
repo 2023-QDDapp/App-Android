@@ -1,37 +1,30 @@
 package com.example.qddapp.UI
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.qddapp.Adapters.CategoriaAdapter
-import com.example.qddapp.Modelos.Categoria
-import com.example.qddapp.MyApp
+import com.example.qddapp.MyViewModel
 import com.example.qddapp.R
 import com.example.qddapp.UI.popUp.DatePickerFragment
+import com.example.qddapp.UI.popUp.FragmentCategorias
 import com.example.qddapp.UI.popUp.TimePickerFragment
 import com.example.qddapp.databinding.FragmentFiltroBusquedaBinding
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-
 class FragmentFiltroBusqueda : Fragment(), OnMapReadyCallback {
 
     private lateinit var binding: FragmentFiltroBusquedaBinding
-    private lateinit var adapter: CategoriaAdapter
-    private var pullToRefreshWorking = false
-    private var olddate = "dd/MM/yyyy"
+    private var olddate = "dd/mm/yyyy"
     private var oldtime = "00:00"
-
+    private lateinit var viewModel: MyViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentFiltroBusquedaBinding.inflate(inflater, container, false)
@@ -45,29 +38,8 @@ class FragmentFiltroBusqueda : Fragment(), OnMapReadyCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val miRepositorio = (requireActivity().application as MyApp).repositorio
-
-        CoroutineScope(Dispatchers.IO).launch {
-            val response = miRepositorio.dameTodasCategorias()
-            withContext(Dispatchers.Main) {
-                if (response.isSuccessful && response.code() == 200) {
-                    val respuesta = response.body()
-                    respuesta?.let {
-                        if (pullToRefreshWorking) {
-                            pullToRefreshWorking = false
-                            refreshRecycler(it)
-                        } else {
-                            configRecycler(it as ArrayList<Categoria>)
-                        }
-                    }
-                } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "Error: ${response.message()}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
+        binding.busquedaFiltro.setOnClickListener {
+            FragmentCategorias().show(childFragmentManager, "TAG")
         }
 
         binding.inicioFiltro.setOnClickListener {
@@ -79,6 +51,34 @@ class FragmentFiltroBusqueda : Fragment(), OnMapReadyCallback {
         }
 
         binding.buscarFiltro.setOnClickListener {
+            var filtrado: String? = ""
+            val fechaInicio = binding.inicioFiltro.text.toString()
+            val fechaFin = binding.finFiltro.text.toString()
+//            val tipoEvento = binding.abiertoFiltro.isChecked.toString()
+//            val distancia = binding.distanciaFiltro.progress.toString()
+//            val categoria = category
+//
+//            if(!categoria!!.isEmpty()) {
+//                filtrado += "categoria=$categoria,"
+//            }
+            filtrado += "Deportes,"
+            if (!fechaInicio.isEmpty() && fechaInicio != "dd/mm/yyyy 00:00"){
+                filtrado += "$fechaInicio,"
+            } else {
+                filtrado += null + ","
+            }
+
+            if (!fechaFin.isEmpty() && fechaFin != "dd/mm/yyyy 00:00"){
+                filtrado += "$fechaFin,"
+            } else {
+                filtrado += null + ","
+            }
+//            filtrado += "tipoEvento=$tipoEvento,"+
+//            filtrado += "distancia=$distancia,"
+
+            Log.d("dato_filtrado", filtrado.toString())
+
+            viewModel.updateData(filtrado.toString())
             findNavController().navigateUp()
         }
 
@@ -108,26 +108,4 @@ class FragmentFiltroBusqueda : Fragment(), OnMapReadyCallback {
         oldtime = time
         editText.setText("$olddate $time")
     }
-
-    private fun configRecycler(listaCategoria: ArrayList<Categoria>) {
-        val recyclerView = binding.recyclerViewFiltro
-        adapter = CategoriaAdapter(listaCategoria)
-        val layoutManager = StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL)
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = adapter
-    }
-
-    private fun refreshRecycler(listaCategoria: List<Categoria>) {
-        adapter.refreshList(listaCategoria as ArrayList<Categoria>)
-    }
-
-//    fun rellenarChip(categorias: List<Categoria>) {
-//        for (categoria in categorias) {
-//            val chip = Chip(context)
-//            chip.text = categoria.categoria
-//            chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.boton))
-//            chip.setTextColor(ContextCompat.getColor(context!!, R.color.color_principal))
-//            binding.chipGroup.addView(chip)
-//        }
-//    }
 }

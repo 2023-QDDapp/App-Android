@@ -3,14 +3,21 @@ package com.example.qddapp.UI.popUp
 import android.content.res.Resources
 import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
-import androidx.navigation.fragment.findNavController
-import com.example.qddapp.R
+import com.example.qddapp.FragmentCorreoVerificacion
+import com.example.qddapp.Modelos.RegistroBody
+import com.example.qddapp.MyApp
 import com.example.qddapp.databinding.FragmentRegistroCorreoBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class FragmentRegistroCorreo : DialogFragment() {
 
@@ -58,8 +65,31 @@ class FragmentRegistroCorreo : DialogFragment() {
             binding.contrasena.error = "Las dos contraseñas deben ser iguales"
             return
         }
-        findNavController().navigate(R.id.action_fragmentInicioSesion_to_fragmentRegistroNombre)
-        dismiss()
+
+        val myApp = (requireActivity().application as MyApp)
+        val miRepositorio = (requireActivity().application as MyApp).repositorio
+        var registro = RegistroBody( binding.email.text.toString(), binding.contrasena.text.toString())
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val response = miRepositorio.registroBody(registro)
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful && response.code() == 200) {
+                    val respuesta = response.body()
+                    respuesta?.let {
+                        myApp.datos.guardarUserId(it.id)
+                        myApp.datos.guardarSesion(it.email, binding.contrasena.text.toString())
+                        FragmentCorreoVerificacion().show(childFragmentManager, "tag")
+//                        garvinguerreroalvaro@gmail.com
+                    }
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Error: ${response.message()}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
     }
 
     fun DialogFragment.setWidthPercent(percentage: Int) {

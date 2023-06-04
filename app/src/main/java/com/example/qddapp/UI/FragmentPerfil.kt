@@ -1,7 +1,5 @@
 package com.example.qddapp.UI
 
-import android.annotation.SuppressLint
-import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,16 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
 import com.example.qddapp.Adapters.ValoracionesAdapter
-import com.example.qddapp.MainActivity
 import com.example.qddapp.Modelos.Usuario
 import com.example.qddapp.Modelos.Valoracion
 import com.example.qddapp.MyApp
 import com.example.qddapp.R
-import com.example.qddapp.Retrofit.Repositorio
+import com.example.qddapp.UI.popUp.FragmentAsistentes
 import com.example.qddapp.databinding.FragmentPerfilBinding
 import com.google.android.material.chip.Chip
 import kotlinx.coroutines.CoroutineScope
@@ -30,6 +28,8 @@ import kotlinx.coroutines.withContext
 class FragmentPerfil : Fragment() {
 
     private lateinit var binding: FragmentPerfilBinding
+    lateinit var bundle: Bundle
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -41,14 +41,16 @@ class FragmentPerfil : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val miRepositorio = (requireActivity().application as MyApp).repositorio
+        val myApp = (requireActivity().application as MyApp)
 
         CoroutineScope(Dispatchers.IO).launch {
-            val response = miRepositorio.dameElUsuario(1)
+            val response = miRepositorio.dameElUsuario(myApp.datos.sacarUserId())
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful && response.code() == 200) {
                     val respuesta = response.body()
                     respuesta?.let {
                         rellenarDatos(respuesta)
+                        bundle = bundleOf("id" to respuesta.id)
                         configRecycler(respuesta.valoraciones)
                     }
                 } else {
@@ -62,12 +64,9 @@ class FragmentPerfil : Fragment() {
         }
 
         binding.ajustes.setOnClickListener {
-            val myApp = (requireActivity().application as MyApp)
-
-            myApp.datos.eliminarDatos()
-
-            startActivity(Intent(requireContext(), MainActivity::class.java))
-            requireActivity().finishAffinity()
+            val dialogFragment = FragmentAsistentes()
+            dialogFragment.arguments = bundle
+            findNavController().navigate(R.id.action_perfil_to_fragmentAjustes, bundle)
         }
     }
 

@@ -50,6 +50,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView39">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tituloEvento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nombre del evento" />
@@ -84,9 +85,11 @@
             app:layout_constraintTop_toBottomOf="@+id/view14">
 
             <EditText
-                android:id="@+id/inicioFiltro"
+                android:id="@+id/inicioCrear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:hint="Inicio"
                 android:text="dd/mm/yyyy 00:00" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -110,9 +113,11 @@
             app:layout_constraintTop_toTopOf="@+id/carcasaInicioFiltro">
 
             <EditText
-                android:id="@+id/finFiltro"
+                android:id="@+id/finCrear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:hint="Fin"
                 android:text="dd/mm/yyyy 00:00" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -127,6 +132,20 @@
             app:layout_constraintStart_toStartOf="@+id/guideline38"
             app:layout_constraintTop_toBottomOf="@+id/carcasaInicioFiltro" />
 
+        <TextView
+            android:id="@+id/errorCategoria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Seleccione una categoria para el evento"
+            android:textColor="@color/error"
+            android:textSize="15sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/guideline39"
+            app:layout_constraintStart_toStartOf="@+id/guideline38"
+            app:layout_constraintTop_toBottomOf="@+id/view15" />
+
         <Button
             android:id="@+id/seleccionaCategoria"
             android:layout_width="0dp"
@@ -138,7 +157,7 @@
             app:cornerRadius="5dp"
             app:layout_constraintEnd_toEndOf="@+id/carcasaInicioFiltro"
             app:layout_constraintStart_toStartOf="@+id/guideline38"
-            app:layout_constraintTop_toBottomOf="@+id/view15" />
+            app:layout_constraintTop_toBottomOf="@+id/errorCategoria" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip4"
@@ -173,6 +192,7 @@
             app:layout_constraintTop_toBottomOf="@+id/view16">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/descripcion"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/montserrat"
@@ -223,6 +243,21 @@
             app:layout_constraintStart_toStartOf="@+id/guideline38"
             app:layout_constraintTop_toBottomOf="@+id/abiertoEvento" />
 
+        <TextView
+            android:id="@+id/errorMapa"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Seleccione una localización en el mapa"
+            android:textAlignment="center"
+            android:textColor="@color/error"
+            android:textSize="15sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/guideline39"
+            app:layout_constraintStart_toStartOf="@+id/guideline38"
+            app:layout_constraintTop_toBottomOf="@+id/view18" />
+
         <fragment
             android:id="@+id/mapa"
             android:name="com.google.android.gms.maps.SupportMapFragment"
@@ -233,7 +268,7 @@
             app:layout_constraintBottom_toTopOf="@+id/crearEvento"
             app:layout_constraintEnd_toStartOf="@+id/guideline39"
             app:layout_constraintStart_toStartOf="@+id/guideline38"
-            app:layout_constraintTop_toBottomOf="@+id/view18" />
+            app:layout_constraintTop_toBottomOf="@+id/errorMapa" />
 
         <Button
             android:id="@+id/crearEvento"
