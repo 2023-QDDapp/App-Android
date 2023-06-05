@@ -83,10 +83,11 @@ class FragmentPermisos : DialogFragment() {
 
         CoroutineScope(Dispatchers.IO).launch {
             val response = miRepositorio.continuarRegistroBody(myApp.datos.sacarUserId(), continuarRegistroBody)
+            Log.d("dato", "primero lo pasa")
             withContext(Dispatchers.Main) {
-                Log.d("dato", "primero lo pasa")
+                Log.d("dato", "segundo lo pasa")
                 if (response.isSuccessful && response.code() == 200) {
-                    Log.d("dato", "Llega Aqui")
+                    Log.d("dato", "tercero lo pasa")
                     val respuesta = response.body()
                     respuesta?.let {
 //                        CoroutineScope(Dispatchers.IO).launch {

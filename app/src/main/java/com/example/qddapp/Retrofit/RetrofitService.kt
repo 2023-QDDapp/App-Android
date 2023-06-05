@@ -4,6 +4,7 @@ import com.example.qddapp.Modelos.Asistente
 import com.example.qddapp.Modelos.Categoria
 import com.example.qddapp.Modelos.ContinuarRegistroBody
 import com.example.qddapp.Modelos.Evento
+import com.example.qddapp.Modelos.EventoCrear
 import com.example.qddapp.Modelos.Mensaje
 import com.example.qddapp.Modelos.Registro
 import com.example.qddapp.Modelos.RegistroBody
@@ -39,17 +40,17 @@ interface RetrofitService {
         @Body registro: RegistroBody
     ): Response<Registro>
 
-    @Headers("Accept: application/json")
-    @POST("/proyecto/api/continue/register/{id}")
-    suspend fun continuarRegistro(
-        @Path("id") id: Int,
-        @Query("nombre") nombre: String,
-        @Query("telefono") telefono: String,
-        @Query("fecha_nacimiento") fecha_nacimiento: String,
-        @Query("biografia") biografia: String,
-        @Query("foto") foto: String,
-        @Query("categorias") categorias: IntArray
-    ):Response<Usuario>
+//    @Headers("Accept: application/json")
+//    @POST("/proyecto/api/continue/register/{id}")
+//    suspend fun continuarRegistro(
+//        @Path("id") id: Int,
+//        @Query("nombre") nombre: String,
+//        @Query("telefono") telefono: String,
+//        @Query("fecha_nacimiento") fecha_nacimiento: String,
+//        @Query("biografia") biografia: String,
+//        @Query("foto") foto: String,
+//        @Query("categorias") categorias: IntArray
+//    ):Response<Usuario>
 
     @Headers("Accept: application/json")
     @POST("/proyecto/api/continue/register/{id}")
@@ -78,20 +79,24 @@ interface RetrofitService {
     @GET("/proyecto/api/users/{id}/pantallaseguidos")
     suspend fun dameEventosSeguidos(@Path("id") id: Int): Response<List<Evento>>
 
+//    @Headers("Accept: application/json")
+//    @POST("/proyecto/api/events")
+//    suspend fun crearEvento(
+//        @Query("titulo") titulo: String,
+//        @Query("fecha_hora_inicio") fecha_hora_inicio: String,
+//        @Query("fecha_hora_fin") fecha_hora_fin: String,
+//        @Query("descripcion") descripcion: String,
+//        @Query("foto") foto: String,
+//        @Query("tipo") tipo: Boolean,
+//        @Query("location") location: String,
+//        @Query("latitud") latitud: String,
+//        @Query("longitud") longitud: String,
+//        @Query("categoria_id") categoria_id: Int
+//    ): Response<Mensaje>
+
     @Headers("Accept: application/json")
     @POST("/proyecto/api/events")
-    suspend fun crearEvento(
-        @Query("titulo") titulo: String,
-        @Query("fecha_hora_inicio") fecha_hora_inicio: String,
-        @Query("fecha_hora_fin") fecha_hora_fin: String,
-        @Query("descripcion") descripcion: String,
-        @Query("foto") foto: String,
-        @Query("tipo") tipo: Boolean,
-        @Query("location") location: String,
-        @Query("latitud") latitud: String,
-        @Query("longitud") longitud: String,
-        @Query("categoria_id") categoria_id: Int
-    ): Response<Mensaje>
+    suspend fun crearEventoBody(@Body evento: EventoCrear): Response<Mensaje>
 
     @GET("/proyecto/api/users/{id}")
     suspend fun dameElUsuario(@Path("id") id: Int): Response<Usuario>
