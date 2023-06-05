@@ -3,6 +3,8 @@ package com.example.qddapp.Modelos
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
+import java.sql.Date
+import java.time.format.DateTimeFormatter
 
 @Parcelize
 data class Evento(

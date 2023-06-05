@@ -9,5 +9,5 @@ data class Mensaje(
     var pasword: String,
     var fecha_nacimiento: String,
     var biografia: String,
-    var intereses: ArrayList<Int>
+    var intereses: List<Int>
 )

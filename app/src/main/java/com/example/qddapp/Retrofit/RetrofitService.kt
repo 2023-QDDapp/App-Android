@@ -6,6 +6,7 @@ import com.example.qddapp.Modelos.ContinuarRegistroBody
 import com.example.qddapp.Modelos.Evento
 import com.example.qddapp.Modelos.EventoCrear
 import com.example.qddapp.Modelos.Mensaje
+import com.example.qddapp.Modelos.MensajeEvento
 import com.example.qddapp.Modelos.Registro
 import com.example.qddapp.Modelos.RegistroBody
 import com.example.qddapp.Modelos.Token
@@ -57,7 +58,7 @@ interface RetrofitService {
     suspend fun continuarRegistroBody(
         @Path("id") id: Int,
         @Body continuarRegistroBody: ContinuarRegistroBody
-    ):Response<Usuario>
+    ):Response<Mensaje>
 
     @GET("/proyecto/api/events")
     suspend fun dameTodosEventos(): Response<List<Evento>>
@@ -96,7 +97,7 @@ interface RetrofitService {
 
     @Headers("Accept: application/json")
     @POST("/proyecto/api/events")
-    suspend fun crearEventoBody(@Body evento: EventoCrear): Response<Mensaje>
+    suspend fun crearEventoBody(@Body evento: EventoCrear): Response<MensajeEvento>
 
     @GET("/proyecto/api/users/{id}")
     suspend fun dameElUsuario(@Path("id") id: Int): Response<Usuario>

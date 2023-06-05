@@ -159,8 +159,6 @@ class FragmentCrear : Fragment(), OnMapReadyCallback {
 
     private fun showTimePickerDialog(editText: EditText) {
         val timePicker = TimePickerFragment {onTimeSelected(it, editText)}
-        val datePicker = DatePickerFragment {onDateSelected(it, editText)}
-        datePicker.show(childFragmentManager, "date")
         timePicker.show(childFragmentManager, "time")
     }
 
@@ -172,5 +170,7 @@ class FragmentCrear : Fragment(), OnMapReadyCallback {
     private fun onTimeSelected(time:String, editText: EditText){
         oldtime = time
         editText.setText("$olddate $time")
+        val datePicker = DatePickerFragment {onDateSelected(it, editText)}
+        datePicker.show(childFragmentManager, "date")
     }
 }

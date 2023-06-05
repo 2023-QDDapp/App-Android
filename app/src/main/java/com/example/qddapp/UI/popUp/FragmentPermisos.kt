@@ -90,19 +90,17 @@ class FragmentPermisos : DialogFragment() {
                     Log.d("dato", "tercero lo pasa")
                     val respuesta = response.body()
                     respuesta?.let {
-//                        CoroutineScope(Dispatchers.IO).launch {
-//                            val response = miRepositorio.login(myApp.datos.sacarCorreo().toString(), myApp.datos.sacarContrasena().toString())
-//                            val token = response.body()
-//                            token?.let {
-//                                //TODO SHARED PREFERENCE CON USUARIO Y CONTRASEÑA PARA QUE SI ESTAN GUARDADOS, HACE EL VALIDATE AUTOMATICAMENTE
-//                                myApp.datos.guardarToken(it.token)
-//                                myApp.datos.guardarUserId(it.user_id)
-//                            }
-//                        }
-//                        findNavController().navigate(R.id.action_fragmentPreferencias_to_fragmentPantallaCarga)
-//                        dismiss()
-
-                        Log.d("dato_usuarioCreado", it.toString())
+                        CoroutineScope(Dispatchers.IO).launch {
+                            val response = miRepositorio.login(myApp.datos.sacarCorreo().toString(), myApp.datos.sacarContrasena().toString())
+                            val token = response.body()
+                            token?.let {
+                                //TODO SHARED PREFERENCE CON USUARIO Y CONTRASEÑA PARA QUE SI ESTAN GUARDADOS, HACE EL VALIDATE AUTOMATICAMENTE
+                                myApp.datos.guardarToken(it.token)
+                                myApp.datos.guardarUserId(it.user_id)
+                            }
+                        }
+                        findNavController().navigate(R.id.action_fragmentPreferencias_to_fragmentPantallaCarga)
+                        dismiss()
                     }
                 } else {
                     Toast.makeText(

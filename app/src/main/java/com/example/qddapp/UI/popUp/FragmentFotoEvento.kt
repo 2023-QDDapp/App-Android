@@ -83,3 +83,13 @@ class FragmentFotoEvento : DialogFragment() {
         dialog?.window?.setLayout(percentWidth.toInt(), ViewGroup.LayoutParams.WRAP_CONTENT)
     }
 }
+
+"titulo": "asdasd",
+"categoria_id" : 1,
+"fecha_hora_inicio": "2023-06-04 12:30",
+"fecha_hora_fin": "2023-06-04 14:30",
+"descripcion": "asdasdas",
+"tipo": true,
+"location": "Huerva",
+"latitud": "-37.3453453453",
+"longitud": "3.5464564555",
