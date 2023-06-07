@@ -114,8 +114,9 @@ class FragmentBuscar : Fragment() {
     }
 
     private fun configRecycler(listaEventos: ArrayList<Evento>) {
+        val myApp = (requireActivity().application as MyApp)
         val recyclerView = binding.recyclerView
-        adapter = EventosAdapter(listaEventos)
+        adapter = EventosAdapter(listaEventos, myApp.datos.sacarUserId(), null)
         val layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter

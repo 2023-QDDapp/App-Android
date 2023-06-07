@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
-import androidx.navigation.fragment.findNavController
 import com.example.qddapp.Modelos.Evento
 import com.example.qddapp.Modelos.EventoCrear
 import com.example.qddapp.MyApp
@@ -59,6 +58,7 @@ class FragmentFotoEvento : DialogFragment() {
                             val bundle = bundleOf("mensaje" to it.mensaje)
                             FragmentEventoPublicado().arguments = bundle
                             FragmentEventoPublicado().show(childFragmentManager, "Tag")
+                            dismiss()
                         }
                     } else {
                         val bundle = bundleOf("mensaje" to response.errorBody())

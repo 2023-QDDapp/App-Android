@@ -20,13 +20,17 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class EventosAdapter(val eventList: ArrayList<Evento>) : RecyclerView.Adapter<EventosAdapter.MiCelda>(), Filterable {
+class EventosAdapter(val eventList: ArrayList<Evento>, val idUsuario: Int, val listener: MyClickListener?) : RecyclerView.Adapter<EventosAdapter.MiCelda>(), Filterable {
 
     private var eventosCopia = ArrayList<Evento>()
     lateinit var miRepositorio: Repositorio
 
     init {
         eventosCopia.addAll(eventList)
+    }
+
+    interface MyClickListener {
+        fun onItemClickListener(evento: Evento, position: Int)
     }
     inner class MiCelda(val binding: EventoBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -47,10 +51,12 @@ class EventosAdapter(val eventList: ArrayList<Evento>) : RecyclerView.Adapter<Ev
         Glide.with(holder.itemView).load(eventos.fotoOrganizador).into(holder.binding.imagenUsuario)
         Glide.with(holder.itemView).load(eventos.imagenEvento).into(holder.binding.imagenEvento)
 
-        val myApp = (requireActivity().application as MyApp)
-
-        if (eventos.idOrganizador == myApp.datos.sacarUserId()) {
+        if (eventos.idOrganizador == idUsuario) {
             holder.binding.miEvento.visibility = View.VISIBLE
+            holder.binding.borrar.visibility = View.VISIBLE
+        } else {
+            holder.binding.miEvento.visibility = View.GONE
+            holder.binding.borrar.visibility = View.GONE
         }
 
         if (eventos.imagenEvento == null) {
@@ -64,19 +70,8 @@ class EventosAdapter(val eventList: ArrayList<Evento>) : RecyclerView.Adapter<Ev
             holder.itemView.findNavController().navigate(R.id.fragmentDetalleEvento, bundle)
         }
 
-        holder.itemView.setOnLongClickListener {
-            miRepositorio = (requireActivity().application as MyApp).repositorio
-            CoroutineScope(Dispatchers.IO).launch {
-                val respuesta = miRepositorio.borrarEvento(eventos.idEvento)
-
-                withContext(Dispatchers.Main){
-                    if(respuesta.isSuccessful){
-                        eventosCopia.removeAt(position)
-                        notifyItemRemoved(position)
-                    }
-                }
-            }
-            return@setOnLongClickListener true
+        holder.binding.borrar.setOnClickListener {
+            listener?.onItemClickListener(eventos, position)
         }
     }
 
@@ -168,5 +163,11 @@ class EventosAdapter(val eventList: ArrayList<Evento>) : RecyclerView.Adapter<Ev
                 notifyDataSetChanged()
             }
         }
+    }
+
+    fun deleteItem(position: Int){
+        eventosCopia.removeAt(position)
+        eventList.removeAt(position)
+        notifyDataSetChanged()
     }
 }

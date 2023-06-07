@@ -42,4 +42,6 @@ class Repositorio(context: Context) {
 
     suspend fun dameMiHistorial(id: Int) = retrofit.dameMiHistorial(id)
 
+    suspend fun borrarEvento(id: Int) = retrofit.borrarEvento(id)
+
 }

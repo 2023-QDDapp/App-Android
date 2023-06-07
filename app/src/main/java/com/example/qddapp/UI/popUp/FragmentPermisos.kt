@@ -79,9 +79,13 @@ class FragmentPermisos : DialogFragment() {
         val myApp = (requireActivity().application as MyApp)
         val miRepositorio = (requireActivity().application as MyApp).repositorio
 
-        Log.d("dato_telefono", myApp.datos.sacarTelefono())
+        // Log.d("dato_telefono", myApp.datos.sacarTelefono())
+        val array = myApp.datos.sacarPreferencias()
+        val preferencias = array.removeSurrounding("[", "]").replace(" ","").split(",").map { it.toInt() }
+        Log.d("dato_preferencias", preferencias.toString())
+        Log.d("dato_array", intArrayOf(1,2,3).toString())
 
-        val continuarRegistroBody = ContinuarRegistroBody(myApp.datos.sacarNombre(), myApp.datos.sacarTelefono(), myApp.datos.sacarFechaNacimiento(), myApp.datos.sacarDescripcion(), foto, intArrayOf(1, 2, 3))
+        val continuarRegistroBody = ContinuarRegistroBody(myApp.datos.sacarNombre(), myApp.datos.sacarTelefono(), myApp.datos.sacarFechaNacimiento(), myApp.datos.sacarDescripcion(), foto, preferencias.toIntArray())
 
         CoroutineScope(Dispatchers.IO).launch {
             val response = miRepositorio.continuarRegistroBody(myApp.datos.sacarUserId(), continuarRegistroBody)

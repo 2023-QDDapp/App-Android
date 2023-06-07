@@ -22,6 +22,7 @@ class FragmentMisEventos : Fragment() {
 
     private lateinit var binding: FragmentMisEventosBinding
     lateinit var miRepositorio: Repositorio
+    private lateinit var adapter: EventosAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentMisEventosBinding.inflate(inflater, container, false)
@@ -93,8 +94,23 @@ class FragmentMisEventos : Fragment() {
     }
 
     private fun configRecycler(listaEventos: List<Evento>) {
+        val myApp = (requireActivity().application as MyApp)
         val recyclerView = binding.recyclerViewMisEventos
-        val adapter = EventosAdapter(listaEventos as ArrayList<Evento>)
+         adapter = EventosAdapter(listaEventos as ArrayList<Evento>, myApp.datos.sacarUserId(), object : EventosAdapter.MyClickListener{
+            override fun onItemClickListener(evento: Evento, position: Int) {
+                miRepositorio = (requireActivity().application as MyApp).repositorio
+                CoroutineScope(Dispatchers.IO).launch {
+                    val respuesta = miRepositorio.borrarEvento(evento.idEvento)
+
+                    withContext(Dispatchers.Main){
+                        if(respuesta.isSuccessful){
+                            adapter.deleteItem(position)
+                        }
+                    }
+                }
+            }
+
+        })
         val layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter

@@ -60,6 +60,13 @@ class DataPreferences(context: Context) {
 
     fun sacarDescripcion() = preferences.getString("descripcion_registro", "Prueba").toString()
 
+    fun guardarPreferencias(preferencias: String) {
+        editor.putString("preferencias", preferencias)
+        editor.apply()
+    }
+
+    fun sacarPreferencias() = preferences.getString("preferencias", "[1,2,3]").toString()
+
     /* EVENTO */
 
     fun guardarEvento(titulo: String, fecha_inicio: String, fecha_fin: String, descripcion: String, abierto: Boolean, location: String, latitud: String, longitud: String, categoria: Int){

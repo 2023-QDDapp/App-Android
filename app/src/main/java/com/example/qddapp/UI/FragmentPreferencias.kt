@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CompoundButton
+import android.widget.RadioGroup.OnCheckedChangeListener
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -25,6 +27,7 @@ import kotlinx.coroutines.withContext
 class FragmentPreferencias : Fragment() {
 
     private lateinit var binding: FragmentPreferenciasBinding
+    private lateinit var chip: Chip
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -53,20 +56,6 @@ class FragmentPreferencias : Fragment() {
             }
         }
 
-//        chip.setOnClickListener {
-//            Toast.makeText(context, chip.isChecked.toString(), Toast.LENGTH_LONG).show()
-//            if (chip.isChecked) {
-//                chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.boton))
-//                chip.setTextColor(ContextCompat.getColor(context!!, R.color.color_principal))
-//                Toast.makeText(context, chip.isChecked.toString() + "a", Toast.LENGTH_LONG).show()
-//            } else {
-//                chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.color_principal))
-//                chip.setTextColor(ContextCompat.getColor(context!!, R.color.white))
-//                Toast.makeText(context, chip.isChecked.toString() + "b", Toast.LENGTH_LONG).show()
-//            }
-//            chip.isChecked = !chip.isChecked
-//        }
-
         binding.nombre.setOnClickListener {
             findNavController().navigate(R.id.fragmentRegistroNombre)
         }
@@ -88,17 +77,37 @@ class FragmentPreferencias : Fragment() {
         }
 
         binding.siguientePreferencias.setOnClickListener {
-            val permisosPopUp = FragmentPermisos()
-            permisosPopUp.show((activity as AppCompatActivity).supportFragmentManager, "showPopUp")
+            Toast.makeText(requireContext(), binding.chipGroup.checkedChipIds.toString(), Toast.LENGTH_SHORT).show()
+            if(binding.chipGroup.checkedChipIds.size !== 3) {
+                binding.errorPreferencias.visibility = View.VISIBLE
+            } else {
+                val myApp = (requireActivity().application as MyApp)
+                myApp.datos.guardarPreferencias(binding.chipGroup.checkedChipIds.toString())
+
+                val permisosPopUp = FragmentPermisos()
+                permisosPopUp.show((activity as AppCompatActivity).supportFragmentManager, "showPopUp")
+            }
         }
     }
 
     fun rellenarChip(categorias: List<Categoria>) {
         for (categoria in categorias) {
-            val chip = Chip(context)
+            chip = Chip(context)
             chip.text = categoria.categoria
             chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.boton))
             chip.setTextColor(ContextCompat.getColor(context!!, R.color.color_principal))
+            chip.isCheckable = true
+            chip.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener{
+                override fun onCheckedChanged(chip: CompoundButton?, isChecked: Boolean) {
+                    if (isChecked) {
+                        (chip as Chip).chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.color_principal))
+                        chip.setTextColor(ContextCompat.getColor(context!!, R.color.white))
+                    } else {
+                        (chip as Chip).chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.boton))
+                        chip.setTextColor(ContextCompat.getColor(context!!, R.color.color_principal))
+                    }
+                }
+            })
             binding.chipGroup.addView(chip)
         }
     }
