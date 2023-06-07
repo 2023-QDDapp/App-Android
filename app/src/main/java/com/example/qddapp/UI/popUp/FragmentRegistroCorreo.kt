@@ -3,14 +3,12 @@ package com.example.qddapp.UI.popUp
 import android.content.res.Resources
 import android.graphics.Rect
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
-import com.example.qddapp.FragmentCorreoVerificacion
 import com.example.qddapp.Modelos.RegistroBody
 import com.example.qddapp.MyApp
 import com.example.qddapp.databinding.FragmentRegistroCorreoBinding

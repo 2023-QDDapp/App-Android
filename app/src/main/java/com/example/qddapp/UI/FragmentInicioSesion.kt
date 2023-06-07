@@ -43,9 +43,9 @@ class FragmentInicioSesion : Fragment() {
             terminosPopUp.show((activity as AppCompatActivity).supportFragmentManager, "AndroidCenter")
         }
 
-        binding.registroGoogle.setOnClickListener {
-            FragmentGoogle().show(childFragmentManager, "TAG")
-        }
+//        binding.registroGoogle.setOnClickListener {
+//            FragmentGoogle().show(childFragmentManager, "TAG")
+//        }
 
         binding.logo.setOnClickListener {
             validation("alvaro.garvin@escuelaestech.es", "password")

@@ -1,5 +1,6 @@
 package com.example.qddapp.Adapters
 
+import android.opengl.Visibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,12 +11,19 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.qddapp.Modelos.Evento
+import com.example.qddapp.MyApp
 import com.example.qddapp.R
+import com.example.qddapp.Retrofit.Repositorio
 import com.example.qddapp.databinding.EventoBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class EventosAdapter(val eventList: ArrayList<Evento>) : RecyclerView.Adapter<EventosAdapter.MiCelda>(), Filterable {
 
     private var eventosCopia = ArrayList<Evento>()
+    lateinit var miRepositorio: Repositorio
 
     init {
         eventosCopia.addAll(eventList)
@@ -39,6 +47,12 @@ class EventosAdapter(val eventList: ArrayList<Evento>) : RecyclerView.Adapter<Ev
         Glide.with(holder.itemView).load(eventos.fotoOrganizador).into(holder.binding.imagenUsuario)
         Glide.with(holder.itemView).load(eventos.imagenEvento).into(holder.binding.imagenEvento)
 
+        val myApp = (requireActivity().application as MyApp)
+
+        if (eventos.idOrganizador == myApp.datos.sacarUserId()) {
+            holder.binding.miEvento.visibility = View.VISIBLE
+        }
+
         if (eventos.imagenEvento == null) {
             holder.binding.imagenEvento.visibility = View.GONE
         } else {
@@ -48,6 +62,21 @@ class EventosAdapter(val eventList: ArrayList<Evento>) : RecyclerView.Adapter<Ev
         holder.itemView.setOnClickListener {
             val bundle = bundleOf("id" to eventos.idEvento)
             holder.itemView.findNavController().navigate(R.id.fragmentDetalleEvento, bundle)
+        }
+
+        holder.itemView.setOnLongClickListener {
+            miRepositorio = (requireActivity().application as MyApp).repositorio
+            CoroutineScope(Dispatchers.IO).launch {
+                val respuesta = miRepositorio.borrarEvento(eventos.idEvento)
+
+                withContext(Dispatchers.Main){
+                    if(respuesta.isSuccessful){
+                        eventosCopia.removeAt(position)
+                        notifyItemRemoved(position)
+                    }
+                }
+            }
+            return@setOnLongClickListener true
         }
     }
 

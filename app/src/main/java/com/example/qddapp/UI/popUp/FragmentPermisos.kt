@@ -11,7 +11,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.findNavController
-import com.example.qddapp.FragmentCorreoVerificacion
 import com.example.qddapp.Modelos.ContinuarRegistroBody
 import com.example.qddapp.MyApp
 import com.example.qddapp.R
@@ -79,15 +78,15 @@ class FragmentPermisos : DialogFragment() {
 
         val myApp = (requireActivity().application as MyApp)
         val miRepositorio = (requireActivity().application as MyApp).repositorio
-        val continuarRegistroBody = ContinuarRegistroBody("Benito Camela", "675839402", "2003-11-4", "Esto es una prueba para ver si funcionan las cosas", foto, intArrayOf(1, 2, 3))
+
+        Log.d("dato_telefono", myApp.datos.sacarTelefono())
+
+        val continuarRegistroBody = ContinuarRegistroBody(myApp.datos.sacarNombre(), myApp.datos.sacarTelefono(), myApp.datos.sacarFechaNacimiento(), myApp.datos.sacarDescripcion(), foto, intArrayOf(1, 2, 3))
 
         CoroutineScope(Dispatchers.IO).launch {
             val response = miRepositorio.continuarRegistroBody(myApp.datos.sacarUserId(), continuarRegistroBody)
-            Log.d("dato", "primero lo pasa")
             withContext(Dispatchers.Main) {
-                Log.d("dato", "segundo lo pasa")
                 if (response.isSuccessful && response.code() == 200) {
-                    Log.d("dato", "tercero lo pasa")
                     val respuesta = response.body()
                     respuesta?.let {
                         CoroutineScope(Dispatchers.IO).launch {

@@ -127,6 +127,7 @@
             android:layout_height="60dp"
             android:layout_marginTop="30dp"
             android:backgroundTint="@color/boton"
+            android:clickable="false"
             android:fontFamily="@font/montserrat"
             android:text="Registrarse con Google"
             android:textAllCaps="false"

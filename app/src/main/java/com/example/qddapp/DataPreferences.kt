@@ -33,6 +33,32 @@ class DataPreferences(context: Context) {
     fun sacarCorreo() = preferences.getString("correo", "alvaro.garvin@escuelaestech.es")
     fun sacarContrasena() = preferences.getString("password", "password")
 
+    fun guardarNombre(name: String) {
+        editor.putString("name", name)
+        editor.apply()
+    }
+
+    fun sacarNombre() = preferences.getString("name", "Juan Jimenez Gutierrez").toString()
+
+    fun guardarFechaNacimiento(fecha_nacimiento: String) {
+        editor.putString("fecha_nacimiento", fecha_nacimiento)
+        editor.apply()
+    }
+
+    fun sacarFechaNacimiento() = preferences.getString("fecha_nacimiento", "2003-11-09").toString()
+    fun guardarTelefono(telefono: String) {
+        editor.putString("telefono", telefono)
+        editor.apply()
+    }
+
+    fun sacarTelefono() = preferences.getString("telefono", "123456789").toString()
+
+    fun guardarDescripcion(descripcion_registro: String) {
+        editor.putString("descripcion_registro", descripcion_registro)
+        editor.apply()
+    }
+
+    fun sacarDescripcion() = preferences.getString("descripcion_registro", "Prueba").toString()
 
     /* EVENTO */
 

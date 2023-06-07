@@ -133,12 +133,12 @@ class FragmentCrear : Fragment(), OnMapReadyCallback {
             binding.errorCategoria.visibility = View.GONE
         }
 
-        if (fecha_inicio.isEmpty() || fecha_inicio == "dd/mm/yyyy 00:00") {
+        if (fecha_inicio.isEmpty() || fecha_inicio == "yyyy/mm/dd 00:00") {
             binding.inicioCrear.error = "Por favor, ponga la fecha de inicio de evento"
             return
         }
 
-        if (fecha_fin.isEmpty() || fecha_fin == "dd/mm/yyyy 00:00") {
+        if (fecha_fin.isEmpty() || fecha_fin == "yyyy/mm/dd 00:00") {
             binding.finCrear.error = "Por favor, ponga la fecha de fin de evento"
             return
         }

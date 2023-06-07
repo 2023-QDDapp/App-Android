@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_perfil_to_fragmentAjustes"
             app:destination="@id/fragmentAjustes" />
+        <action
+            android:id="@+id/action_perfil_to_fragmentMisEventos"
+            app:destination="@id/fragmentMisEventos" />
     </fragment>
     <fragment
         android:id="@+id/fragmentDetalleEvento"
@@ -69,4 +72,9 @@
         android:name="com.example.qddapp.UI.FragmentSiguiendo"
         android:label="fragment_siguiendo"
         tools:layout="@layout/fragment_siguiendo" />
+    <fragment
+        android:id="@+id/fragmentMisEventos"
+        android:name="com.example.qddapp.FragmentMisEventos"
+        android:label="fragment_mis_eventos"
+        tools:layout="@layout/fragment_mis_eventos" />
 </navigation>

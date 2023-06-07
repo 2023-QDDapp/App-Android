@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.example.qddapp.MyApp
 import com.example.qddapp.R
 import com.example.qddapp.databinding.FragmentRegistroNombreBinding
 
@@ -31,6 +32,10 @@ class FragmentRegistroNombre : Fragment() {
             binding.name.error = "Por favor, escriba aqui su nombre"
             return
         }
+
+        val myApp = (requireActivity().application as MyApp)
+
+        myApp.datos.guardarNombre(binding.name.text.toString())
         findNavController().navigate(R.id.action_fragmentRegistroNombre_to_fragmentRegistroNacimiento)
     }
 }

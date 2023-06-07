@@ -1,12 +1,12 @@
-package com.example.qddapp
+package com.example.qddapp.UI.popUp
 
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.findNavController
+import com.example.qddapp.R
 import com.example.qddapp.databinding.FragmentCorreoVerificacionBinding
 
 class FragmentCorreoVerificacion : DialogFragment() {

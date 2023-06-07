@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
+import androidx.navigation.fragment.findNavController
 import com.example.qddapp.Modelos.Evento
 import com.example.qddapp.Modelos.EventoCrear
 import com.example.qddapp.MyApp
@@ -58,7 +59,6 @@ class FragmentFotoEvento : DialogFragment() {
                             val bundle = bundleOf("mensaje" to it.mensaje)
                             FragmentEventoPublicado().arguments = bundle
                             FragmentEventoPublicado().show(childFragmentManager, "Tag")
-                            dismiss()
                         }
                     } else {
                         val bundle = bundleOf("mensaje" to response.errorBody())
@@ -83,13 +83,3 @@ class FragmentFotoEvento : DialogFragment() {
         dialog?.window?.setLayout(percentWidth.toInt(), ViewGroup.LayoutParams.WRAP_CONTENT)
     }
 }
-
-"titulo": "asdasd",
-"categoria_id" : 1,
-"fecha_hora_inicio": "2023-06-04 12:30",
-"fecha_hora_fin": "2023-06-04 14:30",
-"descripcion": "asdasdas",
-"tipo": true,
-"location": "Huerva",
-"latitud": "-37.3453453453",
-"longitud": "3.5464564555",

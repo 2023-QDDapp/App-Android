@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/shape_drawable"
+    android:padding="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imagenUsuario"
+            android:layout_width="63dp"
+            android:layout_height="63dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/circulo"
+            app:civ_border_color="@color/boton"
+            app:civ_border_width="0.5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/nombreUsuario"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway"
+            android:text="Fiesta en la playa"
+            android:textColor="@color/color_secundario"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/edadUsuario"
+            app:layout_constraintStart_toStartOf="@+id/edadUsuario"
+            app:layout_constraintTop_toTopOf="@+id/imagenUsuario" />
+
+        <TextView
+            android:id="@+id/edadUsuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/montserrat"
+            android:text="6 de Abril de 20023 de 16:00 a 18:00"
+            android:textColor="@color/color_secundario"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imagenUsuario"
+            app:layout_constraintStart_toEndOf="@+id/imagenUsuario"
+            app:layout_constraintTop_toBottomOf="@+id/nombreUsuario" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

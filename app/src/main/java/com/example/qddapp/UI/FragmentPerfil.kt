@@ -68,6 +68,10 @@ class FragmentPerfil : Fragment() {
             dialogFragment.arguments = bundle
             findNavController().navigate(R.id.action_perfil_to_fragmentAjustes, bundle)
         }
+
+        binding.misEventos.setOnClickListener {
+            findNavController().navigate(R.id.action_perfil_to_fragmentMisEventos)
+        }
     }
 
     fun rellenarDatos(user: Usuario) {

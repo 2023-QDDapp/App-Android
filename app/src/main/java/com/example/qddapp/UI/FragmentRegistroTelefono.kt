@@ -1,11 +1,13 @@
 package com.example.qddapp.UI
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.example.qddapp.MyApp
 import com.example.qddapp.R
 import com.example.qddapp.databinding.FragmentRegistroTelefonoBinding
 
@@ -33,9 +35,15 @@ class FragmentRegistroTelefono : Fragment() {
         binding.siguienteTelefono.setOnClickListener {
             if (binding.inputTelefono.toString().isEmpty()) {
                 binding.inputTelefono.error = "Por favor, escribe aqui tu telefono"
-            } else if (binding.inputTelefono.length() < 9) {
+            } else if (binding.inputTelefono.length() == 8) {
                 binding.inputTelefono.error = "El telefono no es valido"
             } else {
+
+                Log.d("dato_telefono", binding.inputTelefono.text.toString())
+
+                val myApp = (requireActivity().application as MyApp)
+                myApp.datos.guardarTelefono(binding.inputTelefono.text.toString())
+
                 findNavController().navigate(R.id.action_fragmentRegistroTelefono_to_fragmentRegistroFoto)
             }
         }

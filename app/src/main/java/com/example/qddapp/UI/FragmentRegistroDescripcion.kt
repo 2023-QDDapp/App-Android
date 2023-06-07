@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.example.qddapp.MyApp
 import com.example.qddapp.R
 import com.example.qddapp.databinding.FragmentRegistroDescripcionBinding
 
@@ -42,6 +43,9 @@ class FragmentRegistroDescripcion : Fragment() {
             if (binding.inputDescripcion.text.toString().isEmpty()){
                 binding.inputDescripcion.error = "Por favor, escribe aqui una brebe descripción"
             } else {
+                val myApp = (requireActivity().application as MyApp)
+                myApp.datos.guardarDescripcion(binding.inputDescripcion.text.toString())
+
                 findNavController().navigate(R.id.action_fragmentRegistroDescripcion_to_fragmentPreferencias)
             }
         }

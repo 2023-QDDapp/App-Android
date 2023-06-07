@@ -56,3 +56,11 @@ data class EventoCrear(
     val longitud: String,
     val categoria_id: Int
 )
+
+data class MisEventos (
+    val id: Int,
+    val organizador: String,
+    val foto: String,
+    val edad: Int,
+    val eventos: List<Evento>
+)

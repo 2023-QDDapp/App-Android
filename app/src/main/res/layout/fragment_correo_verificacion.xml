@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout22"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".FragmentCorreoVerificacion">
+    tools:context=".UI.popUp.FragmentCorreoVerificacion">
 
     <ImageView
         android:id="@+id/imageView11"

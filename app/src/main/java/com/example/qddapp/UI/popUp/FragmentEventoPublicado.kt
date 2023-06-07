@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.navigation.fragment.findNavController
+import com.example.qddapp.R
 import com.example.qddapp.databinding.FragmentEventoPublicadoBinding
 
 class FragmentEventoPublicado : DialogFragment() {
@@ -25,6 +27,7 @@ class FragmentEventoPublicado : DialogFragment() {
 
         binding.button3.setOnClickListener {
             dismiss()
+            findNavController().navigate(R.id.buscar)
         }
     }
 

@@ -37,6 +37,6 @@ class DatePickerFragment(val listener: (String) -> Unit): DialogFragment(), Date
     }
 
     override fun onDateSet(view: DatePicker?, ano: Int, mes: Int, dia: Int) {
-        listener("$dia/" + (mes+1).toString() + "/$ano")
+        listener("$ano/" + (mes+1).toString() + "/$dia")
     }
 }

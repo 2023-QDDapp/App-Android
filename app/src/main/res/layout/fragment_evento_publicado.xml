@@ -19,11 +19,12 @@
 
     <TextView
         android:id="@+id/textView47"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:fontFamily="@font/raleway"
         android:text="¡Tu evento fue publicado con exito!"
+        android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline45"
         app:layout_constraintStart_toStartOf="@+id/guideline44"

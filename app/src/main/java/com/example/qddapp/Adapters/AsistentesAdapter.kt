@@ -20,7 +20,7 @@ class AsistentesAdapter(val usuario: List<Asistente>) : RecyclerView.Adapter<Asi
     }
 
     override fun onBindViewHolder(holder: MiCelda, position: Int) {
-        val usuario: Asistente = usuario.get(position)
+        val usuario: Asistente = usuario[position]
 
         holder.binding.nombreUsuarioAsistente.text = usuario.nombre
         Glide.with(holder.itemView).load(usuario.foto).into(holder.binding.fotoUsuarioAsistente)

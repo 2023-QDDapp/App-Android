@@ -7,12 +7,14 @@ import com.example.qddapp.Modelos.Evento
 import com.example.qddapp.Modelos.EventoCrear
 import com.example.qddapp.Modelos.Mensaje
 import com.example.qddapp.Modelos.MensajeEvento
+import com.example.qddapp.Modelos.MisEventos
 import com.example.qddapp.Modelos.Registro
 import com.example.qddapp.Modelos.RegistroBody
 import com.example.qddapp.Modelos.Token
 import com.example.qddapp.Modelos.Usuario
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
@@ -108,6 +110,15 @@ interface RetrofitService {
     @GET("/proyecto/api/events/{id}")
     suspend fun dameElEvento(@Path("id") id: Int): Response<Evento>
 
+    @DELETE("/proyecto/api/events/{id}")
+    suspend fun borrarEvento(@Path("id") id: Int): Response<Mensaje>
+
     @GET("/proyecto/api/users/{id}/following")
     suspend fun dameMisSeguidos(@Path("id") id: Int): Response<List<Asistente>>
+
+    @GET("/proyecto/api/users/{id}/events")
+    suspend fun dameMisEventos(@Path("id") id: Int): Response<MisEventos>
+
+    @GET("/proyecto/api/users/{id}/historial")
+    suspend fun dameMiHistorial(@Path("id") id: Int): Response<List<Evento>>
 }

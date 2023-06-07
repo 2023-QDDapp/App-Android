@@ -8,9 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.example.qddapp.MyApp
 import com.example.qddapp.R
 import com.example.qddapp.databinding.FragmentRegistroNacimientoBinding
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 class FragmentRegistroNacimiento : Fragment() {
 
@@ -37,11 +41,22 @@ class FragmentRegistroNacimiento : Fragment() {
             calendar.set(Calendar.YEAR, binding.datepicker.year)
 
             Toast.makeText(requireContext(), "", Toast.LENGTH_SHORT).show()
-            val timestamp = calendar.timeInMillis/100
+            val timestamp = calendar.timeInMillis
             Log.d("FECHA", timestamp.toString())
-            Toast.makeText(requireContext(), timestamp.toString(), Toast.LENGTH_SHORT).show()
+            val fecha_nacimiento = obtenerFechaDesdeTimestamp(timestamp)
+            Toast.makeText(requireContext(), fecha_nacimiento, Toast.LENGTH_SHORT).show()
+
+            val myApp = (requireActivity().application as MyApp)
+            myApp.datos.guardarFechaNacimiento(fecha_nacimiento)
 
             findNavController().navigate(R.id.action_fragmentRegistroNacimiento_to_fragmentRegistroTelefono)
         }
+    }
+
+    fun obtenerFechaDesdeTimestamp(timestamp: Long): String {
+        val formato = "yyyy-MM-dd"
+        val sdf = SimpleDateFormat(formato, Locale.getDefault())
+        val fecha = Date(timestamp)
+        return sdf.format(fecha)
     }
 }

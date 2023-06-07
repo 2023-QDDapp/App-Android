@@ -63,6 +63,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imagenUsuario" />
 
+        <ImageView
+            android:id="@+id/miEvento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/imagenUsuario"
+            app:layout_constraintStart_toEndOf="@+id/imagenUsuario"
+            app:srcCompat="@drawable/baseline_star_rate_24" />
+
         <FrameLayout
             android:id="@+id/frameLayout15"
             android:layout_width="0dp"
