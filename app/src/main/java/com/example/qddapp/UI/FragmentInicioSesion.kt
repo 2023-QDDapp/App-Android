@@ -2,12 +2,14 @@ package com.example.qddapp.UI
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
+import com.example.qddapp.FragmentError
 import com.example.qddapp.Home
 import com.example.qddapp.MyApp
 import com.example.qddapp.R
@@ -18,6 +20,7 @@ import com.example.qddapp.databinding.FragmentInicioSesionBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class FragmentInicioSesion : Fragment() {
 
@@ -66,6 +69,12 @@ class FragmentInicioSesion : Fragment() {
             binding.emailRegistro.error = "Por favor, escribe aquí su email"
             return
         }
+
+        if (!validarCorreoElectronico(email)){
+            binding.emailRegistro.error = "Por favor, escribe un email valido"
+            return
+        }
+
         if (password.isEmpty()) {
             binding.contrasenaRegistro.error = "Por favor, escribe aquí tu contraseña"
             return
@@ -76,13 +85,25 @@ class FragmentInicioSesion : Fragment() {
 
         CoroutineScope(Dispatchers.IO).launch {
             val response = repositorio.login(email, password)
-            val token = response.body()
-            token?.let {
-                //TODO SHARED PREFERENCE CON USUARIO Y CONTRASEÑA PARA QUE SI ESTAN GUARDADOS, HACE EL VALIDATE AUTOMATICAMENTE
-                myApp.datos.guardarToken(it.token)
-                myApp.datos.guardarUserId(it.user_id)
+            Log.d("dato", response.toString())
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful && response.code() == 200) {
+                    val token = response.body()
+                    token?.let {
+                        //TODO SHARED PREFERENCE CON USUARIO Y CONTRASEÑA PARA QUE SI ESTAN GUARDADOS, HACE EL VALIDATE AUTOMATICAMENTE
+                        myApp.datos.guardarToken(it.token)
+                        myApp.datos.guardarUserId(it.user_id)
+                        findNavController().navigate(R.id.action_fragmentInicioSesion_to_fragmentPantallaCarga)
+                    }
+                } else {
+                    FragmentError().show(parentFragmentManager, "showPopUp")
+                }
             }
         }
-        findNavController().navigate(R.id.action_fragmentInicioSesion_to_fragmentPantallaCarga)
+    }
+
+    fun validarCorreoElectronico(correo: String): Boolean {
+        val patron = Regex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\$")
+        return patron.matches(correo)
     }
 }

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.qddapp.Adapters.AsistentesAdapter
 import com.example.qddapp.Adapters.EventosAdapter
 import com.example.qddapp.Adapters.SiguiendoAdapter
+import com.example.qddapp.FragmentError
 import com.example.qddapp.Modelos.Asistente
 import com.example.qddapp.Modelos.Evento
 import com.example.qddapp.MyApp
@@ -50,11 +51,7 @@ class FragmentSiguiendo : Fragment() {
                             configRecycler(respuesta)
                         }
                     } else {
-                        Toast.makeText(
-                            requireContext(),
-                            "Error: ${response.message()}",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        FragmentError().show(childFragmentManager, "Tag")
                     }
                 }
             }

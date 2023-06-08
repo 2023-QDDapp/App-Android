@@ -125,12 +125,9 @@ class FragmentCrear : Fragment(), OnMapReadyCallback {
             return
         }
 
-        if (evento.isEmpty()){
+        if (myApp.datos.sacarCategoriaBuscar().toString().isEmpty()){
             binding.errorCategoria.visibility = View.VISIBLE
-            evento = "1"
             return
-        } else {
-            binding.errorCategoria.visibility = View.GONE
         }
 
         if (fecha_inicio.isEmpty() || fecha_inicio == "yyyy/mm/dd 00:00") {
@@ -153,7 +150,7 @@ class FragmentCrear : Fragment(), OnMapReadyCallback {
             return
         }
 
-        myApp.datos.guardarEvento(titulo, fecha_inicio, fecha_fin, descripcion, abierto, location, latitud, longitud, evento.toInt())
+        myApp.datos.guardarEvento(titulo, fecha_inicio, fecha_fin, descripcion, abierto, location, latitud, longitud, myApp.datos.sacarCategoriaBuscar())
         FragmentFotoEvento().show(childFragmentManager, "showPopUpFoto")
     }
 

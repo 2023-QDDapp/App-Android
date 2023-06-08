@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
 import com.example.qddapp.Adapters.AsistentesAdapter
+import com.example.qddapp.FragmentError
 import com.example.qddapp.Modelos.Asistente
 import com.example.qddapp.MyApp
 import com.example.qddapp.R
@@ -54,11 +55,7 @@ class FragmentAsistentes : DialogFragment() {
                             binding.nombreOrganizador.text = respuesta.organizador
                         }
                     } else {
-                        Toast.makeText(
-                            requireContext(),
-                            "Error: ${response.message()}",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        FragmentError().show(childFragmentManager, "Tag")
                     }
                 }
             }

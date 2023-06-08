@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.qddapp.Modelos.Categoria
+import com.example.qddapp.MyApp
 import com.example.qddapp.MyViewModel
 import com.example.qddapp.R
 import com.example.qddapp.UI.popUp.DatePickerFragment
@@ -95,9 +96,9 @@ class FragmentFiltroBusqueda : Fragment(), OnMapReadyCallback {
 //            filtrado += "tipoEvento=$tipoEvento,"+
 //            filtrado += "distancia=$distancia,"
 
-            Log.d("dato_filtrado", filtrado.toString())
-
             viewModel.updateData(filtrado.toString())
+            val myApp = (requireActivity().application as MyApp)
+            myApp.datos.borrarCategoriaBuscar()
             findNavController().navigateUp()
         }
 

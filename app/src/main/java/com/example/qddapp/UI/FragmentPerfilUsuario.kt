@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
 import com.example.qddapp.Adapters.ValoracionesAdapter
+import com.example.qddapp.FragmentError
 import com.example.qddapp.Modelos.Usuario
 import com.example.qddapp.Modelos.Valoracion
 import com.example.qddapp.MyApp
@@ -52,11 +53,7 @@ class FragmentPerfilUsuario : Fragment() {
                             configRecycler(respuesta.valoraciones)
                         }
                     } else {
-                        Toast.makeText(
-                            requireContext(),
-                            "Error: ${response.message()}",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        FragmentError().show(childFragmentManager, "Tag")
                     }
                 }
             }
@@ -65,22 +62,18 @@ class FragmentPerfilUsuario : Fragment() {
         arguments?.let {
             val id = it.getInt("id_organizador")
             binding.seguirUsuario.setOnClickListener {
-                if (binding.seguirUsuario.text == "Siguiendo") {
+                if (binding.seguirUsuario.text == "Dejar de seguir") {
                     CoroutineScope(Dispatchers.IO).launch {
                         val response = miRepositorio.dejarSeguirUsuario(id)
                         withContext(Dispatchers.Main) {
                             if (response.isSuccessful && response.code() == 200) {
                                 val respuesta = response.body()
                                 respuesta?.let {
-                                    binding.seguirUsuario.setBackgroundResource(R.color.boton)
-                                    binding.seguirUsuario.text = "+ Seguir"
+                                    binding.seguirUsuario.setBackgroundColor(R.color.boton)
+                                    binding.seguirUsuario.text = "Seguir"
                                 }
                             } else {
-                                Toast.makeText(
-                                    requireContext(),
-                                    "Error: ${response.message()}",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                FragmentError().show(childFragmentManager, "Tag")
                             }
                         }
                     }
@@ -91,17 +84,36 @@ class FragmentPerfilUsuario : Fragment() {
                             if (response.isSuccessful && response.code() == 200) {
                                 val respuesta = response.body()
                                 respuesta?.let {
-                                    binding.seguirUsuario.setBackgroundResource(R.color.color_principal)
-                                    binding.seguirUsuario.text = "Siguiendo"
+                                    binding.seguirUsuario.setBackgroundColor(R.color.color_principal)
+                                    binding.seguirUsuario.text = "Dejar de seguir"
                                 }
                             } else {
-                                Toast.makeText(
-                                    requireContext(),
-                                    "Error: ${response.message()}",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                FragmentError().show(childFragmentManager, "Tag")
                             }
                         }
+                    }
+                }
+            }
+        }
+
+        arguments?.let {
+            val id = it.getInt("id_organizador")
+            CoroutineScope(Dispatchers.IO).launch {
+                val response = miRepositorio.teSigo(id)
+                withContext(Dispatchers.Main) {
+                    if (response.isSuccessful && response.code() == 200) {
+                        val respuesta = response.body()
+                        respuesta?.let {
+                            if (respuesta.mensaje == "Dejar de seguir") {
+                                binding.seguirUsuario.setBackgroundColor(R.color.boton)
+                                binding.seguirUsuario.text = respuesta.mensaje
+                            } else {
+                                binding.seguirUsuario.setBackgroundColor(R.color.color_principal)
+                                binding.seguirUsuario.text = respuesta.mensaje
+                            }
+                        }
+                    } else {
+                        FragmentError().show(childFragmentManager, "Tag")
                     }
                 }
             }

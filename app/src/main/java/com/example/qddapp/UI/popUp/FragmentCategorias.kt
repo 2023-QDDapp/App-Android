@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.qddapp.FragmentError
 import com.example.qddapp.Modelos.Categoria
 import com.example.qddapp.MyApp
 import com.example.qddapp.MyViewModel
@@ -53,11 +54,7 @@ class FragmentCategorias : DialogFragment() {
                         rellenarChip(respuesta)
                     }
                 } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "Error: ${response.message()}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    FragmentError().show(childFragmentManager, "Tag")
                 }
             }
         }
@@ -70,7 +67,6 @@ class FragmentCategorias : DialogFragment() {
             if(binding.chipGroup.checkedChipIds.size !== 1) {
                 binding.errorCategorias.visibility = View.VISIBLE
             } else {
-                Toast.makeText(requireContext(), binding.chipGroup.checkedChipIds[0].toString(), Toast.LENGTH_SHORT).show()
                 val myApp = (requireActivity().application as MyApp)
                 myApp.datos.guardarCategoriaBuscar(binding.chipGroup.checkedChipIds[0])
                 dismiss()

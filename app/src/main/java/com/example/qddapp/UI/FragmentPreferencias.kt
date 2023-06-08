@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
+import com.example.qddapp.FragmentError
 import com.example.qddapp.Modelos.Categoria
 import com.example.qddapp.MyApp
 import com.example.qddapp.R
@@ -47,11 +48,7 @@ class FragmentPreferencias : Fragment() {
                     val respuesta = response.body()
                     respuesta?.let { rellenarChip(respuesta) }
                 } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "Error: ${response.message()}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    FragmentError().show(childFragmentManager, "Tag")
                 }
             }
         }

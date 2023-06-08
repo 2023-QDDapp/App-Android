@@ -3,12 +3,14 @@ package com.example.qddapp.UI.popUp
 import android.content.res.Resources
 import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
+import com.example.qddapp.FragmentError
 import com.example.qddapp.Modelos.RegistroBody
 import com.example.qddapp.MyApp
 import com.example.qddapp.databinding.FragmentRegistroCorreoBinding
@@ -51,6 +53,10 @@ class FragmentRegistroCorreo : DialogFragment() {
             binding.email.error = "Por favor, escribe aquí su email"
             return
         }
+        if (!validarCorreoElectronico(email)){
+            binding.email.error = "Por favor, escribe un email valido"
+            return
+        }
         if (password.isEmpty()) {
             binding.contrasena.error = "Por favor, escribe aquí tu contraseña"
             return
@@ -70,6 +76,7 @@ class FragmentRegistroCorreo : DialogFragment() {
 
         CoroutineScope(Dispatchers.IO).launch {
             val response = miRepositorio.registroBody(registro)
+            Log.d("dato", response.toString())
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful && response.code() == 200) {
                     val respuesta = response.body()
@@ -77,14 +84,9 @@ class FragmentRegistroCorreo : DialogFragment() {
                         myApp.datos.guardarUserId(it.id)
                         myApp.datos.guardarSesion(it.email, binding.contrasena.text.toString())
                         FragmentCorreoVerificacion().show(childFragmentManager, "tag")
-//                        garvinguerreroalvaro@gmail.com
                     }
                 } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "Error: ${response.message()}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    FragmentError().show(childFragmentManager, "Tag")
                 }
             }
         }
@@ -100,5 +102,10 @@ class FragmentRegistroCorreo : DialogFragment() {
 
     fun DialogFragment.setFullScreen() {
         dialog?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+    }
+
+    fun validarCorreoElectronico(correo: String): Boolean {
+        val patron = Regex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\$")
+        return patron.matches(correo)
     }
 }

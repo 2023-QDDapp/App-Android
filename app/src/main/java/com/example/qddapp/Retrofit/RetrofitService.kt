@@ -31,13 +31,6 @@ interface RetrofitService {
         @Query("password") password: String
     ): Response<Token>
 
-//    @Headers("Accept: application/json")
-//    @POST ("/proyecto/api/register")
-//    suspend fun registro(
-//        @Query("email") email: String,
-//        @Query("password") password: String
-//    ): Response<Registro>
-
     @Headers("Accept: application/json")
     @POST ("/proyecto/api/register")
     suspend fun registroBody(
@@ -71,20 +64,9 @@ interface RetrofitService {
     @GET("/proyecto/api/users/{id}/pantallaseguidos")
     suspend fun dameEventosSeguidos(@Path("id") id: Int): Response<List<Evento>>
 
-//    @Headers("Accept: application/json")
-//    @POST("/proyecto/api/events")
-//    suspend fun crearEvento(
-//        @Query("titulo") titulo: String,
-//        @Query("fecha_hora_inicio") fecha_hora_inicio: String,
-//        @Query("fecha_hora_fin") fecha_hora_fin: String,
-//        @Query("descripcion") descripcion: String,
-//        @Query("foto") foto: String,
-//        @Query("tipo") tipo: Boolean,
-//        @Query("location") location: String,
-//        @Query("latitud") latitud: String,
-//        @Query("longitud") longitud: String,
-//        @Query("categoria_id") categoria_id: Int
-//    ): Response<Mensaje>
+    @Headers("Accept: application/json")
+    @POST("proyecto/api/validate/phone")
+    suspend fun hayTelefono(@Body telefono: String): Response<Mensaje>
 
     @Headers("Accept: application/json")
     @POST("/proyecto/api/events")
@@ -129,4 +111,8 @@ interface RetrofitService {
     @Headers("Accept: application/json")
     @POST("proyecto/api/logout")
     suspend fun cerrarSesion(): Response<Mensaje>
+
+    @Headers("Accept: application/json")
+    @POST("proyecto/api/users/{id}/verifyFollowing")
+    suspend fun teSigo(@Path("id") id: Int): Response<Mensaje>
 }

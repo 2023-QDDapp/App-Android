@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.qddapp.Adapters.EventosAdapter
+import com.example.qddapp.FragmentError
 import com.example.qddapp.Modelos.Categoria
 import com.example.qddapp.Modelos.Evento
 import com.example.qddapp.MyApp
@@ -107,11 +108,7 @@ class FragmentBuscar : Fragment() {
                     }
                 } else {
                     binding.swipe.isRefreshing = false
-                    Toast.makeText(
-                        requireContext(),
-                        "Error: ${response.message()}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    FragmentError().show(childFragmentManager, "Tag")
                 }
             }
         }

@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
 import com.example.qddapp.Adapters.ValoracionesAdapter
+import com.example.qddapp.FragmentError
 import com.example.qddapp.Modelos.Usuario
 import com.example.qddapp.Modelos.Valoracion
 import com.example.qddapp.MyApp
@@ -54,11 +55,7 @@ class FragmentPerfil : Fragment() {
                         configRecycler(respuesta.valoraciones)
                     }
                 } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "Error: ${response.message()}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    FragmentError().show(childFragmentManager, "Tag")
                 }
             }
         }

@@ -15,6 +15,7 @@ import androidx.core.view.MarginLayoutParamsCompat.setMarginStart
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.example.qddapp.FragmentError
 import com.example.qddapp.Modelos.Asistente
 import com.example.qddapp.Modelos.Evento
 import com.example.qddapp.MyApp
@@ -75,11 +76,7 @@ class FragmentDetalleEvento : Fragment(), OnMapReadyCallback {
                             bundle = bundleOf("id_organizador" to respuesta.idOrganizador)
                         }
                     } else {
-                        Toast.makeText(
-                            requireContext(),
-                            "Error: ${response.message()}",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        FragmentError().show(childFragmentManager, "Tag")
                     }
                 }
             }
@@ -95,11 +92,7 @@ class FragmentDetalleEvento : Fragment(), OnMapReadyCallback {
                             }
                         }
                     } else {
-                        Toast.makeText(
-                            requireContext(),
-                            "Error: ${response}",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        FragmentError().show(childFragmentManager, "Tag")
                     }
                 }
             }
@@ -134,11 +127,7 @@ class FragmentDetalleEvento : Fragment(), OnMapReadyCallback {
                                 solicitud.show(childFragmentManager, "TAG")
                             }
                         } else {
-                            Toast.makeText(
-                                requireContext(),
-                                "Error: ${response.message()}",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            FragmentError().show(childFragmentManager, "Tag")
                         }
                     }
                 }

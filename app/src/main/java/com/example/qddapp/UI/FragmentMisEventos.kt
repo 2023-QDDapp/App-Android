@@ -128,7 +128,6 @@ class FragmentMisEventos : Fragment() {
                 miRepositorio = (requireActivity().application as MyApp).repositorio
                 CoroutineScope(Dispatchers.IO).launch {
                     val respuesta = miRepositorio.borrarEvento(evento.idEvento)
-
                     withContext(Dispatchers.Main){
                         if(respuesta.isSuccessful){
                             adapterEventos.deleteItem(position)

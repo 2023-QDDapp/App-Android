@@ -7,9 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.example.qddapp.FragmentError
 import com.example.qddapp.MyApp
 import com.example.qddapp.R
 import com.example.qddapp.databinding.FragmentRegistroTelefonoBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class FragmentRegistroTelefono : Fragment() {
 
@@ -35,16 +40,26 @@ class FragmentRegistroTelefono : Fragment() {
         binding.siguienteTelefono.setOnClickListener {
             if (binding.inputTelefono.toString().isEmpty()) {
                 binding.inputTelefono.error = "Por favor, escribe aqui tu telefono"
-            } else if (binding.inputTelefono.length() == 8) {
+            } else if (binding.inputTelefono.length() != 8) {
                 binding.inputTelefono.error = "El telefono no es valido"
             } else {
+                val miRepositorio = (requireActivity().application as MyApp).repositorio
+                CoroutineScope(Dispatchers.IO).launch {
+                    val response = miRepositorio.hayTelefono(binding.inputTelefono.toString())
+                    withContext(Dispatchers.Main) {
+                        if (response.isSuccessful && response.code() == 200) {
+                            val respuesta = response.body()
+                            respuesta?.let {
+                                val myApp = (requireActivity().application as MyApp)
+                                myApp.datos.guardarTelefono(binding.inputTelefono.text.toString())
 
-                Log.d("dato_telefono", binding.inputTelefono.text.toString())
-
-                val myApp = (requireActivity().application as MyApp)
-                myApp.datos.guardarTelefono(binding.inputTelefono.text.toString())
-
-                findNavController().navigate(R.id.action_fragmentRegistroTelefono_to_fragmentRegistroFoto)
+                                findNavController().navigate(R.id.action_fragmentRegistroTelefono_to_fragmentRegistroFoto)
+                            }
+                        } else {
+                            binding.inputTelefono.error = "El telefono ya existe"
+                        }
+                    }
+                }
             }
         }
     }

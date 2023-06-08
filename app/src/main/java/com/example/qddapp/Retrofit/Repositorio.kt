@@ -55,4 +55,9 @@ class Repositorio(context: Context) {
     suspend fun dejarSeguirUsuario(id: Int) = retrofit.dejarSeguirUsuario(id)
 
     suspend fun cerrarSesion() = retrofit.cerrarSesion()
+
+    suspend fun hayTelefono(telefono: String) = retrofit.hayTelefono(telefono)
+
+    suspend fun teSigo(id: Int) = retrofit.teSigo(id)
+
 }

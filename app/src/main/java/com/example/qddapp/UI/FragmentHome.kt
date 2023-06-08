@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.qddapp.Adapters.EventosAdapter
+import com.example.qddapp.FragmentError
 import com.example.qddapp.Modelos.Evento
 import com.example.qddapp.MyApp
 import com.example.qddapp.Retrofit.Repositorio
@@ -72,11 +73,7 @@ class FragmentHome : Fragment() {
                         val respuesta = response.body()
                         respuesta?.let { configRecycler(respuesta) }
                     } else {
-                        Toast.makeText(
-                            requireContext(),
-                            "Error: ${response.message()}",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        FragmentError().show(childFragmentManager, "Tag")
                     }
                 }
             }
