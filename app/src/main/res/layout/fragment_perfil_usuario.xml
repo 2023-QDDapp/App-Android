@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout8"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.FragmentPerfil">
+
+    <ImageView
+        android:id="@+id/atrasPerfilUsuario"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/atras"
+        app:layout_constraintStart_toStartOf="@+id/guideline22"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/raleway"
+        android:text="Perfil"
+        android:textColor="@color/color_principal"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/atrasPerfilUsuario"
+        app:layout_constraintEnd_toStartOf="@+id/guideline23"
+        app:layout_constraintStart_toStartOf="@+id/atrasPerfilUsuario"
+        app:layout_constraintTop_toTopOf="@+id/atrasPerfilUsuario" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/fondo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        app:layout_constraintVertical_bias="1.0">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/fotoPerfilUsuario"
+            android:layout_width="113dp"
+            android:layout_height="113dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/circulo"
+            app:civ_border_color="@color/boton"
+            app:civ_border_width="0.5dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline25"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="15dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="15dp" />
+
+        <TextView
+            android:id="@+id/nombrePerfilUsuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway"
+            android:text="Manolo Cárdenas"
+            android:textAlignment="viewStart"
+            android:textColor="@color/color_secundario"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/edadPerfilUsuario"
+            app:layout_constraintStart_toStartOf="@+id/edadPerfilUsuario"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/edadPerfilUsuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/montserrat"
+            android:text="37 Años"
+            android:textColor="#282828"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/seguirUsuario"
+            app:layout_constraintStart_toEndOf="@+id/fotoPerfilUsuario"
+            app:layout_constraintTop_toBottomOf="@+id/nombrePerfilUsuario" />
+
+        <Button
+            android:id="@+id/seguirUsuario"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="+ Seguir"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toTopOf="@+id/view8"
+            app:layout_constraintEnd_toStartOf="@+id/guideline26"
+            app:layout_constraintStart_toStartOf="@+id/edadPerfilUsuario"
+            app:layout_constraintTop_toBottomOf="@+id/edadPerfilUsuario" />
+
+        <View
+            android:id="@+id/view8"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/boton"
+            app:layout_constraintEnd_toStartOf="@+id/guideline26"
+            app:layout_constraintStart_toStartOf="@+id/guideline25"
+            app:layout_constraintTop_toBottomOf="@+id/fotoPerfilUsuario" />
+
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/raleway"
+            android:text="Intereses"
+            android:textColor="@color/color_secundario"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/guideline25"
+            app:layout_constraintTop_toBottomOf="@+id/view8" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupUsuario"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/guideline26"
+            app:layout_constraintStart_toStartOf="@+id/guideline25"
+            app:layout_constraintTop_toBottomOf="@+id/textView28">
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <View
+            android:id="@+id/view9"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/boton"
+            app:layout_constraintEnd_toEndOf="@+id/guideline26"
+            app:layout_constraintStart_toStartOf="@+id/guideline25"
+            app:layout_constraintTop_toBottomOf="@+id/chipGroupUsuario" />
+
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/raleway"
+            android:text="Sobre mí"
+            android:textColor="@color/color_secundario"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/guideline25"
+            app:layout_constraintTop_toBottomOf="@+id/view9" />
+
+        <TextView
+            android:id="@+id/descripcionPerfilUsuario"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Soy una perona que disfruta de los deportes, como fútbol, siempre que puedo voy de conciertos, además, hace unos años descubrí la bachata"
+            android:textColor="@color/color_secundario"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline26"
+            app:layout_constraintStart_toStartOf="@+id/guideline25"
+            app:layout_constraintTop_toBottomOf="@+id/textView29" />
+
+        <View
+            android:id="@+id/view10"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/boton"
+            app:layout_constraintEnd_toEndOf="@+id/guideline26"
+            app:layout_constraintStart_toStartOf="@+id/guideline25"
+            app:layout_constraintTop_toBottomOf="@+id/descripcionPerfilUsuario" />
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/raleway"
+            android:text="Valoraciones"
+            android:textColor="@color/color_secundario"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/guideline25"
+            app:layout_constraintTop_toBottomOf="@+id/view10" />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:numStars="5"
+            android:progressTint="@color/boton"
+            android:rating="4"
+            app:layout_constraintStart_toStartOf="@+id/guideline25"
+            app:layout_constraintTop_toBottomOf="@+id/textView31" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewPerfilUsuario"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline26"
+            app:layout_constraintStart_toStartOf="@+id/guideline25"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="15dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="15dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

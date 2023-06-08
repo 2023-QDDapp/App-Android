@@ -2,6 +2,7 @@ package com.example.qddapp.UI
 
 import android.annotation.SuppressLint
 import android.app.ActionBar.LayoutParams
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -43,6 +44,7 @@ class FragmentDetalleEvento : Fragment(), OnMapReadyCallback {
     var longitud: Double = 0.0
     var titulo: String = ""
     lateinit var bundle: Bundle
+    lateinit var bundle2: Bundle
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentDetalleEventoBinding.inflate(inflater, container, false)
@@ -70,6 +72,7 @@ class FragmentDetalleEvento : Fragment(), OnMapReadyCallback {
                             latitud = respuesta.latitud
                             longitud = respuesta.longitud
                             titulo = respuesta.titulo
+                            bundle = bundleOf("id_organizador" to respuesta.idOrganizador)
                         }
                     } else {
                         Toast.makeText(
@@ -80,12 +83,36 @@ class FragmentDetalleEvento : Fragment(), OnMapReadyCallback {
                     }
                 }
             }
+
+            CoroutineScope(Dispatchers.IO).launch {
+                val response = miRepositorio.miRelacionConEvento(id)
+                withContext(Dispatchers.Main) {
+                    if (response.isSuccessful && response.code() == 200) {
+                        val respuesta = response.body()
+                        respuesta?.let {
+                            if (respuesta.relacion == "organizador" || respuesta.relacion == "1") {
+                                binding.solicitarUnirse.visibility = View.GONE
+                            }
+                        }
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            "Error: ${response}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
         }
 
         binding.asistentes.setOnClickListener {
             val dialogFragment = FragmentAsistentes()
-            dialogFragment.arguments = bundle
+            dialogFragment.arguments = bundle2
             dialogFragment.show(childFragmentManager, "TAG")
+        }
+
+        binding.fotoPerfilOrganizadorDetalleEvento.setOnClickListener {
+            findNavController().navigate(R.id.fragmentPerfilUsuario, bundle)
         }
 
         binding.atrasDetalleEvento.setOnClickListener {
@@ -93,7 +120,29 @@ class FragmentDetalleEvento : Fragment(), OnMapReadyCallback {
         }
 
         binding.solicitarUnirse.setOnClickListener {
-            FragmentSolicitudEnviada().show(childFragmentManager, "TAG")
+            arguments?.let {
+                val id = it.getInt("id")
+                CoroutineScope(Dispatchers.IO).launch {
+                    val response = miRepositorio.solicitarUnirseEvento(id)
+                    withContext(Dispatchers.Main) {
+                        if (response.isSuccessful && response.code() == 200) {
+                            val respuesta = response.body()
+                            respuesta?.let {
+                                val solicitud = FragmentSolicitudEnviada()
+                                val bundleMensaje = bundleOf("mensaje" to respuesta.mensaje)
+                                solicitud.arguments = bundleMensaje
+                                solicitud.show(childFragmentManager, "TAG")
+                            }
+                        } else {
+                            Toast.makeText(
+                                requireContext(),
+                                "Error: ${response.message()}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -123,7 +172,7 @@ class FragmentDetalleEvento : Fragment(), OnMapReadyCallback {
         binding.descripcionDetalleEvento.text = evento.descripcion
         binding.localizacionDetalleEvento.text = evento.location
         agregarAsistente(evento.asistentes)
-        bundle = bundleOf("eventoId" to evento.idEvento)
+        bundle2 = bundleOf("eventoId" to evento.idEvento)
     }
 
     var primero = true

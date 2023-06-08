@@ -43,24 +43,3 @@ data class Evento(
     @SerializedName("asistentes")
     val asistentes: List<Asistente>?
 ) : Parcelable
-
-data class EventoCrear(
-    val titulo: String,
-    val fecha_hora_inicio: String,
-    val fecha_hora_fin: String,
-    val descripcion: String,
-    val imagen: String,
-    val tipo: Boolean,
-    val location: String,
-    val latitud: String,
-    val longitud: String,
-    val categoria_id: Int
-)
-
-data class MisEventos (
-    val id: Int,
-    val organizador: String,
-    val foto: String,
-    val edad: Int,
-    val eventos: List<Evento>
-)

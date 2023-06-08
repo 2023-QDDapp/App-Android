@@ -58,7 +58,6 @@ class FragmentFotoEvento : DialogFragment() {
                             val bundle = bundleOf("mensaje" to it.mensaje)
                             FragmentEventoPublicado().arguments = bundle
                             FragmentEventoPublicado().show(childFragmentManager, "Tag")
-                            dismiss()
                         }
                     } else {
                         val bundle = bundleOf("mensaje" to response.errorBody())

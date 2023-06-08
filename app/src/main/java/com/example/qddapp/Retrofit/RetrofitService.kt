@@ -5,11 +5,12 @@ import com.example.qddapp.Modelos.Categoria
 import com.example.qddapp.Modelos.ContinuarRegistroBody
 import com.example.qddapp.Modelos.Evento
 import com.example.qddapp.Modelos.EventoCrear
+import com.example.qddapp.Modelos.EventoMisEventos
 import com.example.qddapp.Modelos.Mensaje
 import com.example.qddapp.Modelos.MensajeEvento
-import com.example.qddapp.Modelos.MisEventos
 import com.example.qddapp.Modelos.Registro
 import com.example.qddapp.Modelos.RegistroBody
+import com.example.qddapp.Modelos.Relacion
 import com.example.qddapp.Modelos.Token
 import com.example.qddapp.Modelos.Usuario
 import retrofit2.Response
@@ -43,18 +44,6 @@ interface RetrofitService {
         @Body registro: RegistroBody
     ): Response<Registro>
 
-//    @Headers("Accept: application/json")
-//    @POST("/proyecto/api/continue/register/{id}")
-//    suspend fun continuarRegistro(
-//        @Path("id") id: Int,
-//        @Query("nombre") nombre: String,
-//        @Query("telefono") telefono: String,
-//        @Query("fecha_nacimiento") fecha_nacimiento: String,
-//        @Query("biografia") biografia: String,
-//        @Query("foto") foto: String,
-//        @Query("categorias") categorias: IntArray
-//    ):Response<Usuario>
-
     @Headers("Accept: application/json")
     @POST("/proyecto/api/continue/register/{id}")
     suspend fun continuarRegistroBody(
@@ -62,8 +51,8 @@ interface RetrofitService {
         @Body continuarRegistroBody: ContinuarRegistroBody
     ):Response<Mensaje>
 
-    @GET("/proyecto/api/events")
-    suspend fun dameTodosEventos(): Response<List<Evento>>
+    @DELETE("proyecto/api/users/{id}")
+    suspend fun eliminarUsuario(@Path("id") id: Int) : Response<Mensaje>
 
     @GET("/proyecto/api/events/filter")
     suspend fun dameEventosFiltrados(
@@ -117,8 +106,27 @@ interface RetrofitService {
     suspend fun dameMisSeguidos(@Path("id") id: Int): Response<List<Asistente>>
 
     @GET("/proyecto/api/users/{id}/events")
-    suspend fun dameMisEventos(@Path("id") id: Int): Response<MisEventos>
+    suspend fun dameMisEventos(@Path("id") id: Int): Response<EventoMisEventos>
 
     @GET("/proyecto/api/users/{id}/historial")
     suspend fun dameMiHistorial(@Path("id") id: Int): Response<List<Evento>>
+
+    @Headers("Accept: application/json")
+    @POST("proyecto/api/events/{id}/join")
+    suspend fun solicitarUnirseEvento(@Path("id") id: Int): Response<Mensaje>
+
+    @GET("proyecto/api/events/{id}/relationUser")
+    suspend fun miRelacionConEvento(@Path("id") id: Int): Response<Relacion>
+
+    @Headers("Accept: application/json")
+    @POST("proyecto/api/users/{id}/follow")
+    suspend fun seguirUsuario(@Path("id") id: Int): Response<Mensaje>
+
+    @Headers("Accept: application/json")
+    @POST("proyecto/api/users/{id}/unfollow")
+    suspend fun dejarSeguirUsuario(@Path("id") id: Int): Response<Mensaje>
+
+    @Headers("Accept: application/json")
+    @POST("proyecto/api/logout")
+    suspend fun cerrarSesion(): Response<Mensaje>
 }

@@ -9,11 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
 import com.example.qddapp.Adapters.AsistentesAdapter
 import com.example.qddapp.Modelos.Asistente
 import com.example.qddapp.MyApp
+import com.example.qddapp.R
 import com.example.qddapp.Retrofit.Repositorio
 import com.example.qddapp.databinding.FragmentAsistentesBinding
 import kotlinx.coroutines.CoroutineScope
@@ -69,7 +71,11 @@ class FragmentAsistentes : DialogFragment() {
 
     private fun configRecycler(listaAsistente: List<Asistente>?) {
         val recyclerView = binding.recyclerViewAsistentes
-        val adapter = listaAsistente?.let { AsistentesAdapter(it) }
+        val adapter = AsistentesAdapter(listaAsistente as ArrayList<Asistente>, object : AsistentesAdapter.MyClickListener {
+            override fun onItemClickListener(bundle: Bundle) {
+                findNavController().navigate(R.id.fragmentPerfilUsuario, bundle)
+            }
+        })
         val layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter

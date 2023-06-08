@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/atrasSeguidos"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginTop="15dp"
         android:src="@drawable/atras"
         app:layout_constraintStart_toStartOf="@+id/guideline50"

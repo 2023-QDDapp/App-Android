@@ -24,8 +24,8 @@
 
     <ImageView
         android:id="@+id/filtro"
-        android:layout_width="26dp"
-        android:layout_height="20dp"
+        android:layout_width="36dp"
+        android:layout_height="30dp"
         android:layout_weight="1"
         android:src="@drawable/filtro"
         app:layout_constraintBottom_toBottomOf="@+id/busqueda"

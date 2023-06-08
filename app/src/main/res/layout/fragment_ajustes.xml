@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/atrasSiguiendo"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginTop="15dp"
         android:src="@drawable/atras"
         app:layout_constraintStart_toStartOf="@+id/guideline46"
@@ -46,8 +46,8 @@
 
     <ImageView
         android:id="@+id/iconoCerrarSesion"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:src="@drawable/cerrar_sesion"
         app:layout_constraintBottom_toBottomOf="@+id/cerrarSesion"
         app:layout_constraintEnd_toStartOf="@+id/guideline47"
@@ -67,8 +67,8 @@
 
         <ImageView
             android:id="@+id/iconoLapiz"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginTop="25dp"
             android:src="@drawable/lapiz"
             app:layout_constraintStart_toStartOf="@+id/iconoNotificaciones"
@@ -91,8 +91,8 @@
 
         <ImageView
             android:id="@+id/editarPerfil"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:rotationY="180"
             android:src="@drawable/atras"
             app:layout_constraintBottom_toBottomOf="@+id/textView50"
@@ -101,8 +101,8 @@
 
         <ImageView
             android:id="@+id/iconoNotificaciones"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginTop="20dp"
             android:src="@drawable/notificacion"
             app:layout_constraintStart_toStartOf="@+id/guideline49"
@@ -123,8 +123,8 @@
 
         <ImageView
             android:id="@+id/notificacionesAjustes"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:rotationY="180"
             android:src="@drawable/atras"
             app:layout_constraintBottom_toBottomOf="@+id/textView51"
@@ -133,8 +133,8 @@
 
         <ImageView
             android:id="@+id/iconoSeguidores"
-            android:layout_width="28dp"
-            android:layout_height="20dp"
+            android:layout_width="38dp"
+            android:layout_height="30dp"
             android:layout_marginTop="20dp"
             android:src="@drawable/seguidos"
             app:layout_constraintStart_toStartOf="@+id/guideline49"
@@ -154,13 +154,26 @@
 
         <ImageView
             android:id="@+id/misSeguidos"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:rotationY="180"
             android:src="@drawable/atras"
             app:layout_constraintBottom_toBottomOf="@+id/textView52"
             app:layout_constraintEnd_toStartOf="@+id/guideline48"
             app:layout_constraintTop_toTopOf="@+id/textView52" />
+
+        <TextView
+            android:id="@+id/eliminarCuenta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Eliminar cuenta"
+            android:textColor="@color/color_secundario"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline48"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline49"

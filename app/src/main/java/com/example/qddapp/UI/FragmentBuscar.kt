@@ -1,5 +1,6 @@
 package com.example.qddapp.UI
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,16 +9,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.qddapp.Adapters.EventosAdapter
+import com.example.qddapp.Modelos.Categoria
 import com.example.qddapp.Modelos.Evento
 import com.example.qddapp.MyApp
 import com.example.qddapp.MyViewModel
 import com.example.qddapp.R
 import com.example.qddapp.databinding.FragmentBuscarBinding
+import com.google.android.material.chip.Chip
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

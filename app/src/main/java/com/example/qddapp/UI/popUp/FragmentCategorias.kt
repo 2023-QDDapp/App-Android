@@ -4,19 +4,19 @@ import android.content.res.ColorStateList
 import android.content.res.Resources
 import android.graphics.Rect
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CompoundButton
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.qddapp.Adapters.CategoriaAdapter
-import com.example.qddapp.Adapters.EventosAdapter
 import com.example.qddapp.Modelos.Categoria
-import com.example.qddapp.Modelos.Evento
 import com.example.qddapp.MyApp
+import com.example.qddapp.MyViewModel
 import com.example.qddapp.R
 import com.example.qddapp.databinding.FragmentCategoriasBinding
 import com.google.android.material.chip.Chip
@@ -28,7 +28,8 @@ import kotlinx.coroutines.withContext
 class FragmentCategorias : DialogFragment() {
 
     private lateinit var binding:FragmentCategoriasBinding
-    private var adapter: CategoriaAdapter? = null
+    private lateinit var chip: Chip
+    private lateinit var viewModel: MyViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentCategoriasBinding.inflate(inflater, container, false)
@@ -40,6 +41,8 @@ class FragmentCategorias : DialogFragment() {
         setWidthPercent(90)
 
         val miRepositorio = (requireActivity().application as MyApp).repositorio
+        viewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
+
 
         CoroutineScope(Dispatchers.IO).launch {
             val response = miRepositorio.dameTodasCategorias()
@@ -47,7 +50,7 @@ class FragmentCategorias : DialogFragment() {
                 if (response.isSuccessful && response.code() == 200) {
                     val respuesta = response.body()
                     respuesta?.let {
-                        configRecycler(respuesta as ArrayList<Categoria>)
+                        rellenarChip(respuesta)
                     }
                 } else {
                     Toast.makeText(
@@ -62,6 +65,17 @@ class FragmentCategorias : DialogFragment() {
         binding.cerrarCategorias.setOnClickListener {
             dismiss()
         }
+
+        binding.siguienteCategorias.setOnClickListener {
+            if(binding.chipGroup.checkedChipIds.size !== 1) {
+                binding.errorCategorias.visibility = View.VISIBLE
+            } else {
+                Toast.makeText(requireContext(), binding.chipGroup.checkedChipIds[0].toString(), Toast.LENGTH_SHORT).show()
+                val myApp = (requireActivity().application as MyApp)
+                myApp.datos.guardarCategoriaBuscar(binding.chipGroup.checkedChipIds[0])
+                dismiss()
+            }
+        }
     }
 
     fun DialogFragment.setWidthPercent(percentage: Int) {
@@ -72,11 +86,27 @@ class FragmentCategorias : DialogFragment() {
         dialog?.window?.setLayout(percentWidth.toInt(), ViewGroup.LayoutParams.WRAP_CONTENT)
     }
 
-    private fun configRecycler(listaCategorias: ArrayList<Categoria>) {
-        val recyclerView = binding.recyclerViewCategorias
-        adapter = CategoriaAdapter(listaCategorias)
-        val layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = adapter
+    fun rellenarChip(categorias: List<Categoria>) {
+        for (categoria in categorias) {
+            chip = Chip(context)
+            chip.text = categoria.categoria
+            chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.boton))
+            chip.setTextColor(ContextCompat.getColor(context!!, R.color.color_principal))
+            chip.isCheckable = true
+            chip.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener{
+                override fun onCheckedChanged(chip: CompoundButton?, isChecked: Boolean) {
+                    if (isChecked) {
+                        (chip as Chip).chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.color_principal))
+                        chip.setTextColor(ContextCompat.getColor(context!!, R.color.white))
+                        viewModel.updateDataCategory(categoria)
+                    } else {
+                        (chip as Chip).chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.boton))
+                        chip.setTextColor(ContextCompat.getColor(context!!, R.color.color_principal))
+                        viewModel.deleteDataCategory()
+                    }
+                }
+            })
+            binding.chipGroup.addView(chip)
+        }
     }
 }

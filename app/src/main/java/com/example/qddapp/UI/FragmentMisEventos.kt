@@ -1,4 +1,4 @@
-package com.example.qddapp
+package com.example.qddapp.UI
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,10 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.qddapp.Adapters.EventosAdapter
+import com.example.qddapp.Adapters.MiEventoAdapter
 import com.example.qddapp.Modelos.Evento
+import com.example.qddapp.Modelos.EventoMiEvento
+import com.example.qddapp.MyApp
 import com.example.qddapp.Retrofit.Repositorio
 import com.example.qddapp.databinding.FragmentMisEventosBinding
 import com.google.android.material.tabs.TabLayout
@@ -22,7 +25,8 @@ class FragmentMisEventos : Fragment() {
 
     private lateinit var binding: FragmentMisEventosBinding
     lateinit var miRepositorio: Repositorio
-    private lateinit var adapter: EventosAdapter
+    private lateinit var adapter: MiEventoAdapter
+    private lateinit var adapterEventos: EventosAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentMisEventosBinding.inflate(inflater, container, false)
@@ -64,7 +68,7 @@ class FragmentMisEventos : Fragment() {
                     withContext(Dispatchers.Main) {
                         if (response.isSuccessful && response.code() == 200) {
                             val respuesta = response.body()
-                            respuesta?.let { configRecycler(respuesta) }
+                            respuesta?.let { configRecyclerEventos(respuesta) }
                         } else {
                             Toast.makeText(
                                 requireContext(),
@@ -80,7 +84,7 @@ class FragmentMisEventos : Fragment() {
                     withContext(Dispatchers.Main) {
                         if (response.isSuccessful && response.code() == 200) {
                             val respuesta = response.body()
-                            respuesta?.let { configRecycler(respuesta.eventos) }
+                            respuesta?.let { configRecycler(respuesta.eventos!!) }
                         } else {
                             Toast.makeText(
                                 requireContext(),
@@ -93,10 +97,33 @@ class FragmentMisEventos : Fragment() {
         }
     }
 
-    private fun configRecycler(listaEventos: List<Evento>) {
+    private fun configRecycler(listaEventos: List<EventoMiEvento>) {
         val myApp = (requireActivity().application as MyApp)
         val recyclerView = binding.recyclerViewMisEventos
-         adapter = EventosAdapter(listaEventos as ArrayList<Evento>, myApp.datos.sacarUserId(), object : EventosAdapter.MyClickListener{
+         adapter = MiEventoAdapter(listaEventos as ArrayList<EventoMiEvento>, myApp.datos.sacarUserId(), object : MiEventoAdapter.MyClickListener{
+             override fun onItemClickListener(evento: EventoMiEvento, position: Int) {
+                 miRepositorio = (requireActivity().application as MyApp).repositorio
+                 CoroutineScope(Dispatchers.IO).launch {
+                     val respuesta = miRepositorio.borrarEvento(evento.idEvento!!)
+
+                     withContext(Dispatchers.Main){
+                         if(respuesta.isSuccessful){
+                             adapter.deleteItem(position)
+                         }
+                     }
+                 }
+             }
+
+         })
+        val layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
+        recyclerView.layoutManager = layoutManager
+        recyclerView.adapter = adapter
+    }
+
+    private fun configRecyclerEventos(listaEventos: List<Evento>) {
+        val myApp = (requireActivity().application as MyApp)
+        val recyclerView = binding.recyclerViewMisEventos
+        adapterEventos = EventosAdapter(listaEventos as ArrayList<Evento>, myApp.datos.sacarUserId(), object : EventosAdapter.MyClickListener{
             override fun onItemClickListener(evento: Evento, position: Int) {
                 miRepositorio = (requireActivity().application as MyApp).repositorio
                 CoroutineScope(Dispatchers.IO).launch {
@@ -104,7 +131,7 @@ class FragmentMisEventos : Fragment() {
 
                     withContext(Dispatchers.Main){
                         if(respuesta.isSuccessful){
-                            adapter.deleteItem(position)
+                            adapterEventos.deleteItem(position)
                         }
                     }
                 }
@@ -113,6 +140,6 @@ class FragmentMisEventos : Fragment() {
         })
         val layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = adapter
+        recyclerView.adapter = adapterEventos
     }
 }

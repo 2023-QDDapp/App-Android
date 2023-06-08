@@ -1,17 +1,24 @@
 package com.example.qddapp.Adapters
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.qddapp.Modelos.Asistente
+import com.example.qddapp.Modelos.Evento
 import com.example.qddapp.R
 import com.example.qddapp.databinding.AsistenteBinding
 
-class AsistentesAdapter(val usuario: List<Asistente>) : RecyclerView.Adapter<AsistentesAdapter.MiCelda>() {
+class AsistentesAdapter(val usuario: List<Asistente>, val listener: MyClickListener?) : RecyclerView.Adapter<AsistentesAdapter.MiCelda>() {
 
     inner class MiCelda(val binding: AsistenteBinding) : RecyclerView.ViewHolder(binding.root)
+
+    interface MyClickListener {
+        fun onItemClickListener(bundle: Bundle)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : AsistentesAdapter.MiCelda {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -26,7 +33,8 @@ class AsistentesAdapter(val usuario: List<Asistente>) : RecyclerView.Adapter<Asi
         Glide.with(holder.itemView).load(usuario.foto).into(holder.binding.fotoUsuarioAsistente)
 
         holder.itemView.setOnClickListener {
-            holder.itemView.findNavController().navigate(R.id.perfil)
+            val bundle = bundleOf("id_organizador" to usuario.id)
+            listener?.onItemClickListener(bundle)
         }
     }
 

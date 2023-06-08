@@ -23,6 +23,11 @@ class FragmentSolicitudEnviada : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         setWidthPercent(90)
 
+        arguments?.let {
+            val mensaje = it.getString("mensaje")
+            binding.textView34.text= mensaje
+        }
+
         binding.cerrarSolicitud.setOnClickListener {
             dismiss()
             findNavController().navigateUp()

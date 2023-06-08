@@ -74,7 +74,16 @@
         tools:layout="@layout/fragment_siguiendo" />
     <fragment
         android:id="@+id/fragmentMisEventos"
-        android:name="com.example.qddapp.FragmentMisEventos"
+        android:name="com.example.qddapp.UI.FragmentMisEventos"
         android:label="fragment_mis_eventos"
         tools:layout="@layout/fragment_mis_eventos" />
+    <fragment
+        android:id="@+id/fragmentPerfilUsuario"
+        android:name="com.example.qddapp.UI.FragmentPerfilUsuario"
+        android:label="FragmentPerfilUsuario" />
+    <fragment
+        android:id="@+id/notificaciones"
+        android:name="com.example.qddapp.UI.FragmentProximamente"
+        android:label="fragment_proximamente"
+        tools:layout="@layout/fragment_proximamente" />
 </navigation>

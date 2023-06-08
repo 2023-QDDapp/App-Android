@@ -17,6 +17,8 @@ class Repositorio(context: Context) {
 
     suspend fun crearEventoBody(evento: EventoCrear) = retrofit.crearEventoBody(evento)
 
+    suspend fun eliminarUsuario(id: Int) = retrofit.eliminarUsuario(id)
+
     suspend fun dameEventosFiltrados(
         categoria: String?,
         fecha_inicion: String?,
@@ -44,4 +46,13 @@ class Repositorio(context: Context) {
 
     suspend fun borrarEvento(id: Int) = retrofit.borrarEvento(id)
 
+    suspend fun solicitarUnirseEvento(id: Int) = retrofit.solicitarUnirseEvento(id)
+
+    suspend fun miRelacionConEvento(id: Int) = retrofit.miRelacionConEvento(id)
+
+    suspend fun seguirUsuario(id: Int) = retrofit.seguirUsuario(id)
+
+    suspend fun dejarSeguirUsuario(id: Int) = retrofit.dejarSeguirUsuario(id)
+
+    suspend fun cerrarSesion() = retrofit.cerrarSesion()
 }

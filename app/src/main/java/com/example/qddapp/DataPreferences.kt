@@ -82,9 +82,11 @@ class DataPreferences(context: Context) {
         editor.apply()
     }
 
-//    fun guardarCategoria(id_categoria: Int){
-//        editor.putInt("categoria", id_categoria)
-//    }
+    fun guardarCategoriaBuscar(id_categoria: Int){
+        editor.putInt("categoria", id_categoria)
+    }
+
+    fun sacarCategoriaBuscar() = preferences.getInt("categoria", 1)
 
     fun sacarTituloEvento() = preferences.getString("tituloEvento", "TituloPrueba").toString()
 
