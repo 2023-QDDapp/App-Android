@@ -84,7 +84,7 @@ class FragmentMisEventos : Fragment() {
                     withContext(Dispatchers.Main) {
                         if (response.isSuccessful && response.code() == 200) {
                             val respuesta = response.body()
-                            respuesta?.let { configRecycler(respuesta.eventos!!) }
+                            respuesta?.let { configRecycler(respuesta) }
                         } else {
                             Toast.makeText(
                                 requireContext(),

@@ -5,7 +5,7 @@ import com.example.qddapp.Modelos.Categoria
 import com.example.qddapp.Modelos.ContinuarRegistroBody
 import com.example.qddapp.Modelos.Evento
 import com.example.qddapp.Modelos.EventoCrear
-import com.example.qddapp.Modelos.EventoMisEventos
+import com.example.qddapp.Modelos.EventoMiEvento
 import com.example.qddapp.Modelos.Mensaje
 import com.example.qddapp.Modelos.MensajeEvento
 import com.example.qddapp.Modelos.Registro
@@ -88,7 +88,7 @@ interface RetrofitService {
     suspend fun dameMisSeguidos(@Path("id") id: Int): Response<List<Asistente>>
 
     @GET("/proyecto/api/users/{id}/events")
-    suspend fun dameMisEventos(@Path("id") id: Int): Response<EventoMisEventos>
+    suspend fun dameMisEventos(@Path("id") id: Int): Response<List<EventoMiEvento>>
 
     @GET("/proyecto/api/users/{id}/historial")
     suspend fun dameMiHistorial(@Path("id") id: Int): Response<List<Evento>>

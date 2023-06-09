@@ -7,16 +7,24 @@ import android.os.Parcelable
 
 @Parcelize
 data class EventoMiEvento(
-    @SerializedName("categoria")
-    val categoria: String?,
-    @SerializedName("descripcion")
-    val descripcion: String?,
-    @SerializedName("fecha_hora_inicio")
-    val fechaHoraInicio: String?,
     @SerializedName("id_evento")
     val idEvento: Int?,
+    @SerializedName("id_organizador")
+    val idOrganizador: Int?,
+    @SerializedName("organizador")
+    val organizador: String?,
+    @SerializedName("foto_organizador")
+    val fotoOrganizador: String?,
+    @SerializedName("edad")
+    val edad: Int?,
+    @SerializedName("titulo")
+    val titulo: String?,
     @SerializedName("imagen_evento")
     val imagenEvento: String?,
-    @SerializedName("titulo")
-    val titulo: String?
+    @SerializedName("fecha_hora_inicio")
+    val fechaHoraInicio: String?,
+    @SerializedName("fecha_hora_fin")
+    val fechaHoraFin: String?,
+    @SerializedName("categoria")
+    val categoria: String?,
 ) : Parcelable
